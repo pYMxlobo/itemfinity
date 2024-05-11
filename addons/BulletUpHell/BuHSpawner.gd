@@ -1169,7 +1169,6 @@ func bullet_collide_body(body_rid:RID,body:Node,body_shape_index:int,local_shape
 		rid = shared_area
 		if not poolBullets.has(rid): return
 	var B = poolBullets[rid]
-
 #	if B["props"].has("spec_angle_no_collision"):
 #		var angle:float = B["position"].angle_to_point(body.global_position)
 
