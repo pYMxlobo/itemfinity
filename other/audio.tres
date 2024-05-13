@@ -1,0 +1,67 @@
+[gd_resource type="AudioBusLayout" load_steps=7 format=3 uid="uid://bd6fs2xlsfma0"]
+
+[sub_resource type="AudioEffectCompressor" id="AudioEffectCompressor_11y10"]
+resource_name = "Compressor"
+ratio = 48.0
+attack_us = 95.0
+
+[sub_resource type="AudioEffectReverb" id="AudioEffectReverb_5o2c0"]
+resource_name = "Reverb"
+room_size = 0.1
+damping = 0.8
+spread = 0.2
+hipass = 0.5
+wet = 0.1
+
+[sub_resource type="AudioEffectLimiter" id="AudioEffectLimiter_sd0mm"]
+resource_name = "Limiter"
+ceiling_db = -5.8
+threshold_db = -7.3
+soft_clip_db = 3.9
+soft_clip_ratio = 14.3
+
+[sub_resource type="AudioEffectEQ" id="AudioEffectEQ_a28tg"]
+resource_name = "EQ"
+band_db/32_hz = -9.6
+band_db/320_hz = -0.8
+band_db/1000_hz = 4.0
+band_db/3200_hz = -4.0
+band_db/10000_hz = -15.2
+
+[sub_resource type="AudioEffectChorus" id="AudioEffectChorus_vxo58"]
+resource_name = "Chorus"
+wet = 0.1
+
+[sub_resource type="AudioEffectDistortion" id="AudioEffectDistortion_gmxs1"]
+resource_name = "Distortion"
+mode = 3
+pre_gain = 9.05
+drive = 1.0
+post_gain = -2.64
+
+[resource]
+bus/0/volume_db = -3.11736
+bus/0/effect/0/effect = SubResource("AudioEffectCompressor_11y10")
+bus/0/effect/0/enabled = true
+bus/0/effect/1/effect = SubResource("AudioEffectReverb_5o2c0")
+bus/0/effect/1/enabled = true
+bus/0/effect/2/effect = SubResource("AudioEffectLimiter_sd0mm")
+bus/0/effect/2/enabled = true
+bus/0/effect/3/effect = SubResource("AudioEffectEQ_a28tg")
+bus/0/effect/3/enabled = true
+bus/1/name = &"Music"
+bus/1/solo = false
+bus/1/mute = false
+bus/1/bypass_fx = false
+bus/1/volume_db = -80.0
+bus/1/send = &"Master"
+bus/1/effect/0/effect = SubResource("AudioEffectChorus_vxo58")
+bus/1/effect/0/enabled = true
+bus/1/effect/1/effect = SubResource("AudioEffectDistortion_gmxs1")
+bus/1/effect/1/enabled = true
+bus/2/name = &"SFX"
+bus/2/solo = false
+bus/2/mute = false
+bus/2/bypass_fx = false
+bus/2/volume_db = 0.0
+bus/2/send = &"Master"

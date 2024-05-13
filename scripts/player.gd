@@ -59,7 +59,9 @@ var item_list : Array
 var item_total : int
 func _ready():
 	randomize()
-	pre_health = Global.health
+	#pre_health = Global.health
+	item_total = red + green + yellow + purple + orange + cyan + white + black + rainbow + blue
+	Global.health = item_total
 	item_list = [red, green, yellow, purple, orange, cyan, white, black, rainbow, blue]
 	def_speed = speed
 	def_friction = friction
@@ -129,7 +131,13 @@ func _process(delta):
 	
 	if lives == 0:
 		print("gmae over D:")
+		OS.crash("uh oh")
 	
+	if Global.health == 0:
+		lives -= 1
+		OS.delay_msec(50)
+		goddamn_it(-1, false)
+		print(lives)
 	
 	
 	
@@ -145,14 +153,65 @@ func _process(delta):
 			slow_charge = slow_charge + (max_slow / 1000)
 	
 	if pre_health > Global.health:
-		random_item = item_list.pick_random()
-		while random_item == 0:
-			random_item = item_list.pick_random()
-		if random_item == 0:
-			lives - 1
-		random_item -= 1
+		goddamn_it(pre_health - Global.health, true)
 		pre_health = Global.health
-		print( "random item :" + str(random_item))
+	
+	if Global.health < item_total:
+		Global.health = item_total
+		pre_health = Global.health
+	
+	
+	if red < 0:
+		if Global.health > 1:
+			red = 0
+			goddamn_it(1, false)
+	
+	if green < 0:
+		if Global.health > 1:
+			green = 0
+			goddamn_it(1, false)
+	
+	if yellow < 0:
+		if Global.health > 1:
+			yellow = 0
+			goddamn_it(1, false)
+	
+	if purple < 0:
+		if Global.health > 1:
+			purple = 0
+			goddamn_it(1, false)
+	
+	if orange < 0:
+		if Global.health > 1:
+			orange = 0
+			goddamn_it(1, false)
+	
+	if cyan < 0:
+		if Global.health > 1:
+			cyan = 0
+			goddamn_it(1, false)
+	
+	if white < 0:
+		if Global.health > 1:
+			white = 0
+			goddamn_it(1, false)
+	
+	if black < 0:
+		if Global.health > 1:
+			black = 0
+			goddamn_it(1, false)
+	
+	if rainbow < 0:
+		if Global.health > 1:
+			rainbow = 0
+			goddamn_it(1, false)
+	
+	if blue < 0:
+		if Global.health > 1:
+			blue = 0
+			goddamn_it(1, false)
+	
+	
 	
 	if pre_red != red:
 		speed = def_speed + (10 * red)
@@ -183,7 +242,7 @@ func _process(delta):
 		pre_white = white
 		print(max_slow)
 	if pre_black != black:
-		slow_amt = def_slow_amount + (0.01 * -black)
+		slow_amt = clamp(def_slow_amount + (0.01 * -black), 0.01, 1)
 		pre_black = black
 		print(slow_amt)
 	if pre_rainbow != rainbow:
@@ -193,7 +252,7 @@ func _process(delta):
 		atk_speed = def_atk_sp + (0.1 * rainbow)
 		atk_damg = def_atk_dam + (0.2 * rainbow)
 		max_slow = def_max_slow + (0.1 * rainbow)
-		slow_amt = def_slow_amount + (0.001 * -rainbow)
+		slow_amt = clamp(def_slow_amount + (0.001 * -rainbow), 0, 1)
 		pre_rainbow = rainbow
 	if pre_blue != blue:
 		lives = def_lives + (1 * blue)
@@ -203,3 +262,32 @@ func _process(delta):
 		Global.wins = Global.def_wins + (1 * portal)
 		pre_portal = portal
 		print(Global.wins)
+
+
+
+
+func goddamn_it(loss : int, allow_blue : bool):
+	var random = randi_range(0, 9)
+	match random:
+		0:
+			red -= loss
+		1:
+			green -= loss
+		2:
+			yellow -= loss
+		3:
+			purple -= loss
+		4:
+			orange -= loss
+		5:
+			cyan -= loss
+		6:
+			white -= loss
+		7:
+			black -= loss
+		8:
+			rainbow -= loss
+		9:
+			if allow_blue == true:
+				blue -= loss
+

@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://doqrn0gi6rt8b"
+path="res://.godot/imported/Purity Music Box.wav-ab9b1e5b242c73f37a86741414e9ad2b.sample"
+
+[deps]
+
+source_file="res://music/Purity Music Box.wav"
+dest_files=["res://.godot/imported/Purity Music Box.wav-ab9b1e5b242c73f37a86741414e9ad2b.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=3
+edit/loop_begin=16
+edit/loop_end=-1
+compress/mode=0

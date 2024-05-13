@@ -108,6 +108,17 @@ animations = [{
 radius = 7.0
 
 [node name="item" type="Node2D"]
+editor_description = "0 = red
+1 = green
+2 = yellow
+3 = purple
+4 = orange
+5 = cyan
+6 = white
+7 = black
+8 = rainbow
+9 = blue
+10 = portal"
 script = ExtResource("1_gasev")
 
 [node name="T" type="AnimatedSprite2D" parent="."]

@@ -1,0 +1,459 @@
+[gd_scene load_steps=35 format=3 uid="uid://di7oipr6tt0sn"]
+
+[ext_resource type="Script" path="res://scripts/player.gd" id="1_sslu8"]
+[ext_resource type="Texture2D" uid="uid://ct5vf01lh702j" path="res://sprites/orb.png" id="2_r6lnr"]
+[ext_resource type="Script" path="res://addons/BulletUpHell/Nodes/BuHPattern.gd" id="3_6gbir"]
+[ext_resource type="Script" path="res://addons/BulletUpHell/SpawnPatterns/PatternCircle.gd" id="4_2scud"]
+[ext_resource type="Script" path="res://addons/BulletUpHell/Nodes/BuHBulletProperties.gd" id="4_qca40"]
+[ext_resource type="Script" path="res://addons/BulletUpHell/Bullet/BulletProps.gd" id="5_0wa8v"]
+[ext_resource type="Script" path="res://scripts/ouchie.gd" id="5_5sgym"]
+[ext_resource type="Script" path="res://addons/BulletUpHell/Nodes/BuHSpawnPoint.gd" id="6_qikox"]
+[ext_resource type="Texture2D" uid="uid://2whsm5f4ge8c" path="res://sprites/bricktile.png" id="8_8bi4e"]
+[ext_resource type="Texture2D" uid="uid://dn2pcswv8kune" path="res://sprites/slowmeter_under.png" id="9_fe104"]
+[ext_resource type="Texture2D" uid="uid://dbcwn5djsgpwp" path="res://sprites/slowmeter_over.png" id="10_0pknt"]
+[ext_resource type="Texture2D" uid="uid://doshjmu2exfyl" path="res://sprites/slowmeter_fill.png" id="11_p530m"]
+[ext_resource type="Script" path="res://scripts/slowmeter.gd" id="12_1ahfu"]
+[ext_resource type="PackedScene" uid="uid://crfm54kkrxh4r" path="res://scenes/item.tscn" id="13_y8j4c"]
+[ext_resource type="Shader" path="res://other/haha.gdshader" id="15_yits8"]
+[ext_resource type="AudioStream" uid="uid://cg25vca5dq4x6" path="res://music/Itemfinity Song 1.mp3" id="16_ws0ai"]
+[ext_resource type="AudioStream" uid="uid://bt2c48ctaxqcq" path="res://music/Purity.wav" id="17_s1bf6"]
+[ext_resource type="Script" path="res://scripts/healthtext.gd" id="18_j0teh"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_w3eof"]
+shader = ExtResource("15_yits8")
+shader_parameter/color_0 = Color(1, 1, 1, 1)
+shader_parameter/color_1 = Color(0.580392, 0.529412, 0.529412, 1)
+shader_parameter/color_2 = Color(0.34902, 0.317647, 0.317647, 1)
+shader_parameter/color_3 = Color(0, 0, 0, 1)
+shader_parameter/color_4 = Color(0.560784, 0.560784, 0.560784, 1)
+shader_parameter/color_5 = Color(0.0901961, 0.666667, 1, 1)
+shader_parameter/color_6 = Color(0.360784, 0.721569, 1, 1)
+shader_parameter/color_7 = Color(0.639216, 0.831373, 1, 1)
+shader_parameter/color_8 = Color(0.701961, 0.968627, 1, 1)
+shader_parameter/color_9 = Color(0.0745098, 0.545098, 0.819608, 1)
+shader_parameter/color_10 = Color(0.0509804, 0.368627, 0.54902, 1)
+shader_parameter/color_11 = Color(0.239216, 0.517647, 1, 1)
+shader_parameter/color_12 = Color(0.145098, 0.309804, 0.6, 1)
+shader_parameter/color_13 = Color(0.121569, 1, 1, 1)
+shader_parameter/color_14 = Color(0.0666667, 0.560784, 0.560784, 1)
+shader_parameter/color_15 = Color(0.34902, 1, 0.698039, 1)
+shader_parameter/color_16 = Color(0.184314, 0.529412, 0.368627, 1)
+shader_parameter/color_17 = Color(1, 0, 0, 1)
+shader_parameter/color_18 = Color(0.560784, 0, 0, 1)
+shader_parameter/color_19 = Color(1, 0.533333, 0, 1)
+shader_parameter/color_20 = Color(0.4, 0.211765, 0, 1)
+shader_parameter/color_21 = Color(1, 0.968627, 0, 1)
+shader_parameter/color_22 = Color(0.631373, 0.611765, 0, 1)
+shader_parameter/color_23 = Color(0.701961, 1, 0, 1)
+shader_parameter/color_24 = Color(0.407843, 0.580392, 0, 1)
+shader_parameter/color_25 = Color(0.368627, 1, 0, 1)
+shader_parameter/color_26 = Color(0.196078, 0.529412, 0, 1)
+shader_parameter/color_27 = Color(0, 1, 0.635294, 1)
+shader_parameter/color_28 = Color(0, 0.54902, 0.34902, 1)
+shader_parameter/color_29 = Color(0, 0.866667, 1, 1)
+shader_parameter/color_30 = Color(0, 0.443137, 0.509804, 1)
+shader_parameter/color_31 = Color(0, 0.333333, 1, 1)
+shader_parameter/color_32 = Color(0, 0.168627, 0.509804, 1)
+shader_parameter/color_33 = Color(0.0980392, 0, 1, 1)
+shader_parameter/color_34 = Color(0.0509804, 0, 0.529412, 1)
+shader_parameter/color_35 = Color(0.364706, 0, 1, 1)
+shader_parameter/color_36 = Color(0.211765, 0, 0.580392, 1)
+shader_parameter/color_37 = Color(0.666667, 0, 1, 1)
+shader_parameter/color_38 = Color(0.392157, 0, 0.588235, 1)
+shader_parameter/color_39 = Color(0.831373, 0, 1, 1)
+shader_parameter/color_40 = Color(0.458824, 0, 0.54902, 1)
+shader_parameter/color_41 = Color(1, 0, 0.435294, 1)
+shader_parameter/color_42 = Color(0.129412, 0, 0.054902, 1)
+shader_parameter/color_43 = Color(0.6, 0, 0.262745, 1)
+shader_parameter/color_44 = Color(0.6, 0.313726, 0.427451, 1)
+shader_parameter/color_45 = Color(0.301961, 0.690196, 0.560784, 1)
+shader_parameter/color_46 = Color(0.462745, 0.690196, 0.513726, 1)
+shader_parameter/color_47 = Color(0.160784, 0.368627, 0.301961, 1)
+shader_parameter/color_48 = Color(0.329412, 0.458824, 0.403922, 1)
+shader_parameter/color_49 = Color(1, 0.219608, 0.0980392, 1)
+shader_parameter/color_50 = Color(0.6, 0.133333, 0.0588235, 1)
+shader_parameter/color_51 = Color(1, 0.615686, 0.109804, 1)
+shader_parameter/color_52 = Color(0.580392, 0.356863, 0.0627451, 1)
+shader_parameter/color_53 = Color(0.427451, 1, 0.219608, 1)
+shader_parameter/color_54 = Color(0.258824, 0.611765, 0.133333, 1)
+shader_parameter/color_55 = Color(0.854902, 0.368627, 1, 1)
+shader_parameter/color_56 = Color(0.478431, 0.207843, 0.560784, 1)
+shader_parameter/color_57 = Color(1, 0.368627, 0.368627, 1)
+shader_parameter/color_58 = Color(0.541176, 0.2, 0.2, 1)
+shader_parameter/color_59 = Color(1, 0.329412, 0.709804, 1)
+shader_parameter/color_60 = Color(0.690196, 0.227451, 0.490196, 1)
+shader_parameter/color_61 = Color(0.501961, 0.784314, 1, 1)
+shader_parameter/color_62 = Color(0.329412, 0.517647, 0.658824, 1)
+shader_parameter/color_63 = Color(0.552941, 0.360784, 1, 1)
+shader_parameter/color_64 = Color(0.368627, 0.243137, 0.670588, 1)
+shader_parameter/color_65 = Color(0.882353, 0.301961, 1, 1)
+shader_parameter/color_66 = Color(0.545098, 0.188235, 0.619608, 1)
+shader_parameter/color_67 = Color(0.764706, 1, 0.219608, 1)
+shader_parameter/color_68 = Color(0.47451, 0.619608, 0.137255, 1)
+
+[sub_resource type="Gradient" id="Gradient_jm2n8"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_fuaac"]
+gradient = SubResource("Gradient_jm2n8")
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_dkewi"]
+radius = 5.0
+
+[sub_resource type="Curve2D" id="Curve2D_e0oaf"]
+
+[sub_resource type="Curve" id="Curve_yrhes"]
+
+[sub_resource type="Curve" id="Curve_j383b"]
+
+[sub_resource type="PackedDataContainer" id="PackedDataContainer_4gyck"]
+script = ExtResource("5_0wa8v")
+anim_more = Array[Resource("res://addons/BulletUpHell/Bullet/animStates.gd")]([])
+damage = 3.0
+speed = 60.0
+scale = 0.2
+angle = 0.0
+groups = PackedStringArray()
+spec_bounces = 0
+spec_no_collision = false
+spec_modulate_loop = 0.0
+spec_trail_length = 0.0
+spec_trail_width = 0.0
+spec_trail_modulate = Color(1, 1, 1, 1)
+spec_rotating_speed = 0.0
+death_after_time = 30.0
+death_outside_box = Rect2(0, 0, 0, 0)
+death_from_collision = true
+a_direction_equation = ""
+a_curve_movement = 0
+a_speed_multiplier = SubResource("Curve_yrhes")
+a_speed_multi_iterations = 0
+a_speed_multi_scale = 0.0
+trigger_container = ""
+trigger_wait_for_shot = true
+homing_type = 0
+homing_target = NodePath("")
+homing_steer = 0.0
+homing_time_start = 0.0
+homing_duration = 999.0
+scale_multi_iterations = 0
+scale_multiplier = SubResource("Curve_j383b")
+scale_multi_scale = 1.0
+r_randomisation_chances = 1.0
+r_speed_choice = PackedFloat32Array()
+r_speed_variation = Vector3(0, 0, 0)
+r_scale_choice = PackedFloat32Array()
+r_scale_variation = Vector3(0, 0, 0)
+r_angle_choice = PackedFloat32Array()
+r_angle_variation = Vector3(0, 0, 0)
+r_group_choice = []
+r_bounce_choice = PackedInt32Array()
+r_bounce_variation = Vector3(0, 0, 0)
+r_no_coll_chances = 0.0
+r_modulate_variation = Vector3(0, 0, 0)
+r_trail_length_variation = Vector3(0, 0, 0)
+r_trail_color_variation = Vector3(0, 0, 0)
+r_rotating_variation = Vector3(0, 0, 0)
+r_death_after_choice = PackedFloat32Array()
+r_death_after_variation = Vector3(0, 0, 0)
+r_death_outside_chances = 0.0
+r_dir_equation_choice = PackedStringArray()
+r_curve_choice = []
+r_speed_multi_curve_choice = []
+r_speed_multi_iter_variation = Vector3(0, 0, 0)
+r_speed_multi_scale_variation = Vector3(0, 0, 0)
+r_trigger_choice = PackedStringArray()
+r_wait_for_shot_chances = 0.0
+r_homing_target_choice = []
+r_special_target_choice = PackedStringArray()
+r_group_target_choice = PackedStringArray()
+r_pos_target_choice = PackedVector2Array()
+r_steer_choice = PackedFloat32Array()
+r_steer_variation = Vector3(0, 0, 0)
+r_homing_delay_choice = PackedFloat32Array()
+r_homing_delay_variation = Vector3(0, 0, 0)
+r_homing_dur_choice = PackedFloat32Array()
+r_homing_dur_variation = Vector3(0, 0, 0)
+r_scale_multi_curve_choice = []
+r_scale_multi_iter_variation = Vector3(0, 0, 0)
+r_scale_multi_scale_variation = Vector3(0, 0, 0)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_stdl7"]
+radius = 2.0
+
+[sub_resource type="Curve2D" id="Curve2D_de7s7"]
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_60yp4"]
+resource_name = "PatternCircle"
+source_geometry_group_name = &"navigation_polygon_source_group"
+script = ExtResource("4_2scud")
+radius = 36
+angle_total = 6.28319
+angle_decal = 0.0
+symmetric = true
+center = 0
+symmetry_type = 0
+bullet = "1"
+nbr = 8
+iterations = 999
+pattern_angle = 0.0
+pattern_angle_target = NodePath("../CharacterBody2D")
+pattern_angle_mouse = false
+forced_angle = 0.0
+forced_target = NodePath("../CharacterBody2D")
+forced_lookat_mouse = false
+forced_pattern_lookat = true
+cooldown_stasis = false
+cooldown_spawn = 1.0
+cooldown_shoot = 0.0
+cooldown_next_spawn = 0.0
+cooldown_next_shoot = 0.0
+wait_tween_momentum = 0
+wait_tween_length = 0.0
+wait_tween_time = 0.0
+
+[sub_resource type="Curve2D" id="Curve2D_gp7ko"]
+
+[sub_resource type="Curve" id="Curve_35p58"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_bgchm"]
+
+[sub_resource type="Gradient" id="Gradient_4klkf"]
+offsets = PackedFloat32Array(0.084507, 0.330986, 0.647887, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0.302752, 0.302752, 0.302752, 1, 0.638775, 0.638775, 0.638775, 1, 1, 1, 1, 1)
+
+[sub_resource type="PackedDataContainer" id="PackedDataContainer_lduhh"]
+script = ExtResource("5_0wa8v")
+anim_more = Array[Resource("res://addons/BulletUpHell/Bullet/animStates.gd")]([])
+damage = 1.0
+speed = 50.0
+scale = 1.0
+angle = 0.0
+groups = PackedStringArray()
+spec_bounces = 3
+spec_no_collision = false
+spec_modulate = SubResource("Gradient_4klkf")
+spec_modulate_loop = 3.0
+spec_trail_length = 0.0
+spec_trail_width = 0.0
+spec_trail_modulate = Color(1, 1, 1, 1)
+spec_rotating_speed = 3.0
+death_after_time = 30.0
+death_outside_box = Rect2(0, 0, 0, 0)
+death_from_collision = false
+a_direction_equation = ""
+a_curve_movement = 0
+a_speed_multiplier = SubResource("Curve_35p58")
+a_speed_multi_iterations = 0
+a_speed_multi_scale = 2.0
+trigger_container = ""
+trigger_wait_for_shot = true
+homing_type = 0
+homing_target = NodePath("../CharacterBody2D")
+homing_steer = 4.0
+homing_time_start = 0.0
+homing_duration = 999.0
+scale_multi_iterations = 0
+scale_multiplier = SubResource("Curve_bgchm")
+scale_multi_scale = 1.0
+r_randomisation_chances = 1.0
+r_speed_choice = PackedFloat32Array()
+r_speed_variation = Vector3(0, 0, 0)
+r_scale_choice = PackedFloat32Array()
+r_scale_variation = Vector3(0, 0, 0)
+r_angle_choice = PackedFloat32Array()
+r_angle_variation = Vector3(0, 0, 0)
+r_group_choice = []
+r_bounce_choice = PackedInt32Array()
+r_bounce_variation = Vector3(0, 0, 0)
+r_no_coll_chances = 0.0
+r_modulate_variation = Vector3(0, 0, 0)
+r_trail_length_variation = Vector3(0, 0, 0)
+r_trail_color_variation = Vector3(0, 0, 0)
+r_rotating_variation = Vector3(0, 0, 0)
+r_death_after_choice = PackedFloat32Array()
+r_death_after_variation = Vector3(0, 0, 0)
+r_death_outside_chances = 0.0
+r_dir_equation_choice = PackedStringArray()
+r_curve_choice = []
+r_speed_multi_curve_choice = []
+r_speed_multi_iter_variation = Vector3(0, 0, 0)
+r_speed_multi_scale_variation = Vector3(0, 0, 0)
+r_trigger_choice = PackedStringArray()
+r_wait_for_shot_chances = 0.0
+r_homing_target_choice = []
+r_special_target_choice = PackedStringArray()
+r_group_target_choice = PackedStringArray()
+r_pos_target_choice = PackedVector2Array()
+r_steer_choice = PackedFloat32Array()
+r_steer_variation = Vector3(0, 0, 0)
+r_homing_delay_choice = PackedFloat32Array()
+r_homing_delay_variation = Vector3(0, 0, 0)
+r_homing_dur_choice = PackedFloat32Array()
+r_homing_dur_variation = Vector3(0, 0, 0)
+r_scale_multi_curve_choice = []
+r_scale_multi_iter_variation = Vector3(0, 0, 0)
+r_scale_multi_scale_variation = Vector3(0, 0, 0)
+
+[node name="Node2D" type="Node2D"]
+
+[node name="shader" type="Sprite2D" parent="."]
+z_index = 4096
+material = SubResource("ShaderMaterial_w3eof")
+position = Vector2(207, 215)
+scale = Vector2(9.15625, 7.98438)
+texture = SubResource("GradientTexture2D_fuaac")
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+position = Vector2(191, 208)
+collision_layer = 2
+collision_mask = 2
+motion_mode = 1
+slide_on_ceiling = false
+script = ExtResource("1_sslu8")
+red = 1
+green = 1
+yellow = 1
+purple = 1
+orange = 1
+cyan = 1
+white = 1
+black = 1
+rainbow = 1
+blue = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D"]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_r6lnr")
+
+[node name="collisionbox" type="CollisionShape2D" parent="CharacterBody2D"]
+shape = SubResource("CircleShape2D_dkewi")
+
+[node name="PlayerBullet" type="Path2D" parent="CharacterBody2D"]
+curve = SubResource("Curve2D_e0oaf")
+script = ExtResource("4_qca40")
+id = "99"
+props = SubResource("PackedDataContainer_4gyck")
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="CharacterBody2D"]
+remote_path = NodePath("../../PlayerHitbox")
+update_rotation = false
+
+[node name="PlayerHitbox" type="Area2D" parent="."]
+position = Vector2(191, 208)
+script = ExtResource("5_5sgym")
+
+[node name="hitbox" type="CollisionShape2D" parent="PlayerHitbox"]
+shape = SubResource("CircleShape2D_stdl7")
+
+[node name="SpawnPattern" type="Path2D" parent="."]
+position = Vector2(81.22, 81.215)
+curve = SubResource("Curve2D_de7s7")
+script = ExtResource("3_6gbir")
+id = "2"
+pattern = SubResource("NavigationPolygon_60yp4")
+
+[node name="BulletPattern" type="Path2D" parent="."]
+curve = SubResource("Curve2D_gp7ko")
+script = ExtResource("4_qca40")
+id = "1"
+props = SubResource("PackedDataContainer_lduhh")
+
+[node name="SpawnPoint" type="Node2D" parent="."]
+position = Vector2(245, 83)
+script = ExtResource("6_qikox")
+active = true
+auto_pattern_id = "2"
+shared_area_name = "0"
+rotating_speed = 0.0
+pool_amount = 50
+auto_start_on_cam = true
+auto_start_after_time = 0.0
+auto_start_at_distance = 5.0
+auto_distance_from = NodePath("")
+trigger_container = NodePath("")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
+polygon = PackedVector2Array(400, 400, 400, 0, 0, 0, -62, -72, 0, -72, 469, -72, 487, 464, -71, 467, -62, 0, -62, -72, 0, 0, 0, 400)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = -615
+texture_repeat = 2
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("8_8bi4e")
+centered = false
+region_enabled = true
+region_rect = Rect2(0, 0, 800, 800)
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="." node_paths=PackedStringArray("player")]
+offset_left = 4.0
+offset_top = 4.0
+offset_right = 132.0
+offset_bottom = 20.0
+max_value = 10.0
+step = 0.05
+value = 10.0
+nine_patch_stretch = true
+texture_under = ExtResource("9_fe104")
+texture_over = ExtResource("10_0pknt")
+texture_progress = ExtResource("11_p530m")
+script = ExtResource("12_1ahfu")
+player = NodePath("../CharacterBody2D")
+
+[node name="item" parent="." node_paths=PackedStringArray("player") instance=ExtResource("13_y8j4c")]
+position = Vector2(281, 131)
+player = NodePath("../CharacterBody2D")
+is_random = true
+
+[node name="item2" parent="." node_paths=PackedStringArray("player") instance=ExtResource("13_y8j4c")]
+position = Vector2(199, 98)
+player = NodePath("../CharacterBody2D")
+is_random = true
+
+[node name="item3" parent="." node_paths=PackedStringArray("player") instance=ExtResource("13_y8j4c")]
+position = Vector2(109, 133)
+player = NodePath("../CharacterBody2D")
+is_random = true
+
+[node name="item4" parent="." node_paths=PackedStringArray("player") instance=ExtResource("13_y8j4c")]
+position = Vector2(308, 231)
+player = NodePath("../CharacterBody2D")
+is_random = true
+
+[node name="item5" parent="." node_paths=PackedStringArray("player") instance=ExtResource("13_y8j4c")]
+position = Vector2(239, 297)
+player = NodePath("../CharacterBody2D")
+is_random = true
+
+[node name="item6" parent="." node_paths=PackedStringArray("player") instance=ExtResource("13_y8j4c")]
+position = Vector2(115, 262)
+player = NodePath("../CharacterBody2D")
+is_random = true
+
+[node name="item7" parent="." node_paths=PackedStringArray("player") instance=ExtResource("13_y8j4c")]
+position = Vector2(56, 194)
+player = NodePath("../CharacterBody2D")
+value = 10
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("16_ws0ai")
+
+[node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("17_s1bf6")
+bus = &"Music"
+
+[node name="Label" type="Label" parent="."]
+offset_top = 369.0
+offset_right = 110.0
+offset_bottom = 400.0
+text = "Health: 1"
+vertical_alignment = 1
+clip_text = true
+script = ExtResource("18_j0teh")
+
+[connection signal="body_shape_entered" from="PlayerHitbox" to="PlayerHitbox" method="_on_body_shape_entered"]

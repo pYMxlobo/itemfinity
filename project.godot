@@ -13,8 +13,13 @@ config_version=5
 config/name="itemfinity"
 run/main_scene="res://scenes/testo.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
+run/max_fps=30
 boot_splash/bg_color=Color(0.29211, 0, 0.0279529, 1)
 config/icon="res://icon.svg"
+
+[audio]
+
+buses/default_bus_layout="res://other/audio.tres"
 
 [autoload]
 
@@ -36,6 +41,10 @@ window/stretch/mode="viewport"
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/BulletUpHell/plugin.cfg")
+
+[gui]
+
+theme/default_font_antialiasing=0
 
 [input]
 
@@ -83,4 +92,5 @@ shooting={
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0
+2d/snap/snap_2d_transforms_to_pixel=true
 anti_aliasing/canvas_textures/default_texture_filter=1
