@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://bmaqlensx66cm"]
+[gd_scene load_steps=14 format=3 uid="uid://bmaqlensx66cm"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_07vxm"]
 [ext_resource type="Texture2D" uid="uid://ct5vf01lh702j" path="res://sprites/orb.png" id="1_jrvm1"]
@@ -8,11 +8,7 @@
 [ext_resource type="Script" path="res://scripts/slowmeter.gd" id="5_fw64g"]
 [ext_resource type="Script" path="res://scripts/healthtext.gd" id="6_27tuu"]
 [ext_resource type="Shader" path="res://other/haha.gdshader" id="7_yfjid"]
-[ext_resource type="Script" path="res://addons/BulletUpHell/Nodes/BuHPattern.gd" id="9_xocaa"]
-[ext_resource type="Script" path="res://addons/BulletUpHell/Nodes/BuHBulletProperties.gd" id="9_xojsm"]
-[ext_resource type="Script" path="res://addons/BulletUpHell/SpawnPatterns/PatternCircle.gd" id="10_6ys5j"]
-[ext_resource type="Script" path="res://addons/BulletUpHell/Bullet/BulletProps.gd" id="10_buwh0"]
-[ext_resource type="Script" path="res://addons/BulletUpHell/Nodes/BuHSpawnPoint.gd" id="12_rq5y6"]
+[ext_resource type="Texture2D" uid="uid://2whsm5f4ge8c" path="res://sprites/bricktile.png" id="9_042w4"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_2fwfk"]
 radius = 6.0
@@ -94,127 +90,14 @@ shader_parameter/color_68 = Color(0.47451, 0.619608, 0.137255, 1)
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_kq677"]
 gradient = SubResource("Gradient_jm2n8")
 
-[sub_resource type="Curve2D" id="Curve2D_jp84q"]
-
-[sub_resource type="NavigationPolygon" id="NavigationPolygon_bps51"]
-resource_name = "PatternCircle"
-source_geometry_group_name = &"navigation_polygon_source_group"
-script = ExtResource("10_6ys5j")
-radius = 40
-angle_total = 6.28319
-angle_decal = 0.0
-symmetric = false
-center = 0
-symmetry_type = 0
-bullet = "9999"
-nbr = 5
-iterations = -1
-pattern_angle = 0.0
-pattern_angle_target = NodePath("")
-pattern_angle_mouse = true
-forced_angle = 0.0
-forced_target = NodePath("")
-forced_lookat_mouse = false
-forced_pattern_lookat = true
-cooldown_stasis = true
-cooldown_spawn = 1.0
-cooldown_shoot = 0.0
-cooldown_next_spawn = 0.0
-cooldown_next_shoot = 0.0
-wait_tween_momentum = 0
-wait_tween_length = 0.0
-wait_tween_time = 0.0
-
-[sub_resource type="Curve2D" id="Curve2D_7fmw3"]
-
-[sub_resource type="Curve" id="Curve_e0o18"]
-
-[sub_resource type="Curve" id="Curve_a68gn"]
-
-[sub_resource type="Gradient" id="Gradient_up5wf"]
-offsets = PackedFloat32Array(0.0352113, 1)
-colors = PackedColorArray(0.19921, 0.428185, 1, 1, 0.686275, 1, 1, 1)
-
-[sub_resource type="PackedDataContainer" id="PackedDataContainer_xeeuc"]
-script = ExtResource("10_buwh0")
-anim_more = Array[Resource("res://addons/BulletUpHell/Bullet/animStates.gd")]([])
-damage = 1.0
-speed = 30.0
-scale = 1.0
-angle = 0.0
-groups = PackedStringArray()
-spec_bounces = 0
-spec_no_collision = false
-spec_modulate = SubResource("Gradient_up5wf")
-spec_modulate_loop = 0.0
-spec_trail_length = 0.0
-spec_trail_width = 0.0
-spec_trail_modulate = Color(1, 1, 1, 1)
-spec_rotating_speed = 0.0
-death_after_time = 30.0
-death_outside_box = Rect2(0, 0, 0, 0)
-death_from_collision = false
-a_direction_equation = ""
-a_curve_movement = 0
-a_speed_multiplier = SubResource("Curve_e0o18")
-a_speed_multi_iterations = 0
-a_speed_multi_scale = 0.0
-trigger_container = ""
-trigger_wait_for_shot = true
-homing_type = 0
-homing_target = NodePath("")
-homing_steer = 0.0
-homing_time_start = 0.0
-homing_duration = 999.0
-scale_multi_iterations = 0
-scale_multiplier = SubResource("Curve_a68gn")
-scale_multi_scale = 1.0
-r_randomisation_chances = 1.0
-r_speed_choice = PackedFloat32Array()
-r_speed_variation = Vector3(0, 0, 0)
-r_scale_choice = PackedFloat32Array()
-r_scale_variation = Vector3(0, 0, 0)
-r_angle_choice = PackedFloat32Array()
-r_angle_variation = Vector3(0, 0, 0)
-r_group_choice = []
-r_bounce_choice = PackedInt32Array()
-r_bounce_variation = Vector3(0, 0, 0)
-r_no_coll_chances = 0.0
-r_modulate_variation = Vector3(0, 0, 0)
-r_trail_length_variation = Vector3(0, 0, 0)
-r_trail_color_variation = Vector3(0, 0, 0)
-r_rotating_variation = Vector3(0, 0, 0)
-r_death_after_choice = PackedFloat32Array()
-r_death_after_variation = Vector3(0, 0, 0)
-r_death_outside_chances = 0.0
-r_dir_equation_choice = PackedStringArray()
-r_curve_choice = []
-r_speed_multi_curve_choice = []
-r_speed_multi_iter_variation = Vector3(0, 0, 0)
-r_speed_multi_scale_variation = Vector3(0, 0, 0)
-r_trigger_choice = PackedStringArray()
-r_wait_for_shot_chances = 0.0
-r_homing_target_choice = []
-r_special_target_choice = PackedStringArray()
-r_group_target_choice = PackedStringArray()
-r_pos_target_choice = PackedVector2Array()
-r_steer_choice = PackedFloat32Array()
-r_steer_variation = Vector3(0, 0, 0)
-r_homing_delay_choice = PackedFloat32Array()
-r_homing_delay_variation = Vector3(0, 0, 0)
-r_homing_dur_choice = PackedFloat32Array()
-r_homing_dur_variation = Vector3(0, 0, 0)
-r_scale_multi_curve_choice = []
-r_scale_multi_iter_variation = Vector3(0, 0, 0)
-r_scale_multi_scale_variation = Vector3(0, 0, 0)
-
-[node name="The Orb" type="CharacterBody2D"]
+[node name="The Orb" type="CharacterBody2D" node_paths=PackedStringArray("lalala")]
 collision_layer = 2
 collision_mask = 3
 script = ExtResource("1_07vxm")
 max_slow = 5.0
 lives = 3
 red = 1
+lalala = NodePath("Window/Label")
 
 [node name="orb" type="Sprite2D" parent="."]
 scale = Vector2(0.5, 0.5)
@@ -262,27 +145,45 @@ position = Vector2(4.76837e-07, 9.53674e-07)
 scale = Vector2(20, 20)
 texture = SubResource("GradientTexture2D_kq677")
 
-[node name="SpawnPattern" type="Path2D" parent="."]
-curve = SubResource("Curve2D_jp84q")
-script = ExtResource("9_xocaa")
-id = "9999"
-pattern = SubResource("NavigationPolygon_bps51")
+[node name="Window" type="Window" parent="."]
+disable_3d = true
+title = "Stats"
+initial_position = 4
+size = Vector2i(256, 256)
+transient = true
+unresizable = true
+extend_to_title = true
 
-[node name="BulletPattern" type="Path2D" parent="."]
-curve = SubResource("Curve2D_7fmw3")
-script = ExtResource("9_xojsm")
-id = "9999"
-props = SubResource("PackedDataContainer_xeeuc")
+[node name="Bricktile" type="Sprite2D" parent="Window"]
+texture_filter = 1
+texture_repeat = 2
+texture = ExtResource("9_042w4")
+centered = false
+region_enabled = true
+region_rect = Rect2(0, 0, 256, 256)
 
-[node name="SpawnPoint" type="Node2D" parent="."]
-script = ExtResource("12_rq5y6")
-active = true
-auto_pattern_id = "9999"
-shared_area_name = "0"
-rotating_speed = 3.0
-pool_amount = 50
-auto_start_on_cam = false
-auto_start_after_time = 0.0
-auto_start_at_distance = 5.0
-auto_distance_from = NodePath("")
-trigger_container = NodePath("")
+[node name="Label" type="Label" parent="Window"]
+offset_right = 177.0
+offset_bottom = 231.0
+text = "speed
+friction
+acceleration
+attack speed
+attack damage
+max slow
+slow amount
+lives
+health"
+autowrap_mode = 1
+
+[node name="shader" type="Sprite2D" parent="Window"]
+z_index = 4096
+material = SubResource("ShaderMaterial_ne84v")
+position = Vector2(4.76837e-07, 9.53674e-07)
+scale = Vector2(20, 20)
+texture = SubResource("GradientTexture2D_kq677")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.5
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

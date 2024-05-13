@@ -145,8 +145,7 @@ texture_region_size = Vector2i(64, 64)
 
 [sub_resource type="TileSet" id="TileSet_cn48g"]
 tile_size = Vector2i(64, 64)
-physics_layer_0/collision_layer = 2
-physics_layer_0/collision_mask = 2
+physics_layer_0/collision_layer = 1
 navigation_layer_0/layers = 1
 sources/0 = SubResource("TileSetAtlasSource_awbpf")
 
@@ -154,18 +153,18 @@ sources/0 = SubResource("TileSetAtlasSource_awbpf")
 
 [node name="enemy" parent="." node_paths=PackedStringArray("player") instance=ExtResource("1_vjfyw")]
 position = Vector2(702, 202)
-player = NodePath("../The Orb")
+player = NodePath("../PlayerHitbox")
 
 [node name="SpawnPoint" type="Node2D" parent="enemy"]
 script = ExtResource("6_qikox")
 active = true
 auto_pattern_id = "2"
 shared_area_name = "0"
-rotating_speed = 0.0
+rotating_speed = 4.0
 pool_amount = 50
 auto_start_on_cam = false
 auto_start_after_time = 0.0
-auto_start_at_distance = 5.0
+auto_start_at_distance = 2.0
 auto_distance_from = NodePath("../../The Orb")
 trigger_container = NodePath("")
 
@@ -183,6 +182,7 @@ props = SubResource("PackedDataContainer_lduhh")
 
 [node name="The Orb" parent="." instance=ExtResource("7_6vcwy")]
 position = Vector2(200, 200)
+motion_mode = 1
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="The Orb"]
 remote_path = NodePath("../../PlayerHitbox")

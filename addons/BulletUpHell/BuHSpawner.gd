@@ -27,7 +27,7 @@ var arrayInstances:Dictionary = {}
 var arrayAnim:Dictionary = {}
 @onready var textures:SpriteFrames = $ShapeManager.sprite_frames
 @onready var arrayShapes:Dictionary = {} # format: id={shape, offset, rotation}
-@onready var viewrect = get_viewport().get_visible_rect()
+@onready var viewrect = get_window().get_visible_rect()
 
 
 var poolBullets:Dictionary = {}
@@ -152,6 +152,7 @@ func _process(delta: float) -> void:
 
 func _physics_process(delta: float) -> void:
 	if Engine.is_editor_hint(): return
+	viewrect = get_window().get_visible_rect()
 
 	if not poolBullets.is_empty():
 #		if move_thread.is_started():
@@ -886,7 +887,7 @@ func modulate_bullet(b:Dictionary, texture:Texture):
 
 func _draw():
 	if Engine.is_editor_hint(): return
-	viewrect = get_viewport().get_visible_rect()
+	viewrect = get_window().get_visible_rect()
 
 	var texture:Texture; var b
 	for B in poolBullets.keys():

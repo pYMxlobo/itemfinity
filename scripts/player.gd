@@ -7,7 +7,6 @@ extends CharacterBody2D
 @export var atk_damg : float = 3
 @export var max_slow : float = 10
 @export var slow_amt = 0.5
-@export var orbiting : int = 0
 @export var lives : int = 1
 
 var slow_charge : float = 0
@@ -19,10 +18,9 @@ var def_atk_sp : float
 var def_atk_dam : float
 var def_max_slow : float
 var def_slow_amount : float
-var def_orbiting : int
 var def_lives : int
 
-
+var can_lose_lives = true
 var slow_switch = false
 
 @export var red : int = 0
@@ -47,7 +45,7 @@ var pre_rainbow : int
 var pre_blue : int
 @export var portal : int = 0
 var pre_portal : int
-
+@export var lalala : Label
 var items : Array
 
 var shooting = false
@@ -70,7 +68,6 @@ func _ready():
 	def_atk_dam = atk_damg
 	def_max_slow = max_slow
 	def_slow_amount = slow_amt
-	def_orbiting = orbiting
 	def_lives = lives
 	#pre_red = red
 	#pre_green = green
@@ -134,12 +131,15 @@ func _process(delta):
 		OS.crash("uh oh")
 	
 	if Global.health == 0:
-		lives -= 1
-		OS.delay_msec(50)
-		goddamn_it(-1, false)
-		print(lives)
+		if can_lose_lives == true:
+			lives -= 1
+			OS.delay_msec(50)
+			goddamn_it(-1, false)
+			can_lose_lives = false
+			$Timer.start()
+			print(lives)
 	
-	
+	stat_window_update()
 	
 	if slow_switch == true:
 		if slow_charge > 0:
@@ -216,35 +216,27 @@ func _process(delta):
 	if pre_red != red:
 		speed = def_speed + (10 * red)
 		pre_red = red
-		print(speed)
 	if pre_green != green:
 		friction = def_friction + (0.01 * green)
 		pre_green = green
-		print(friction)
 	if pre_yellow != yellow:
 		acceleration = def_accel + (0.005 * yellow)
 		pre_yellow= yellow
-		print(acceleration)
 	if pre_purple != purple:
 		atk_speed = def_atk_sp + (0.5 * purple)
 		pre_purple = purple
-		print(atk_speed)
 	if pre_orange != orange:
 		atk_damg = def_atk_dam + (1 * orange)
 		pre_orange = orange
-		print(atk_damg)
 	if pre_cyan != cyan:
-		orbiting = def_orbiting + (1 * cyan)
+		speed = def_speed + (15 * cyan)
 		pre_cyan = cyan
-		print(orbiting)
 	if pre_white != white:
 		max_slow = def_max_slow + (1 * white)
 		pre_white = white
-		print(max_slow)
 	if pre_black != black:
 		slow_amt = clamp(def_slow_amount + (0.01 * -black), 0.01, 1)
 		pre_black = black
-		print(slow_amt)
 	if pre_rainbow != rainbow:
 		speed = def_speed + (1 * rainbow)
 		friction = def_friction + (0.002 * rainbow)
@@ -257,7 +249,6 @@ func _process(delta):
 	if pre_blue != blue:
 		lives = def_lives + (1 * blue)
 		pre_blue = blue
-		print(lives)
 	if pre_portal != portal:
 		Global.wins = Global.def_wins + (1 * portal)
 		pre_portal = portal
@@ -290,4 +281,24 @@ func goddamn_it(loss : int, allow_blue : bool):
 		9:
 			if allow_blue == true:
 				blue -= loss
+			else:
+				goddamn_it(loss, false)
 
+
+
+
+
+func stat_window_update():
+	lalala.text = "speed: " + str(speed) + "
+	friction: " + str(friction) + "
+	acceleration: " + str(acceleration) + "
+	attack speed: " + str(atk_speed) + "
+	attack damage: " + str(atk_damg) + "
+	max meter: " + str(max_slow) + "
+	slow amount: " + str(slow_amt) + "
+	lives: " + str(lives) + "
+	health: " + str(Global.health)
+
+
+func _on_timer_timeout():
+	can_lose_lives = true
