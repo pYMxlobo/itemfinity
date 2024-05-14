@@ -139,13 +139,13 @@ func _process(delta):
 	
 	if Global.health == 0:
 		if can_lose_lives == true:
+			$Timer.start()
+			can_lose_lives = false
 			goddamn_it(-1, false)
-			lives -= 1
 			OS.delay_msec(50)
 			$crack.stop()
 			$life_left.play()
-			$Timer.start()
-			can_lose_lives = false
+			lives -= 1
 			print(lives)
 	
 	stat_window_update()
