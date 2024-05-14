@@ -5,9 +5,10 @@ extends CharacterBody2D
 @export var acceleration = 0.175
 @export var atk_speed : float = 1
 @export var atk_damg : float = 3
+@export var atk_range : int = 1
 @export var max_slow : float = 10
 @export var slow_amt = 0.5
-@export var lives : int = 1
+@export var lives : int = 3
 
 var slow_charge : float = 0
 
@@ -16,6 +17,7 @@ var def_friction : float
 var def_accel : float
 var def_atk_sp : float
 var def_atk_dam : float
+var def_atk_ran : int
 var def_max_slow : float
 var def_slow_amount : float
 var def_lives : int
@@ -69,6 +71,7 @@ func _ready():
 	def_max_slow = max_slow
 	def_slow_amount = slow_amt
 	def_lives = lives
+	def_atk_ran = atk_range
 	#pre_red = red
 	#pre_green = green
 	#pre_yellow = yellow
@@ -112,13 +115,6 @@ func _input(event):
 	elif event.is_action_released("slow"):
 		slow_switch = false
 	
-	
-	if event.is_action_pressed("shooting"):
-		shooting = true
-		Global.health = Global.health - 1
-		print(Global.health)
-	elif event.is_action_released("shooting"):
-		shooting = false
 
 
 func _process(delta):
@@ -229,7 +225,7 @@ func _process(delta):
 		atk_damg = def_atk_dam + (1 * orange)
 		pre_orange = orange
 	if pre_cyan != cyan:
-		speed = def_speed + (15 * cyan)
+		atk_range = def_atk_ran + (1 * cyan)
 		pre_cyan = cyan
 	if pre_white != white:
 		max_slow = def_max_slow + (1 * white)
