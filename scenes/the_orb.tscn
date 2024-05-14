@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://bmaqlensx66cm"]
+[gd_scene load_steps=17 format=3 uid="uid://bmaqlensx66cm"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_07vxm"]
 [ext_resource type="Texture2D" uid="uid://ct5vf01lh702j" path="res://sprites/orb.png" id="1_jrvm1"]
@@ -9,7 +9,6 @@
 [ext_resource type="Script" path="res://scripts/healthtext.gd" id="6_27tuu"]
 [ext_resource type="Shader" path="res://other/haha.gdshader" id="7_yfjid"]
 [ext_resource type="Texture2D" uid="uid://2whsm5f4ge8c" path="res://sprites/bricktile.png" id="9_042w4"]
-[ext_resource type="Script" path="res://scripts/longattackhitbox.gd" id="10_svbsa"]
 [ext_resource type="AudioStream" uid="uid://bo78cq7nhur3c" path="res://soundeffects/orbanotherlife.wav" id="11_ejccu"]
 [ext_resource type="AudioStream" uid="uid://cdhjohxu5s4wu" path="res://soundeffects/orbshatter.wav" id="12_cbcdr"]
 [ext_resource type="AudioStream" uid="uid://bte0j8jkmtvc8" path="res://soundeffects/orbcrack.wav" id="13_miluo"]
@@ -93,9 +92,6 @@ shader_parameter/color_68 = Color(0.47451, 0.619608, 0.137255, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_kq677"]
 gradient = SubResource("Gradient_20hsf")
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_0wwew"]
-size = Vector2(16, 10)
 
 [node name="The Orb" type="CharacterBody2D" node_paths=PackedStringArray("lalala")]
 collision_layer = 2
@@ -193,37 +189,6 @@ texture = SubResource("GradientTexture2D_kq677")
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.5
 one_shot = true
-
-[node name="attack_up" type="CollisionShape2D" parent="."]
-position = Vector2(0, -13)
-shape = SubResource("RectangleShape2D_0wwew")
-disabled = true
-script = ExtResource("10_svbsa")
-attack_direction = "up"
-
-[node name="attack_down" type="CollisionShape2D" parent="."]
-position = Vector2(0, 13)
-rotation = 3.14159
-shape = SubResource("RectangleShape2D_0wwew")
-disabled = true
-script = ExtResource("10_svbsa")
-attack_direction = "down"
-
-[node name="attack_left" type="CollisionShape2D" parent="."]
-position = Vector2(-13, 0)
-rotation = -1.5708
-shape = SubResource("RectangleShape2D_0wwew")
-disabled = true
-script = ExtResource("10_svbsa")
-attack_direction = "left"
-
-[node name="attack_right" type="CollisionShape2D" parent="."]
-position = Vector2(13, 0)
-rotation = 1.5708
-shape = SubResource("RectangleShape2D_0wwew")
-disabled = true
-script = ExtResource("10_svbsa")
-attack_direction = "right"
 
 [node name="life_left" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("11_ejccu")

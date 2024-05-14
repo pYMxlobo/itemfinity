@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://di7oipr6tt0sn"]
+[gd_scene load_steps=22 format=3 uid="uid://di7oipr6tt0sn"]
 
 [ext_resource type="PackedScene" uid="uid://csmqbqsc4ay3h" path="res://scenes/enemy.tscn" id="1_vjfyw"]
 [ext_resource type="Script" path="res://addons/BulletUpHell/Nodes/BuHPattern.gd" id="3_6gbir"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" path="res://scripts/ouchie.gd" id="5_5sgym"]
 [ext_resource type="Script" path="res://addons/BulletUpHell/Nodes/BuHSpawnPoint.gd" id="6_qikox"]
 [ext_resource type="PackedScene" uid="uid://bmaqlensx66cm" path="res://scenes/the_orb.tscn" id="7_6vcwy"]
+[ext_resource type="PackedScene" uid="uid://ch63wtisq3qq5" path="res://scenes/attacker.tscn" id="8_eq6g3"]
 [ext_resource type="TileSet" uid="uid://wanmoryrsofx" path="res://other/goodbricks.tres" id="12_66qp6"]
 [ext_resource type="PackedScene" uid="uid://crfm54kkrxh4r" path="res://scenes/item.tscn" id="13_y8j4c"]
 [ext_resource type="AudioStream" uid="uid://cg25vca5dq4x6" path="res://music/Itemfinity Song 1.mp3" id="16_ws0ai"]
@@ -72,7 +73,7 @@ spec_trail_length = 0.0
 spec_trail_width = 0.0
 spec_trail_modulate = Color(1, 1, 1, 1)
 spec_rotating_speed = 3.0
-death_after_time = 30.0
+death_after_time = 20.0
 death_outside_box = Rect2(0, 0, 0, 0)
 death_from_collision = false
 a_direction_equation = ""
@@ -132,10 +133,10 @@ r_scale_multi_scale_variation = Vector3(0, 0, 0)
 [sub_resource type="CircleShape2D" id="CircleShape2D_stdl7"]
 radius = 2.0
 
-[node name="Node2D" type="Node2D"]
+[node name="World" type="Node2D"]
 
 [node name="enemy" parent="." node_paths=PackedStringArray("player") instance=ExtResource("1_vjfyw")]
-position = Vector2(702, 202)
+position = Vector2(502, 2)
 player = NodePath("../PlayerHitbox")
 
 [node name="SpawnPoint" type="Node2D" parent="enemy"]
@@ -164,14 +165,14 @@ id = "1"
 props = SubResource("PackedDataContainer_lduhh")
 
 [node name="The Orb" parent="." instance=ExtResource("7_6vcwy")]
-position = Vector2(200, 200)
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="The Orb"]
 remote_path = NodePath("../../PlayerHitbox")
 update_rotation = false
 
+[node name="Attacker" parent="The Orb" instance=ExtResource("8_eq6g3")]
+
 [node name="PlayerHitbox" type="Area2D" parent="." node_paths=PackedStringArray("timer")]
-position = Vector2(200, 200)
 collision_mask = 65535
 script = ExtResource("5_5sgym")
 timer = NodePath("Timer")
@@ -184,37 +185,37 @@ debug_color = Color(0.960784, 0, 0, 0.670588)
 one_shot = true
 
 [node name="item" parent="." node_paths=PackedStringArray("player") instance=ExtResource("13_y8j4c")]
-position = Vector2(281, 131)
+position = Vector2(81, -69)
 player = NodePath("../The Orb")
 is_random = true
 
 [node name="item2" parent="." node_paths=PackedStringArray("player") instance=ExtResource("13_y8j4c")]
-position = Vector2(199, 98)
+position = Vector2(-1, -102)
 player = NodePath("../The Orb")
 is_random = true
 
 [node name="item3" parent="." node_paths=PackedStringArray("player") instance=ExtResource("13_y8j4c")]
-position = Vector2(109, 133)
+position = Vector2(-91, -67)
 player = NodePath("../The Orb")
 is_random = true
 
 [node name="item4" parent="." node_paths=PackedStringArray("player") instance=ExtResource("13_y8j4c")]
-position = Vector2(308, 231)
+position = Vector2(108, 31)
 player = NodePath("../The Orb")
 is_random = true
 
 [node name="item5" parent="." node_paths=PackedStringArray("player") instance=ExtResource("13_y8j4c")]
-position = Vector2(239, 297)
+position = Vector2(39, 97)
 player = NodePath("../The Orb")
 is_random = true
 
 [node name="item6" parent="." node_paths=PackedStringArray("player") instance=ExtResource("13_y8j4c")]
-position = Vector2(115, 262)
+position = Vector2(-85, 62)
 player = NodePath("../The Orb")
 is_random = true
 
 [node name="item7" parent="." node_paths=PackedStringArray("player") instance=ExtResource("13_y8j4c")]
-position = Vector2(732, 200)
+position = Vector2(532, 0)
 player = NodePath("../The Orb")
 value = 10
 
@@ -228,6 +229,7 @@ bus = &"Music"
 
 [node name="TileMap" type="TileMap" parent="."]
 z_index = -130
+position = Vector2(-200, -200)
 scale = Vector2(0.5, 0.5)
 tile_set = ExtResource("12_66qp6")
 rendering_quadrant_size = 4

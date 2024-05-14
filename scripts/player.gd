@@ -72,6 +72,7 @@ func _ready():
 	def_slow_amount = slow_amt
 	def_lives = lives
 	def_atk_ran = atk_range
+	Global.atk_range = atk_range
 	#pre_red = red
 	#pre_green = green
 	#pre_yellow = yellow
@@ -122,6 +123,7 @@ func _process(delta):
 	#item_list = red, blue, green
 	item_total = red + green + yellow + purple + orange + cyan + white + black + rainbow + blue
 	
+	Global.atk_range = atk_range
 	if lives <= 0:
 		$crack.stop()
 		$orb.hide()

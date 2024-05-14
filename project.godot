@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="itemfinity"
-run/main_scene="res://scenes/testo.tscn"
+run/main_scene="res://scenes/titlescreen.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
 run/max_fps=30
 boot_splash/bg_color=Color(0.29211, 0, 0.0279529, 1)
@@ -25,6 +25,7 @@ buses/default_bus_layout="res://other/audio.tres"
 
 Spawning="*res://addons/BulletUpHell/Spawning.tscn"
 Global="*res://scripts/gobal.gd"
+TransitionManager="*res://scripts/transition_manager.gd"
 
 [display]
 

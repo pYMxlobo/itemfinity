@@ -8,7 +8,7 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	shape.size.y = get_parent().atk_range * 10
+	shape.size.y = Global.atk_range * 10
 
 
 

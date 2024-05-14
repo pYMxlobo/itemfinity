@@ -1,0 +1,41 @@
+[gd_scene load_steps=3 format=3 uid="uid://ch63wtisq3qq5"]
+
+[ext_resource type="Script" path="res://scripts/longattackhitbox.gd" id="1_kl43g"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ugvv0"]
+size = Vector2(16, 10)
+
+[node name="Attacker" type="AnimatableBody2D"]
+collision_layer = 4
+collision_mask = 4
+
+[node name="attack_up" type="CollisionShape2D" parent="."]
+position = Vector2(0, -13)
+shape = SubResource("RectangleShape2D_ugvv0")
+disabled = true
+script = ExtResource("1_kl43g")
+attack_direction = "up"
+
+[node name="attack_down" type="CollisionShape2D" parent="."]
+position = Vector2(0, 13)
+rotation = 3.14159
+shape = SubResource("RectangleShape2D_ugvv0")
+disabled = true
+script = ExtResource("1_kl43g")
+attack_direction = "down"
+
+[node name="attack_left" type="CollisionShape2D" parent="."]
+position = Vector2(-13, 0)
+rotation = -1.5708
+shape = SubResource("RectangleShape2D_ugvv0")
+disabled = true
+script = ExtResource("1_kl43g")
+attack_direction = "left"
+
+[node name="attack_right" type="CollisionShape2D" parent="."]
+position = Vector2(13, 0)
+rotation = 1.5708
+shape = SubResource("RectangleShape2D_ugvv0")
+disabled = true
+script = ExtResource("1_kl43g")
+attack_direction = "right"

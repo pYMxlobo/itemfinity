@@ -2,8 +2,10 @@ extends CharacterBody2D
 
 
 @export var speed = 50
-
+@export var health : int = 10
+@export var bob = true
 @export var player : Node2D
+@export var damager : Node2D
 @onready var nav_agent = $NavigationAgent2D as NavigationAgent2D
 
 
@@ -22,3 +24,17 @@ func makepath() -> void:
 
 func _on_timer_timeout():
 	makepath()
+
+func _ready():
+	var tween = create_tween()
+	var sprite_pos = $Spellcaster
+	if bob == true:
+		tween.set_loops()
+		tween.tween_property(sprite_pos, "position", Vector2(0, -5), 2)
+		tween.tween_property(sprite_pos, "position", Vector2(0, 5), 2)
+
+func _on_hurt_body_entered(body):
+	health -= player.atk_damg
+
+
+
