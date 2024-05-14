@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://bmaqlensx66cm"]
+[gd_scene load_steps=19 format=3 uid="uid://bmaqlensx66cm"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_07vxm"]
 [ext_resource type="Texture2D" uid="uid://ct5vf01lh702j" path="res://sprites/orb.png" id="1_jrvm1"]
@@ -10,6 +10,9 @@
 [ext_resource type="Shader" path="res://other/haha.gdshader" id="7_yfjid"]
 [ext_resource type="Texture2D" uid="uid://2whsm5f4ge8c" path="res://sprites/bricktile.png" id="9_042w4"]
 [ext_resource type="Script" path="res://scripts/longattackhitbox.gd" id="10_svbsa"]
+[ext_resource type="AudioStream" uid="uid://bo78cq7nhur3c" path="res://soundeffects/orbanotherlife.wav" id="11_ejccu"]
+[ext_resource type="AudioStream" uid="uid://cdhjohxu5s4wu" path="res://soundeffects/orbshatter.wav" id="12_cbcdr"]
+[ext_resource type="AudioStream" uid="uid://bte0j8jkmtvc8" path="res://soundeffects/orbcrack.wav" id="13_miluo"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_2fwfk"]
 radius = 6.0
@@ -86,10 +89,10 @@ shader_parameter/color_66 = Color(0.545098, 0.188235, 0.619608, 1)
 shader_parameter/color_67 = Color(0.764706, 1, 0.219608, 1)
 shader_parameter/color_68 = Color(0.47451, 0.619608, 0.137255, 1)
 
-[sub_resource type="Gradient" id="Gradient_jm2n8"]
+[sub_resource type="Gradient" id="Gradient_20hsf"]
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_kq677"]
-gradient = SubResource("Gradient_jm2n8")
+gradient = SubResource("Gradient_20hsf")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0wwew"]
 size = Vector2(16, 10)
@@ -189,6 +192,7 @@ texture = SubResource("GradientTexture2D_kq677")
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.5
+one_shot = true
 
 [node name="attack_up" type="CollisionShape2D" parent="."]
 position = Vector2(0, -13)
@@ -220,5 +224,18 @@ shape = SubResource("RectangleShape2D_0wwew")
 disabled = true
 script = ExtResource("10_svbsa")
 attack_direction = "right"
+
+[node name="life_left" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("11_ejccu")
+bus = &"SFX"
+
+[node name="shatter" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("12_cbcdr")
+bus = &"SFX"
+
+[node name="crack" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("13_miluo")
+max_polyphony = 4
+bus = &"SFX"
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

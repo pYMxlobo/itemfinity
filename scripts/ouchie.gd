@@ -15,3 +15,9 @@ func _on_area_shape_entered(area_rid, area, area_shape_index, local_shape_index)
 
 func _on_timer_timeout():
 	damage_allow = true
+
+func _process(delta):
+	if Global.dead == true:
+		$hitbox.disabled = true
+	else:
+		$hitbox.disabled = false

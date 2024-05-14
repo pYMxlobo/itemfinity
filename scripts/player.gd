@@ -122,17 +122,28 @@ func _process(delta):
 	#item_list = red, blue, green
 	item_total = red + green + yellow + purple + orange + cyan + white + black + rainbow + blue
 	
-	if lives == 0:
+	if lives <= 0:
+		$crack.stop()
+		$orb.hide()
+		$life_left.stop()
+		Global.dead = true
+		$shatter.play()
 		print("gmae over D:")
-		OS.crash("uh oh")
+		OS.delay_msec(500)
+		OS.crash("lol")
+	
+	
+	
 	
 	if Global.health == 0:
 		if can_lose_lives == true:
+			goddamn_it(-1, false)
 			lives -= 1
 			OS.delay_msec(50)
-			goddamn_it(-1, false)
-			can_lose_lives = false
+			$crack.stop()
+			$life_left.play()
 			$Timer.start()
+			can_lose_lives = false
 			print(lives)
 	
 	stat_window_update()
@@ -150,6 +161,7 @@ func _process(delta):
 	
 	if pre_health > Global.health:
 		goddamn_it(pre_health - Global.health, true)
+		$crack.play()
 		pre_health = Global.health
 	
 	if Global.health < item_total:
@@ -298,3 +310,5 @@ func stat_window_update():
 
 func _on_timer_timeout():
 	can_lose_lives = true
+
+
