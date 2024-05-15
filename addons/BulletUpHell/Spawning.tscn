@@ -104,6 +104,7 @@ default_delete = SubResource("Resource_tl1ht")
 visible = false
 sprite_frames = SubResource("1")
 animation = &"Example"
+frame_progress = 0.608517
 
 [node name="0" type="CollisionShape2D" parent="ShapeManager"]
 shape = SubResource("2")

@@ -304,6 +304,7 @@ func stat_window_update():
 	acceleration: " + str(acceleration) + "
 	attack speed: " + str(atk_speed) + "
 	attack damage: " + str(atk_damg) + "
+	attack range: " + str(atk_range) + "
 	max meter: " + str(max_slow) + "
 	slow amount: " + str(slow_amt) + "
 	lives: " + str(lives) + "

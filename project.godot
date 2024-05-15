@@ -24,9 +24,9 @@ buses/default_bus_layout="res://other/audio.tres"
 
 [autoload]
 
-Spawning="*res://addons/BulletUpHell/Spawning.tscn"
 Global="*res://scripts/gobal.gd"
 TransitionManager="*res://scripts/transition_manager.gd"
+Spawning="*res://addons/BulletUpHell/Spawning.tscn"
 
 [display]
 

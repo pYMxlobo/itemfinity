@@ -33,8 +33,15 @@ func _ready():
 		tween.tween_property(sprite_pos, "position", Vector2(0, -5), 2)
 		tween.tween_property(sprite_pos, "position", Vector2(0, 5), 2)
 
+
+func _process(delta):
+	if health <= 0:
+		queue_free()
+	$Label.text = "Health: " + str(health)
+
 func _on_hurt_body_entered(body):
-	health -= player.atk_damg
+	if body == damager:
+		health -= player.atk_damg
 
 
 

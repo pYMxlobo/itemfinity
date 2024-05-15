@@ -27,7 +27,7 @@ var arrayInstances:Dictionary = {}
 var arrayAnim:Dictionary = {}
 @onready var textures:SpriteFrames = $ShapeManager.sprite_frames
 @onready var arrayShapes:Dictionary = {} # format: id={shape, offset, rotation}
-@onready var viewrect = get_window().get_visible_rect()
+@onready var viewrect = get_viewport().get_visible_rect()
 
 
 var poolBullets:Dictionary = {}
@@ -152,7 +152,6 @@ func _process(delta: float) -> void:
 
 func _physics_process(delta: float) -> void:
 	if Engine.is_editor_hint(): return
-	viewrect = get_window().get_visible_rect()
 
 	if not poolBullets.is_empty():
 #		if move_thread.is_started():
@@ -879,6 +878,7 @@ func get_texture_frame(b:Dictionary, B, spriteframes:SpriteFrames=textures):
 		return spriteframes.get_frame_texture(b["anim"][ANIM.TEXTURE], b["anim_frame"])
 
 func modulate_bullet(b:Dictionary, texture:Texture):
+	#print(b.keys())
 	if b["props"].has("spec_modulate_loop"):
 		draw_texture(texture,-texture.get_size()/2,b["props"]["spec_modulate"].sample(b["modulate_index"]))
 		b["modulate_index"] = b["modulate_index"]+(_delta/b["props"]["spec_modulate_loop"])
@@ -887,7 +887,7 @@ func modulate_bullet(b:Dictionary, texture:Texture):
 
 func _draw():
 	if Engine.is_editor_hint(): return
-	viewrect = get_window().get_visible_rect()
+	viewrect = get_viewport().get_visible_rect()
 
 	var texture:Texture; var b
 	for B in poolBullets.keys():
@@ -1170,6 +1170,7 @@ func bullet_collide_body(body_rid:RID,body:Node,body_shape_index:int,local_shape
 		rid = shared_area
 		if not poolBullets.has(rid): return
 	var B = poolBullets[rid]
+
 #	if B["props"].has("spec_angle_no_collision"):
 #		var angle:float = B["position"].angle_to_point(body.global_position)
 

@@ -11,7 +11,7 @@
 [ext_resource type="Script" path="res://addons/BulletUpHell/Triggers/TriggerCollision.gd" id="5_y0hpv"]
 [ext_resource type="Script" path="res://addons/BulletUpHell/Nodes/BuHSpawnPoint.gd" id="6_4dtj3"]
 [ext_resource type="Script" path="res://addons/BulletUpHell/Triggers/TriggerPos.gd" id="6_qjh5j"]
-[ext_resource type="Texture2D" uid="uid://bll2m4g4hdcfx" path="res://addons/BulletUpHell/Sprites/NodeIcons5.png" id="12_n1q54"]
+[ext_resource type="Texture2D" uid="uid://bmpk4pwj5svoa" path="res://addons/BulletUpHell/Sprites/NodeIcons5.png" id="12_n1q54"]
 
 [sub_resource type="RichTextEffect" id="RichTextEffect_4ye41"]
 script = ExtResource("3_gs7vq")

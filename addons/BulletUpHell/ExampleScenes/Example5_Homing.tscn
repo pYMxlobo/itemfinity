@@ -6,7 +6,7 @@
 [ext_resource type="Script" path="res://addons/BulletUpHell/Nodes/BuHBulletProperties.gd" id="4_idnoj"]
 [ext_resource type="Script" path="res://addons/BulletUpHell/Bullet/BulletProps.gd" id="5_se254"]
 [ext_resource type="Script" path="res://addons/BulletUpHell/Nodes/BuHSpawnPoint.gd" id="6_bavsm"]
-[ext_resource type="Texture2D" uid="uid://bll2m4g4hdcfx" path="res://addons/BulletUpHell/Sprites/NodeIcons5.png" id="7_h7md5"]
+[ext_resource type="Texture2D" uid="uid://bmpk4pwj5svoa" path="res://addons/BulletUpHell/Sprites/NodeIcons5.png" id="7_h7md5"]
 
 [sub_resource type="Curve2D" id="Curve2D_7sipy"]
 

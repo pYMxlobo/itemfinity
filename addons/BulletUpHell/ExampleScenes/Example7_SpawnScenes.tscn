@@ -8,7 +8,7 @@
 [ext_resource type="Script" path="res://addons/BulletUpHell/Bullet/ObjectProps.gd" id="5_f3tc5"]
 [ext_resource type="Script" path="res://addons/BulletUpHell/Bullet/BulletNodeProps.gd" id="6_2khcu"]
 [ext_resource type="Script" path="res://addons/BulletUpHell/Nodes/BuHInstanceLister.gd" id="8_cv4tu"]
-[ext_resource type="Texture2D" path="res://icon.png" id="9_o8nap"]
+[ext_resource type="Texture2D" uid="uid://dmmjrd3hnwewq" path="res://icon.png" id="9_o8nap"]
 [ext_resource type="Script" path="res://addons/BulletUpHell/Nodes/BuHBulletNode.gd" id="10_ld65i"]
 
 [sub_resource type="Animation" id="Animation_pse3a"]
