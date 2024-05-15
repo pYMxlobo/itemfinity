@@ -26,7 +26,6 @@ buses/default_bus_layout="res://other/audio.tres"
 
 Global="*res://scripts/gobal.gd"
 TransitionManager="*res://scripts/transition_manager.gd"
-Spawning="*res://addons/BulletUpHell/Spawning.tscn"
 
 [display]
 
@@ -41,7 +40,7 @@ window/stretch/mode="viewport"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/BulletUpHell/plugin.cfg")
+enabled=PackedStringArray("res://addons/PerfBullets/plugin.cfg")
 
 [gui]
 
