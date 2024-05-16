@@ -1,0 +1,13 @@
+[gd_resource type="Shortcut" load_steps=3 format=3 uid="uid://6k1ox5idd2pt"]
+
+[sub_resource type="InputEventKey" id="InputEventKey_gxgs3"]
+device = -1
+keycode = 32
+unicode = 32
+
+[sub_resource type="InputEventJoypadButton" id="InputEventJoypadButton_1vac6"]
+device = -1
+pressed = true
+
+[resource]
+events = [SubResource("InputEventKey_gxgs3"), SubResource("InputEventJoypadButton_1vac6")]

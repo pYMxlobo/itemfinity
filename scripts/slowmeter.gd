@@ -4,6 +4,6 @@ extends TextureProgressBar
 
 
 
-func _process(delta):
+func _process(_delta):
 	max_value = player.max_slow
 	value = player.slow_charge

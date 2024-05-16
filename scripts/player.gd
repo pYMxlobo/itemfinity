@@ -12,6 +12,8 @@ extends CharacterBody2D
 
 var slow_charge : float = 0
 
+var level_random : int = randi_range(0, 2)
+
 var def_speed : int
 var def_friction : float
 var def_accel : float
@@ -26,27 +28,27 @@ var can_lose_lives = true
 var slow_switch = false
 
 @export var red : int = 0
-var pre_red : int
+var pre_red : int = 0
 @export var green : int = 0
-var pre_green : int
+var pre_green : int = 0
 @export var yellow : int = 0
-var pre_yellow : int
+var pre_yellow : int = 0
 @export var purple : int = 0
-var pre_purple : int
+var pre_purple : int = 0
 @export var orange : int = 0
-var pre_orange : int
+var pre_orange : int = 0
 @export var cyan : int = 0
-var pre_cyan : int
+var pre_cyan : int = 0
 @export var white : int = 0
-var pre_white : int
+var pre_white : int = 0
 @export var black : int = 0
-var pre_black : int
+var pre_black : int = 0
 @export var rainbow : int = 0
-var pre_rainbow : int
+var pre_rainbow : int = 0
 @export var blue : int = 0
-var pre_blue : int
+var pre_blue : int = 0
 @export var portal : int = 0
-var pre_portal : int
+var pre_portal : int = 0
 @export var lalala : Label
 var items : Array
 
@@ -57,8 +59,14 @@ var pre_health : int
 var item_list : Array
 
 var item_total : int
+
+
+
+
+
 func _ready():
-	randomize()
+	Global.dead = true
+	Global.wins = 0
 	#pre_health = Global.health
 	item_total = red + green + yellow + purple + orange + cyan + white + black + rainbow + blue
 	Global.health = item_total
@@ -86,6 +94,28 @@ func _ready():
 	#pre_portal = portal
 	Global.def_wins = Global.wins
 	slow_charge = 0.01
+	match  Global.start_bonus:
+		0:
+			red += 1
+		1:
+			green += 1
+		2:
+			yellow += 1
+		3:
+			purple += 1
+		4:
+			orange += 1
+		5:
+			cyan += 1
+		6:
+			white += 1
+		7:
+			black += 1
+		8:
+			rainbow += 1
+		9:
+			blue += 1
+	print("start bonus: " + str(Global.start_bonus))
 
 
 func get_input():
@@ -101,7 +131,7 @@ func get_input():
 	return input
 
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	var direction = get_input()
 	if direction.length() > 0:
 		velocity = velocity.lerp(direction.normalized() * speed, acceleration)
@@ -113,13 +143,17 @@ func _physics_process(delta):
 func _input(event):
 	if event.is_action_pressed("slow"):
 		slow_switch = true
+		Global.health -= 1
 	elif event.is_action_released("slow"):
 		slow_switch = false
 	
 
 
-func _process(delta):
-	var random_item : int
+func _process(_delta):
+	if Global.wins >= 1:
+		global_position = Vector2(-200, -200)
+		TransitionManager.change_scene("res://scenes/win.tscn", TransitionManager.TransitionType.FallDown)
+	#var random_item : int
 	#item_list = red, blue, green
 	item_total = red + green + yellow + purple + orange + cyan + white + black + rainbow + blue
 	
@@ -132,7 +166,8 @@ func _process(delta):
 		$shatter.play()
 		print("gmae over D:")
 		OS.delay_msec(500)
-		OS.crash("lol")
+		global_position = Vector2(-200, -200)
+		TransitionManager.change_scene("res://scenes/lose.tscn", TransitionManager.TransitionType.FallDown)
 	
 	
 	
@@ -169,6 +204,42 @@ func _process(delta):
 	if Global.health < item_total:
 		Global.health = item_total
 		pre_health = Global.health
+	
+	
+	
+	if red >= 15:
+		Global.red_bonus = true
+	if green >= 15:
+		Global.green_bonus = true
+	if yellow >= 15:
+		Global.yellow_bonus = true
+	if purple >= 15:
+		Global.purple_bonus = true
+	if orange >= 15:
+		Global.orange_bonus = true
+	if cyan >= 15:
+		Global.cyan_bonus = true
+	if white >= 15:
+		Global.white_bonus = true
+	if black >= 15:
+		Global.black_bonus = true
+	if rainbow >= 15:
+		Global.rainbow_bonus = true
+	if blue >= 15:
+		Global.blue_bonus = true
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	if red < 0:
@@ -257,7 +328,7 @@ func _process(delta):
 		slow_amt = clamp(def_slow_amount + (0.001 * -rainbow), 0, 1)
 		pre_rainbow = rainbow
 	if pre_blue != blue:
-		lives = def_lives + (1 * blue)
+		lives = clamp(def_lives + (1 * blue), 1, 999)
 		pre_blue = blue
 	if pre_portal != portal:
 		Global.wins = Global.def_wins + (1 * portal)
@@ -315,3 +386,8 @@ func _on_timer_timeout():
 	can_lose_lives = true
 
 
+
+
+func _on_video_stream_player_finished():
+	Global.dead = false
+	$VideoStreamPlayer.queue_free()

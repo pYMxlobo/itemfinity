@@ -1,13 +1,46 @@
-[gd_scene load_steps=3 format=3 uid="uid://ch63wtisq3qq5"]
+[gd_scene load_steps=9 format=3 uid="uid://ch63wtisq3qq5"]
 
 [ext_resource type="Script" path="res://scripts/longattackhitbox.gd" id="1_kl43g"]
+[ext_resource type="Texture2D" uid="uid://bjxqrc0pv3ucj" path="res://sprites/playerattack__0001.png" id="2_eqme8"]
+[ext_resource type="Texture2D" uid="uid://1dl3lj8lt2ce" path="res://sprites/empty.png" id="2_iswp5"]
+[ext_resource type="Texture2D" uid="uid://dvmcuwfnfuksv" path="res://sprites/playerattack__0002.png" id="3_cqtkq"]
+[ext_resource type="Texture2D" uid="uid://dn1qront1itkh" path="res://sprites/playerattack__0003.png" id="4_lnws1"]
+[ext_resource type="Texture2D" uid="uid://chhgelmqm3lik" path="res://sprites/playerattack__0004.png" id="5_kwhff"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ugvv0"]
 size = Vector2(16, 10)
 
+[sub_resource type="SpriteFrames" id="SpriteFrames_h2y6d"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_iswp5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_eqme8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_cqtkq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_lnws1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_kwhff")
+}],
+"loop": true,
+"name": &"attack",
+"speed": 6.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
 [node name="Attacker" type="AnimatableBody2D"]
-collision_layer = 2
-collision_mask = 3
+collision_layer = 8
+collision_mask = 8
 
 [node name="attack_up" type="CollisionShape2D" parent="."]
 position = Vector2(0, -13)
@@ -15,6 +48,12 @@ shape = SubResource("RectangleShape2D_ugvv0")
 disabled = true
 script = ExtResource("1_kl43g")
 attack_direction = "up"
+
+[node name="anim" type="AnimatedSprite2D" parent="attack_up"]
+position = Vector2(0, -2)
+scale = Vector2(0.5, 0.5)
+sprite_frames = SubResource("SpriteFrames_h2y6d")
+animation = &"attack"
 
 [node name="attack_down" type="CollisionShape2D" parent="."]
 position = Vector2(0, 13)
@@ -24,6 +63,11 @@ disabled = true
 script = ExtResource("1_kl43g")
 attack_direction = "down"
 
+[node name="anim" type="AnimatedSprite2D" parent="attack_down"]
+position = Vector2(0, -2)
+scale = Vector2(0.5, 0.5)
+sprite_frames = SubResource("SpriteFrames_h2y6d")
+
 [node name="attack_left" type="CollisionShape2D" parent="."]
 position = Vector2(-13, 0)
 rotation = -1.5708
@@ -32,6 +76,11 @@ disabled = true
 script = ExtResource("1_kl43g")
 attack_direction = "left"
 
+[node name="anim" type="AnimatedSprite2D" parent="attack_left"]
+position = Vector2(0, -2)
+scale = Vector2(0.5, 0.5)
+sprite_frames = SubResource("SpriteFrames_h2y6d")
+
 [node name="attack_right" type="CollisionShape2D" parent="."]
 position = Vector2(13, 0)
 rotation = 1.5708
@@ -39,3 +88,8 @@ shape = SubResource("RectangleShape2D_ugvv0")
 disabled = true
 script = ExtResource("1_kl43g")
 attack_direction = "right"
+
+[node name="anim" type="AnimatedSprite2D" parent="attack_right"]
+position = Vector2(0, -2)
+scale = Vector2(0.5, 0.5)
+sprite_frames = SubResource("SpriteFrames_h2y6d")

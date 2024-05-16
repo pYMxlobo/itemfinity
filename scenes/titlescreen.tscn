@@ -1,13 +1,15 @@
-[gd_scene load_steps=15 format=3 uid="uid://c1u706oy1pjmx"]
+[gd_scene load_steps=14 format=3 uid="uid://c1u706oy1pjmx"]
 
 [ext_resource type="Texture2D" uid="uid://b1npjw2o1cjcl" path="res://sprites/title.png" id="1_1fbtn"]
 [ext_resource type="Shader" path="res://other/haha.gdshader" id="1_yiy2j"]
 [ext_resource type="TileSet" uid="uid://cvc7qmbsff6rn" path="res://other/bricks.tres" id="3_h0fis"]
+[ext_resource type="Shortcut" uid="uid://6k1ox5idd2pt" path="res://other/buttonshortcut.tres" id="4_fqppe"]
 [ext_resource type="Texture2D" uid="uid://x83xhysjd5t0" path="res://sprites/playbutton.png" id="4_ifitm"]
 [ext_resource type="Texture2D" uid="uid://cj0oonawb2n38" path="res://sprites/playbuttonhover.png" id="5_4vvdk"]
 [ext_resource type="BitMap" uid="uid://d2cl8kwlpr3uh" path="res://sprites/playbuttonmask.png" id="6_n1lkj"]
 [ext_resource type="Script" path="res://scripts/Start.gd" id="7_3enu0"]
 [ext_resource type="AudioStream" uid="uid://c0lw7fnlkm7ac" path="res://music/title.wav" id="8_07evi"]
+[ext_resource type="Script" path="res://scripts/bonusselect.gd" id="9_x0wop"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_wvuy0"]
 shader = ExtResource("1_yiy2j")
@@ -63,7 +65,7 @@ shader_parameter/color_48 = Color(0.329412, 0.458824, 0.403922, 1)
 shader_parameter/color_49 = Color(1, 0.219608, 0.0980392, 1)
 shader_parameter/color_50 = Color(0.6, 0.133333, 0.0588235, 1)
 shader_parameter/color_51 = Color(1, 0.615686, 0.109804, 1)
-shader_parameter/color_52 = Color(0.580392, 0.356863, 0.0627451, 1)
+shader_parameter/color_52 = Color(0.997, 0.909, 0.825, 1)
 shader_parameter/color_53 = Color(0.427451, 1, 0.219608, 1)
 shader_parameter/color_54 = Color(0.258824, 0.611765, 0.133333, 1)
 shader_parameter/color_55 = Color(0.854902, 0.368627, 1, 1)
@@ -78,41 +80,30 @@ shader_parameter/color_63 = Color(0.552941, 0.360784, 1, 1)
 shader_parameter/color_64 = Color(0.368627, 0.243137, 0.670588, 1)
 shader_parameter/color_65 = Color(0.882353, 0.301961, 1, 1)
 shader_parameter/color_66 = Color(0.545098, 0.188235, 0.619608, 1)
-shader_parameter/color_67 = Color(0.764706, 1, 0.219608, 1)
-shader_parameter/color_68 = Color(0.47451, 0.619608, 0.137255, 1)
+shader_parameter/color_67 = Color(0.918763, 0.953024, 2.31028e-06, 1)
+shader_parameter/color_68 = Color(0.917, 0.979, 0.557, 1)
 
 [sub_resource type="Gradient" id="Gradient_jm2n8"]
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_v1jpj"]
 gradient = SubResource("Gradient_jm2n8")
 
-[sub_resource type="InputEventKey" id="InputEventKey_gxgs3"]
-device = -1
-keycode = 32
-unicode = 32
-
-[sub_resource type="InputEventJoypadButton" id="InputEventJoypadButton_1vac6"]
-device = -1
-pressed = true
-
-[sub_resource type="Shortcut" id="Shortcut_u652n"]
-events = [SubResource("InputEventKey_gxgs3"), SubResource("InputEventJoypadButton_1vac6")]
-
 [node name="Node2D" type="Node2D"]
 
 [node name="shader" type="Sprite2D" parent="."]
 z_index = 4096
 material = SubResource("ShaderMaterial_wvuy0")
-position = Vector2(194, 190)
+position = Vector2(-14, -20)
 scale = Vector2(20, 20)
 texture = SubResource("GradientTexture2D_v1jpj")
 
 [node name="Title" type="Sprite2D" parent="."]
-position = Vector2(203, 210)
+position = Vector2(-5, 0)
 texture = ExtResource("1_1fbtn")
 
 [node name="TileMap" type="TileMap" parent="."]
 z_index = -130
+position = Vector2(-208, -210)
 scale = Vector2(0.5, 0.5)
 tile_set = ExtResource("3_h0fis")
 rendering_quadrant_size = 4
@@ -120,11 +111,12 @@ format = 2
 layer_0/tile_data = PackedInt32Array(0, 65536, 0, 65537, 0, 0, 131074, 0, 0, 65538, 0, 0, 65536, 65536, 0, 131072, 65536, 0, 196608, 65536, 0, 131073, 0, 0, 196609, 0, 0, 196610, 0, 0, 786444, 65536, 0, 786443, 65536, 0, 786442, 65536, 0, 720907, 65536, 0, 720908, 65536, 0, 655372, 65536, 0, 589835, 65536, 0, 524299, 65536, 0, 458763, 0, 0, 393227, 0, 0, 327691, 0, 0, 393228, 65536, 0, 458764, 65536, 0, 524300, 65536, 0, 589836, 65536, 0, 327692, 65536, 0, 262156, 65536, 0, 196620, 65536, 0, 131084, 65536, 0, 65548, 65536, 0, 12, 65536, 0, 11, 65536, 0, 10, 65536, 0, 9, 65536, 0, 8, 65536, 0, 7, 65536, 0, 6, 65536, 0, 5, 65536, 0, 4, 65536, 0, 3, 65536, 0, 2, 65536, 0, 1, 65536, 0, 65539, 0, 0, 65540, 0, 0, 65541, 0, 0, 131077, 0, 0, 131078, 0, 0, 131079, 0, 0, 65543, 0, 0, 65544, 0, 0, 65542, 0, 0, 131080, 0, 0, 131081, 0, 0, 131082, 0, 0, 65546, 0, 0, 65545, 0, 0, 131083, 0, 0, 65547, 0, 0, 196619, 0, 0, 262155, 0, 0, 262154, 0, 0, 196618, 0, 0, 196617, 0, 0, 262153, 0, 0, 327689, 0, 0, 327690, 0, 0, 196616, 0, 0, 196615, 0, 0, 262151, 0, 0, 262150, 0, 0, 327688, 0, 0, 262152, 0, 0, 196614, 0, 0, 262144, 65536, 0, 327680, 65536, 0, 393216, 65536, 0, 458752, 65536, 0, 524288, 65536, 0, 589824, 65536, 0, 655360, 65536, 0, 720896, 65536, 0, 786432, 65536, 0, 786433, 65536, 0, 786434, 65536, 0, 786435, 65536, 0, 786436, 65536, 0, 786437, 65536, 0, 786438, 65536, 0, 720902, 0, 0, 720903, 0, 0, 720904, 0, 0, 720905, 65536, 0, 720906, 65536, 0, 786441, 65536, 0, 786440, 65536, 0, 786439, 65536, 0, 720901, 0, 0, 655366, 0, 0, 655367, 0, 0, 589831, 0, 0, 589832, 0, 0, 524296, 0, 0, 458760, 0, 0, 393224, 0, 0, 458761, 0, 0, 524297, 65536, 0, 589833, 65536, 0, 589834, 65536, 0, 655370, 65536, 0, 524298, 65536, 0, 458762, 0, 0, 393226, 0, 0, 393225, 0, 0, 655371, 65536, 0, 655369, 65536, 0, 655368, 0, 0, 655365, 0, 0, 720900, 0, 0, 720899, 65536, 0, 720898, 65536, 0, 655362, 65536, 0, 655363, 65536, 0, 589827, 65536, 0, 589828, 0, 0, 589829, 0, 0, 524294, 0, 0, 524295, 0, 0, 655364, 0, 0, 458758, 0, 0, 458757, 0, 0, 524293, 0, 0, 589830, 0, 0, 458759, 0, 0, 393223, 0, 0, 720897, 65536, 0, 655361, 65536, 0, 589825, 65536, 0, 524289, 65536, 0, 458753, 0, 0, 393217, 0, 0, 327681, 0, 0, 524290, 65536, 0, 589826, 65536, 0, 458754, 0, 0, 393218, 0, 0, 327682, 0, 0, 262146, 0, 0, 262145, 0, 0, 131075, 0, 0, 196612, 0, 0, 262148, 0, 0, 327684, 0, 0, 393220, 0, 0, 458756, 0, 0, 458755, 0, 0, 393219, 0, 0, 327683, 0, 0, 262147, 0, 0, 196611, 0, 0, 524291, 65536, 0, 524292, 0, 0, 327685, 0, 0, 262149, 0, 0, 393221, 0, 0, 393222, 0, 0, 327686, 0, 0, 196613, 0, 0, 327687, 0, 0, 131076, 0, 0)
 
 [node name="Start" type="TextureButton" parent="."]
-offset_left = 128.0
-offset_top = 256.0
-offset_right = 288.0
-offset_bottom = 384.0
-shortcut = SubResource("Shortcut_u652n")
+offset_left = -80.0
+offset_top = 46.0
+offset_right = 80.0
+offset_bottom = 174.0
+shortcut = ExtResource("4_fqppe")
+shortcut_in_tooltip = false
 texture_normal = ExtResource("4_ifitm")
 texture_pressed = ExtResource("5_4vvdk")
 texture_hover = ExtResource("5_4vvdk")
@@ -137,4 +129,17 @@ stream = ExtResource("8_07evi")
 autoplay = true
 bus = &"Music"
 
+[node name="OptionButton" type="OptionButton" parent="."]
+offset_left = 98.0
+offset_top = 58.0
+offset_right = 177.0
+offset_bottom = 78.0
+shortcut_in_tooltip = false
+alignment = 1
+allow_reselect = true
+script = ExtResource("9_x0wop")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
 [connection signal="pressed" from="Start" to="Start" method="_on_pressed"]
+[connection signal="item_selected" from="OptionButton" to="OptionButton" method="_on_item_selected"]

@@ -53,7 +53,7 @@ uniform vec4 color_48 : source_color = vec4(0.32941176470588235,0.45882352941176
 uniform vec4 color_49 : source_color = vec4(1,0.2196078431372549,0.09803921568627451,1);
 uniform vec4 color_50 : source_color = vec4(0.6,0.13333333333333333,0.058823529411764705,1);
 uniform vec4 color_51 : source_color = vec4(1,0.615686274509804,0.10980392156862745,1);
-uniform vec4 color_52 : source_color = vec4(0.5803921568627451,0.3568627450980392,0.06274509803921569,1);
+uniform vec4 color_52 : source_color = vec4(0.997,0.909,0.825,1);
 uniform vec4 color_53 : source_color = vec4(0.42745098039215684,1,0.2196078431372549,1);
 uniform vec4 color_54 : source_color = vec4(0.25882352941176473,0.611764705882353,0.13333333333333333,1);
 uniform vec4 color_55 : source_color = vec4(0.8549019607843137,0.3686274509803922,1,1);
@@ -68,8 +68,8 @@ uniform vec4 color_63 : source_color = vec4(0.5529411764705883,0.360784313725490
 uniform vec4 color_64 : source_color = vec4(0.3686274509803922,0.24313725490196078,0.6705882352941176,1);
 uniform vec4 color_65 : source_color = vec4(0.8823529411764706,0.30196078431372547,1,1);
 uniform vec4 color_66 : source_color = vec4(0.5450980392156862,0.18823529411764706,0.6196078431372549,1);
-uniform vec4 color_67 : source_color = vec4(0.7647058823529411,1,0.2196078431372549,1);
-uniform vec4 color_68 : source_color = vec4(0.4745098039215686,0.6196078431372549,0.13725490196078433,1);
+uniform vec4 color_67 : source_color = vec4(0.919,0.953,0,1);
+uniform vec4 color_68 : source_color = vec4(0.917,0.979,0.557,1);
 
 
 uniform sampler2D SCREEN_TEXTURE : hint_screen_texture, filter_nearest;

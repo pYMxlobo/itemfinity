@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://bmaqlensx66cm"]
+[gd_scene load_steps=23 format=3 uid="uid://bmaqlensx66cm"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_07vxm"]
 [ext_resource type="Texture2D" uid="uid://ct5vf01lh702j" path="res://sprites/orb.png" id="1_jrvm1"]
@@ -11,7 +11,10 @@
 [ext_resource type="Texture2D" uid="uid://2whsm5f4ge8c" path="res://sprites/bricktile.png" id="9_042w4"]
 [ext_resource type="AudioStream" uid="uid://bo78cq7nhur3c" path="res://soundeffects/orbanotherlife.wav" id="11_ejccu"]
 [ext_resource type="AudioStream" uid="uid://cdhjohxu5s4wu" path="res://soundeffects/orbshatter.wav" id="12_cbcdr"]
+[ext_resource type="PackedScene" uid="uid://ch63wtisq3qq5" path="res://scenes/attacker.tscn" id="13_30xn8"]
 [ext_resource type="AudioStream" uid="uid://bte0j8jkmtvc8" path="res://soundeffects/orbcrack.wav" id="13_miluo"]
+[ext_resource type="VideoStream" path="res://wizardsteal.ogv" id="14_ys5v3"]
+[ext_resource type="Texture2D" uid="uid://bc1rqtkqjtrya" path="res://sprites/black.png" id="15_jtib4"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_2fwfk"]
 radius = 6.0
@@ -88,10 +91,10 @@ shader_parameter/color_66 = Color(0.545098, 0.188235, 0.619608, 1)
 shader_parameter/color_67 = Color(0.764706, 1, 0.219608, 1)
 shader_parameter/color_68 = Color(0.47451, 0.619608, 0.137255, 1)
 
-[sub_resource type="Gradient" id="Gradient_fmcdc"]
+[sub_resource type="Gradient" id="Gradient_gj4b1"]
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_kq677"]
-gradient = SubResource("Gradient_fmcdc")
+gradient = SubResource("Gradient_gj4b1")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_3na2p"]
 shader = ExtResource("7_yfjid")
@@ -147,7 +150,7 @@ shader_parameter/color_48 = Color(0.329412, 0.458824, 0.403922, 1)
 shader_parameter/color_49 = Color(1, 0.219608, 0.0980392, 1)
 shader_parameter/color_50 = Color(0.6, 0.133333, 0.0588235, 1)
 shader_parameter/color_51 = Color(1, 0.615686, 0.109804, 1)
-shader_parameter/color_52 = Color(0.580392, 0.356863, 0.0627451, 1)
+shader_parameter/color_52 = Color(0.997, 0.909, 0.825, 1)
 shader_parameter/color_53 = Color(0.427451, 1, 0.219608, 1)
 shader_parameter/color_54 = Color(0.258824, 0.611765, 0.133333, 1)
 shader_parameter/color_55 = Color(0.854902, 0.368627, 1, 1)
@@ -162,8 +165,8 @@ shader_parameter/color_63 = Color(0.552941, 0.360784, 1, 1)
 shader_parameter/color_64 = Color(0.368627, 0.243137, 0.670588, 1)
 shader_parameter/color_65 = Color(0.882353, 0.301961, 1, 1)
 shader_parameter/color_66 = Color(0.545098, 0.188235, 0.619608, 1)
-shader_parameter/color_67 = Color(0.764706, 1, 0.219608, 1)
-shader_parameter/color_68 = Color(0.47451, 0.619608, 0.137255, 1)
+shader_parameter/color_67 = Color(0.919, 0.953, 0, 1)
+shader_parameter/color_68 = Color(0.917, 0.979, 0.557, 1)
 
 [sub_resource type="Gradient" id="Gradient_20hsf"]
 
@@ -176,8 +179,10 @@ collision_mask = 3
 motion_mode = 1
 script = ExtResource("1_07vxm")
 max_slow = 5.0
-red = 1
+lives = 4
 lalala = NodePath("Window/Label")
+
+[node name="Attacker" parent="." instance=ExtResource("13_30xn8")]
 
 [node name="orb" type="Sprite2D" parent="."]
 scale = Vector2(0.5, 0.5)
@@ -281,4 +286,30 @@ stream = ExtResource("13_miluo")
 max_polyphony = 4
 bus = &"SFX"
 
+[node name="VideoStreamPlayer" type="VideoStreamPlayer" parent="."]
+z_index = 1325
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -178.5
+offset_top = -120.0
+offset_right = 178.5
+offset_bottom = 120.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.12, 1)
+size_flags_horizontal = 6
+size_flags_vertical = 6
+stream = ExtResource("14_ys5v3")
+autoplay = true
+
+[node name="Black" type="Sprite2D" parent="VideoStreamPlayer"]
+z_index = -1190
+position = Vector2(156.25, 117.5)
+scale = Vector2(13.4068, 13.5469)
+texture = ExtResource("15_jtib4")
+
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="finished" from="VideoStreamPlayer" to="." method="_on_video_stream_player_finished"]

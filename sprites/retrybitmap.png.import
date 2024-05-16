@@ -1,0 +1,16 @@
+[remap]
+
+importer="bitmap"
+type="BitMap"
+uid="uid://baythmkjulfte"
+path="res://.godot/imported/retrybitmap.png-c9cc8cd21e381ba24aa6da76f14c2e03.res"
+
+[deps]
+
+source_file="res://sprites/retrybitmap.png"
+dest_files=["res://.godot/imported/retrybitmap.png-c9cc8cd21e381ba24aa6da76f14c2e03.res"]
+
+[params]
+
+create_from=0
+threshold=0.5
