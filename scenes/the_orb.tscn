@@ -336,6 +336,7 @@ max_polyphony = 4
 bus = &"SFX"
 
 [node name="VideoStreamPlayer" type="VideoStreamPlayer" parent="."]
+visible = false
 z_index = 1325
 anchors_preset = 8
 anchor_left = 0.5

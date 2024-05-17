@@ -25,17 +25,17 @@ func _process(_delta):
 
 
 
-func _on_body_shape_entered(_body_rid, body, _body_shape_index, _local_shape_index):
-	if Global.dead == false:
-		if body.is_in_group("bullet"):
-			if damage_allow == true:
-				Global.health -= 1
-				print(Global.health)
-				damage_allow = false
-				timer.start()
+#func _on_body_shape_entered(_body_rid, body, _body_shape_index, _local_shape_index):
+#	if Global.dead == false:
+#		if body.is_in_group("bullet"):
+#			if damage_allow == true:
+#				Global.health -= 1
+#				print(Global.health)
+#				damage_allow = false
+#				timer.start()
 
 
-func _on_spawner_bullet_hit(result, bulletIndex, spawner):
+func bullet_hit(result, bulletIndex, spawner):
 	if Global.dead == false:
 		if damage_allow == true:
 			Global.health -= 1

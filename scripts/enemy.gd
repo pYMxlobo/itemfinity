@@ -1,11 +1,12 @@
 extends CharacterBody2D
 
 
-var type : String
+@export var type : StringName
 var speed = 50
 var health : int = 10
 @export var bob = true
 @export var player : Node2D
+@export var player_hitbox : Node2D
 #@export var damager : Node2D
 @onready var nav_agent = $NavigationAgent2D as NavigationAgent2D
 
@@ -38,37 +39,40 @@ func _on_timer_timeout():
 	makepath()
 
 func _ready():
-	type = str(bullets.name)
-	if type == "red":
+	var stype = str(type)
+	if stype == "red":
 		speed = 50
 		health = 10
 		bullet_time = 0.5
-	elif type == "orange":
+	elif stype == "orange":
 		speed = 30
 		health = 20
 		bullet_time = 0.35
-	elif type == "yellow":
+	elif stype == "yellow":
 		speed = 55
 		health = 8
 		bullet_time = 0.7
-	elif type == "green":
+	elif stype == "green":
 		speed = 80
 		health = 5
 		bullet_time = 2
-	elif type == "blue":
+	elif stype == "blue":
 		speed = 40
 		health = 10
 		bullet_time = 0.05
-	elif type == "purple":
+	elif stype == "purple":
 		speed = 20
 		health = 15
 		bullet_time = 0.05
-	elif type == "rainbow":
+	elif stype == "rainbow":
 		speed = 100
 		health = 40
 		bullet_time = 0.1
-		
-	
+	else:
+		print("you named the type wrong moron")
+	determine_bullet()
+	bullets.trackedNode = player
+	bullets.bullet_hit.connect(player_hitbox.bullet_hit)
 	$BulletSpawnLoop.wait_time = bullet_time
 	$S.play(type)
 	var tween = create_tween()
@@ -121,3 +125,29 @@ func _on_enemy_hurt_body_shape_entered(body_rid, body, body_shape_index, local_s
 		health -= player.atk_damg
 		player.attacker.position = Vector2(0, 0)
 		print("hehe enemy got hit")
+
+
+func determine_bullet():
+	var redname = $red.name
+	var orangename = $orange.name
+	var yellowname = $yellow.name
+	var greenname = $green.name
+	var bluename
+	var purplename
+	var rainbowname
+	if redname != type:
+		$red.queue_free()
+	elif redname == type:
+		bullets = $red
+	if orangename != type:
+		$orange.queue_free()
+	elif orangename == type:
+		bullets = $orange
+	if yellowname != type:
+		$yellow.queue_free()
+	elif yellowname == type:
+		bullets = $yellow
+	if greenname != type:
+		$green.queue_free()
+	elif greenname == type:
+		bullets = $green

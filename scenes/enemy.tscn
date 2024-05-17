@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://csmqbqsc4ay3h"]
+[gd_scene load_steps=24 format=3 uid="uid://csmqbqsc4ay3h"]
 
 [ext_resource type="Script" path="res://scripts/enemy.gd" id="1_lsml8"]
 [ext_resource type="Texture2D" uid="uid://cjaybvwbvpmcb" path="res://sprites/spellcaster.png" id="1_tjtbp"]
@@ -11,6 +11,14 @@
 [ext_resource type="Texture2D" uid="uid://c4o8nbvtu2fbx" path="res://sprites/spellcasteryellow.png" id="8_5wt5l"]
 [ext_resource type="AudioStream" uid="uid://nxbl48tab71d" path="res://soundeffects/enemydeath.wav" id="10_vd5s5"]
 [ext_resource type="AudioStream" uid="uid://cajseboxf2n8s" path="res://soundeffects/enemyhurt.wav" id="10_wa1yv"]
+[ext_resource type="BulletType" uid="uid://cxls5hs5j44nn" path="res://bullettypes/red.tres" id="12_j35xy"]
+[ext_resource type="Texture2D" uid="uid://bkpkg0otlx3lv" path="res://sprites/bullet.png" id="13_py1br"]
+[ext_resource type="BulletType" uid="uid://qkeabjiaktvb" path="res://bullettypes/orange.tres" id="14_akfhh"]
+[ext_resource type="Texture2D" uid="uid://c751vwtnl70kj" path="res://sprites/bulletorange.png" id="15_cw8gx"]
+[ext_resource type="BulletType" uid="uid://c4kiewyqtxsc6" path="res://bullettypes/yellow.tres" id="16_umvbd"]
+[ext_resource type="Texture2D" uid="uid://5asf5o7mgxif" path="res://sprites/bulletyellow.png" id="17_7655j"]
+[ext_resource type="BulletType" uid="uid://byrd4elm4dxtj" path="res://bullettypes/green.tres" id="18_y4brd"]
+[ext_resource type="Texture2D" uid="uid://bgsr4vv5gl0x0" path="res://sprites/bulletgreen.png" id="19_778tt"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_n03vs"]
 animations = [{
@@ -82,12 +90,13 @@ height = 38.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_gdpuq"]
 radius = 63.0
 
-[node name="enemy" type="CharacterBody2D"]
+[node name="enemy" type="CharacterBody2D" node_paths=PackedStringArray("bullets")]
 collision_layer = 2
 collision_mask = 3
 motion_mode = 1
 wall_min_slide_angle = 0.0
 script = ExtResource("1_lsml8")
+bullets = NodePath("red")
 
 [node name="S" type="AnimatedSprite2D" parent="."]
 z_index = 10
@@ -149,6 +158,66 @@ shape = SubResource("CircleShape2D_gdpuq")
 
 [node name="BulletSpawnLoop" type="Timer" parent="."]
 wait_time = 3.0
+
+[node name="red" type="Spawner" parent="."]
+startMode = 2
+bulletType = ExtResource("12_j35xy")
+poolCount = 9999
+fireRate = 3.0
+fireRadiusDegrees = 90.0
+bulletsPerRadius = 5
+numberOfRadii = 3
+degreesBetweenRadii = 60.0
+spinRate = 1.0
+minSpin = 1.0
+spinAcceleration = 2.0
+startTowardPlayer = true
+moveWithParent = true
+returnBulletsToPoolAutomatically = false
+texture = ExtResource("13_py1br")
+
+[node name="orange" type="Spawner" parent="."]
+startMode = 2
+bulletType = ExtResource("14_akfhh")
+poolCount = 9999
+fireRate = 3.0
+bulletsPerRadius = 8
+numberOfRadii = 2
+degreesBetweenRadii = 90.0
+spinRate = 4.0
+maxSpin = 180.0
+minSpin = 0.0
+spinAcceleration = 3.0
+moveWithParent = true
+returnBulletsToPoolAutomatically = false
+texture = ExtResource("15_cw8gx")
+
+[node name="yellow" type="Spawner" parent="."]
+startMode = 2
+bulletType = ExtResource("16_umvbd")
+poolCount = 9999
+fireRate = 3.0
+fireRadiusDegrees = 30.0
+bulletsPerRadius = 3
+startTowardPlayer = true
+staysTowardPlayer = true
+returnBulletsToPoolAutomatically = false
+position = Vector2(502, 2)
+texture = ExtResource("17_7655j")
+
+[node name="green" type="Spawner" parent="."]
+startMode = 2
+bulletType = ExtResource("18_y4brd")
+poolCount = 9999
+bulletsPerRadius = 4
+spinRate = 1.0
+maxSpin = 60.0
+minSpin = 40.0
+spinAcceleration = 1.0
+staysTowardPlayer = true
+returnBulletsToPoolAutomatically = false
+position = Vector2(502, 2)
+texture = ExtResource("19_778tt")
 
 [connection signal="body_entered" from="enemy_hurt" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="enemy_hurt" to="." method="_on_area_2d_body_entered"]
