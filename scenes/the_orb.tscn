@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://bmaqlensx66cm"]
+[gd_scene load_steps=26 format=3 uid="uid://bmaqlensx66cm"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_07vxm"]
 [ext_resource type="Texture2D" uid="uid://ct5vf01lh702j" path="res://sprites/orb.png" id="1_jrvm1"]
@@ -174,6 +174,14 @@ shader_parameter/color_68 = Color(0.917, 0.979, 0.557, 1)
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_3bagq"]
 gradient = SubResource("Gradient_20hsf")
 
+[sub_resource type="InputEventJoypadButton" id="InputEventJoypadButton_gdypx"]
+device = -1
+button_index = 4
+pressed = true
+
+[sub_resource type="Shortcut" id="Shortcut_0kdiu"]
+events = [SubResource("InputEventJoypadButton_gdypx")]
+
 [node name="The Orb" type="CharacterBody2D" node_paths=PackedStringArray("lalala")]
 collision_layer = 2
 collision_mask = 3
@@ -274,6 +282,36 @@ texture = SubResource("GradientTexture2D_3bagq")
 show_behind_parent = true
 texture = ExtResource("11_720nt")
 
+[node name="unpause" type="Button" parent="Camera2D"]
+process_mode = 2
+process_priority = 3
+visible = false
+anchors_preset = -1
+anchor_left = -1.004
+anchor_top = -0.084
+anchor_right = 1.094
+anchor_bottom = 3.114
+offset_left = 118.0
+offset_top = -168.0
+offset_right = 193.0
+offset_bottom = -137.0
+shortcut = SubResource("Shortcut_0kdiu")
+shortcut_in_tooltip = false
+text = "unpause"
+
+[node name="paused" type="Label" parent="Camera2D"]
+visible = false
+offset_left = 79.0
+offset_top = -197.0
+offset_right = 189.0
+offset_bottom = -166.0
+text = "paused
+"
+horizontal_alignment = 2
+vertical_alignment = 1
+clip_text = true
+metadata/_edit_use_anchors_ = true
+
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.5
 one_shot = true
@@ -317,5 +355,6 @@ position = Vector2(156.25, 117.5)
 scale = Vector2(13.4068, 13.5469)
 texture = ExtResource("15_jtib4")
 
+[connection signal="pressed" from="Camera2D/unpause" to="." method="_on_unpause_pressed"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="finished" from="VideoStreamPlayer" to="." method="_on_video_stream_player_finished"]

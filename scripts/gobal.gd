@@ -1,5 +1,6 @@
 extends Node
 
+var difficulty = 1
 
 var wins = 0
 var def_wins : int

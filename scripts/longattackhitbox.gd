@@ -7,8 +7,9 @@ var default_pos_y : float
 
 
 func _ready():
-	default_pos_x = position.x
-	default_pos_y = position.y
+	#default_pos_x = get_parent().position.x
+	#default_pos_y = get_parent().position.y
+	pass
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -18,8 +19,8 @@ func _process(_delta):
 	#	$anim.play("attack")
 	#elif disabled == true:
 	#	$anim.play("default")
-	position.x = default_pos_x
-	position.y = default_pos_y
+	#get_parent().position.x = default_pos_x
+	#get_parent().position.y = default_pos_y
 
 
 

@@ -1,12 +1,82 @@
-[gd_scene load_steps=5 format=3 uid="uid://csmqbqsc4ay3h"]
+[gd_scene load_steps=15 format=3 uid="uid://csmqbqsc4ay3h"]
 
 [ext_resource type="Script" path="res://scripts/enemy.gd" id="1_lsml8"]
 [ext_resource type="Texture2D" uid="uid://cjaybvwbvpmcb" path="res://sprites/spellcaster.png" id="1_tjtbp"]
+[ext_resource type="Texture2D" uid="uid://dwlue5hkhqxxq" path="res://sprites/spellcasterblue.png" id="2_akxwl"]
 [ext_resource type="AudioStream" uid="uid://doqrn0gi6rt8b" path="res://music/Purity Music Box.wav" id="2_psmo6"]
+[ext_resource type="Texture2D" uid="uid://yq2rmuxdihre" path="res://sprites/spellcasterred.png" id="3_ek7pm"]
+[ext_resource type="Texture2D" uid="uid://6ckw5jucps2i" path="res://sprites/spellcastergreen.png" id="3_octs3"]
+[ext_resource type="Texture2D" uid="uid://lqjgrdlrvsrg" path="res://sprites/spellcasterpurple.png" id="5_sus2m"]
+[ext_resource type="Texture2D" uid="uid://dvmwo1f37826t" path="res://sprites/spellcasterrainbow.png" id="6_w5bjk"]
+[ext_resource type="Texture2D" uid="uid://c4o8nbvtu2fbx" path="res://sprites/spellcasteryellow.png" id="8_5wt5l"]
+[ext_resource type="AudioStream" uid="uid://nxbl48tab71d" path="res://soundeffects/enemydeath.wav" id="10_vd5s5"]
+[ext_resource type="AudioStream" uid="uid://cajseboxf2n8s" path="res://soundeffects/enemyhurt.wav" id="10_wa1yv"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_rn20b"]
 radius = 9.0
 height = 38.0
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_n03vs"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_akxwl")
+}],
+"loop": true,
+"name": &"blue",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_octs3")
+}],
+"loop": false,
+"name": &"green",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_tjtbp")
+}],
+"loop": false,
+"name": &"orange",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_sus2m")
+}],
+"loop": true,
+"name": &"purple",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_w5bjk")
+}],
+"loop": true,
+"name": &"rainbow",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_ek7pm")
+}],
+"loop": false,
+"name": &"red",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8_5wt5l")
+}],
+"loop": false,
+"name": &"yellow",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_gdpuq"]
+radius = 63.0
 
 [node name="enemy" type="CharacterBody2D"]
 collision_layer = 2
@@ -17,16 +87,17 @@ script = ExtResource("1_lsml8")
 
 [node name="enemy_hurt" type="Area2D" parent="."]
 collision_layer = 8
-collision_mask = 15
+collision_mask = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="enemy_hurt"]
 shape = SubResource("CapsuleShape2D_rn20b")
 debug_color = Color(0, 1, 0, 0.419608)
 
-[node name="Spellcaster" type="Sprite2D" parent="."]
+[node name="S" type="AnimatedSprite2D" parent="."]
 z_index = 10
 scale = Vector2(0.5, 0.5)
-texture = ExtResource("1_tjtbp")
+sprite_frames = SubResource("SpriteFrames_n03vs")
+animation = &"orange"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_rn20b")
@@ -56,5 +127,26 @@ text = "health: 10"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="hurt" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("10_wa1yv")
+max_polyphony = 4
+bus = &"SFX"
+
+[node name="die" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("10_vd5s5")
+bus = &"SFX"
+
+[node name="seeing" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="seeing"]
+shape = SubResource("CircleShape2D_gdpuq")
+
+[node name="BulletSpawnLoop" type="Timer" parent="."]
+wait_time = 3.0
+
 [connection signal="body_entered" from="enemy_hurt" to="." method="_on_area_2d_body_entered"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="body_shape_entered" from="seeing" to="." method="_on_seeing_body_shape_entered"]
+[connection signal="timeout" from="BulletSpawnLoop" to="." method="_on_bullet_spawn_loop_timeout"]

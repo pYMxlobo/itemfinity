@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-
+@onready var attacker = $Attacker
 # https://uquiz.com/1AY4aI
 
 @export var speed = 200
@@ -16,6 +16,8 @@ extends CharacterBody2D
 var slow_charge : float = 0
 
 var level_random : int = randi_range(0, 2)
+
+var first_life = true
 
 var def_speed : int
 var def_friction : float
@@ -146,11 +148,12 @@ func _physics_process(_delta):
 func _input(event):
 	if event.is_action_pressed("slow"):
 		slow_switch = true
-		Global.health -= 1
 	elif event.is_action_released("slow"):
 		slow_switch = false
-	
-
+	if event.is_action_pressed("pause"):
+		get_tree().paused = not get_tree().paused
+		$Camera2D/paused.visible = not $Camera2D/paused.visible
+		$Camera2D/unpause.visible = not $Camera2D/unpause.visible
 
 func _process(_delta):
 	if Global.wins >= 1:
@@ -182,8 +185,12 @@ func _process(_delta):
 			goddamn_it(-1, false)
 			OS.delay_msec(50)
 			$crack.stop()
-			$life_left.play()
+			if first_life == true:
+				pass
+			elif first_life == false:
+				$life_left.play()
 			lives -= 1
+			first_life = false
 			print(lives)
 	
 	stat_window_update()
@@ -230,20 +237,6 @@ func _process(_delta):
 		Global.rainbow_bonus = true
 	if blue >= 15:
 		Global.blue_bonus = true
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	
 	if red < 0:
 		if Global.health > 1:
@@ -394,3 +387,9 @@ func _on_timer_timeout():
 func _on_video_stream_player_finished():
 	Global.dead = false
 	$VideoStreamPlayer.queue_free()
+
+
+func _on_unpause_pressed():
+	get_tree().paused = not get_tree().paused
+	$Camera2D/paused.visible = not $Camera2D/paused.visible
+	$Camera2D/unpause.visible = not $Camera2D/unpause.visible
