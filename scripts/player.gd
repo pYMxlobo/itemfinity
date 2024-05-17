@@ -165,6 +165,7 @@ func _process(_delta):
 	
 	Global.atk_range = atk_range
 	if lives <= 0:
+		Global.save_ach()
 		$crack.stop()
 		$orb.hide()
 		$life_left.stop()
@@ -219,24 +220,34 @@ func _process(_delta):
 	
 	if red >= 15:
 		Global.red_bonus = true
+		$achievement.play()
 	if green >= 15:
 		Global.green_bonus = true
+		$achievement.play()
 	if yellow >= 15:
 		Global.yellow_bonus = true
+		$achievement.play()
 	if purple >= 15:
 		Global.purple_bonus = true
+		$achievement.play()
 	if orange >= 15:
 		Global.orange_bonus = true
+		$achievement.play()
 	if cyan >= 15:
 		Global.cyan_bonus = true
+		$achievement.play()
 	if white >= 15:
 		Global.white_bonus = true
+		$achievement.play()
 	if black >= 15:
 		Global.black_bonus = true
+		$achievement.play()
 	if rainbow >= 15:
 		Global.rainbow_bonus = true
+		$achievement.play()
 	if blue >= 15:
 		Global.blue_bonus = true
+		$achievement.play()
 	
 	if red < 0:
 		if Global.health > 1:
@@ -288,7 +299,26 @@ func _process(_delta):
 			blue = 0
 			goddamn_it(1, false)
 	
-	
+	if red > pre_red:
+		$pickup.play()
+	if green > pre_green:
+		$pickup.play()
+	if yellow > pre_yellow:
+		$pickup.play()
+	if purple > pre_purple:
+		$pickup.play()
+	if orange > pre_orange:
+		$pickup.play()
+	if cyan > pre_cyan:
+		$pickup.play()
+	if white > pre_white:
+		$pickup.play()
+	if black > pre_black:
+		$pickup.play()
+	if rainbow > pre_rainbow:
+		$pickup.play()
+	if blue > pre_blue:
+		$pickup.play()
 	
 	if pre_red != red:
 		speed = def_speed + (10 * red)
@@ -327,6 +357,7 @@ func _process(_delta):
 		lives = clamp(def_lives + (1 * blue), 1, 999)
 		pre_blue = blue
 	if pre_portal != portal:
+		$portal.play()
 		Global.wins = Global.def_wins + (1 * portal)
 		pre_portal = portal
 		print(Global.wins)
@@ -393,3 +424,6 @@ func _on_unpause_pressed():
 	get_tree().paused = not get_tree().paused
 	$Camera2D/paused.visible = not $Camera2D/paused.visible
 	$Camera2D/unpause.visible = not $Camera2D/unpause.visible
+
+
+

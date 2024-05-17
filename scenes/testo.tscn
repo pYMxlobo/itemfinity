@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://di7oipr6tt0sn"]
+[gd_scene load_steps=17 format=3 uid="uid://di7oipr6tt0sn"]
 
 [ext_resource type="PackedScene" uid="uid://csmqbqsc4ay3h" path="res://scenes/enemy.tscn" id="1_vjfyw"]
 [ext_resource type="Texture2D" uid="uid://bkpkg0otlx3lv" path="res://sprites/bullet.png" id="2_0s6ra"]
@@ -8,7 +8,11 @@
 [ext_resource type="PackedScene" uid="uid://bmaqlensx66cm" path="res://scenes/the_orb.tscn" id="7_6vcwy"]
 [ext_resource type="Texture2D" uid="uid://c751vwtnl70kj" path="res://sprites/bulletorange.png" id="10_g4l06"]
 [ext_resource type="TileSet" uid="uid://wanmoryrsofx" path="res://other/goodbricks.tres" id="12_66qp6"]
+[ext_resource type="BulletType" uid="uid://c4kiewyqtxsc6" path="res://bullettypes/yellow.tres" id="12_nes5v"]
+[ext_resource type="BulletType" uid="uid://byrd4elm4dxtj" path="res://bullettypes/green.tres" id="13_a6bhl"]
+[ext_resource type="Texture2D" uid="uid://5asf5o7mgxif" path="res://sprites/bulletyellow.png" id="13_cdvor"]
 [ext_resource type="PackedScene" uid="uid://crfm54kkrxh4r" path="res://scenes/item.tscn" id="13_y8j4c"]
+[ext_resource type="Texture2D" uid="uid://bgsr4vv5gl0x0" path="res://sprites/bulletgreen.png" id="15_kvg6k"]
 [ext_resource type="AudioStream" uid="uid://cg25vca5dq4x6" path="res://music/Itemfinity Song 1.mp3" id="16_ws0ai"]
 [ext_resource type="AudioStream" uid="uid://bt2c48ctaxqcq" path="res://music/Purity.wav" id="17_s1bf6"]
 
@@ -25,7 +29,6 @@ bullets = NodePath("red")
 [node name="red" type="Spawner" parent="enemy" node_paths=PackedStringArray("trackedNode")]
 startMode = 2
 bulletType = ExtResource("2_48dhf")
-ID = 10101
 poolCount = 9999
 fireRate = 3.0
 fireRadiusDegrees = 90.0
@@ -149,6 +152,35 @@ moveWithParent = true
 returnBulletsToPoolAutomatically = false
 texture = ExtResource("10_g4l06")
 
+[node name="yellow" type="Spawner" parent="allbullets" node_paths=PackedStringArray("trackedNode")]
+startMode = 2
+bulletType = ExtResource("12_nes5v")
+poolCount = 9999
+fireRate = 3.0
+fireRadiusDegrees = 30.0
+bulletsPerRadius = 3
+trackedNode = NodePath("../../The Orb")
+startTowardPlayer = true
+staysTowardPlayer = true
+returnBulletsToPoolAutomatically = false
+position = Vector2(502, 2)
+texture = ExtResource("13_cdvor")
+
+[node name="green" type="Spawner" parent="allbullets" node_paths=PackedStringArray("trackedNode")]
+startMode = 2
+bulletType = ExtResource("13_a6bhl")
+poolCount = 9999
+bulletsPerRadius = 4
+spinRate = 1.0
+maxSpin = 60.0
+minSpin = 40.0
+spinAcceleration = 1.0
+trackedNode = NodePath("../../The Orb")
+staysTowardPlayer = true
+returnBulletsToPoolAutomatically = false
+position = Vector2(502, 2)
+texture = ExtResource("15_kvg6k")
+
 [connection signal="bullet_hit" from="enemy/red" to="PlayerHitbox" method="_on_spawner_bullet_hit"]
 [connection signal="area_shape_entered" from="PlayerHitbox" to="PlayerHitbox" method="_on_area_shape_entered"]
 [connection signal="body_entered" from="PlayerHitbox" to="PlayerHitbox" method="_on_body_entered"]
@@ -156,3 +188,5 @@ texture = ExtResource("10_g4l06")
 [connection signal="timeout" from="PlayerHitbox/Timer" to="PlayerHitbox" method="_on_timer_timeout"]
 [connection signal="bullet_hit" from="allbullets/red" to="PlayerHitbox" method="_on_spawner_bullet_hit"]
 [connection signal="bullet_hit" from="allbullets/orange" to="PlayerHitbox" method="_on_spawner_bullet_hit"]
+[connection signal="bullet_hit" from="allbullets/yellow" to="PlayerHitbox" method="_on_spawner_bullet_hit"]
+[connection signal="bullet_hit" from="allbullets/green" to="PlayerHitbox" method="_on_spawner_bullet_hit"]

@@ -13,9 +13,13 @@ config_version=5
 config/name="itemfinity"
 config/version="1.0.0"
 run/main_scene="res://scenes/titlescreen.tscn"
+config/use_custom_user_dir=true
+config/custom_user_dir_name="pYMxolbo_Games/ItemFinity"
 config/features=PackedStringArray("4.2", "Forward Plus")
 run/max_fps=60
 boot_splash/bg_color=Color(0.29211, 0, 0.0279529, 1)
+boot_splash/image="res://sprites/title.png"
+boot_splash/use_filter=false
 config/icon="res://sprites/orb.png"
 
 [audio]

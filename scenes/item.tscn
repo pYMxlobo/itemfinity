@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://crfm54kkrxh4r"]
+[gd_scene load_steps=15 format=3 uid="uid://crfm54kkrxh4r"]
 
 [ext_resource type="Script" path="res://scripts/item.gd" id="1_gasev"]
 [ext_resource type="Texture2D" uid="uid://dpvft14utdgti" path="res://sprites/blackmana.png" id="1_nccrj"]
@@ -12,7 +12,6 @@
 [ext_resource type="Texture2D" uid="uid://cfxq5lahnyovn" path="res://sprites/redmana.png" id="9_nsa2e"]
 [ext_resource type="Texture2D" uid="uid://iv0j8t3iljq1" path="res://sprites/whitemana.png" id="10_so3qr"]
 [ext_resource type="Texture2D" uid="uid://cljgufs8nxfx6" path="res://sprites/yellowmana.png" id="11_s2qsf"]
-[ext_resource type="AudioStream" uid="uid://coi4nwenrrvbw" path="res://soundeffects/itempickup.wav" id="13_aqb57"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_dj62b"]
 animations = [{
@@ -133,10 +132,6 @@ collision_mask = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("CircleShape2D_0atf2")
-
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("13_aqb57")
-bus = &"SFX"
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_shape_entered" from="Area2D" to="." method="_on_area_2d_body_shape_entered"]

@@ -6,6 +6,7 @@ extends OptionButton
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	Global.load_ach()
 	add_separator("start item:")
 	add_item("red")
 	add_item("green")

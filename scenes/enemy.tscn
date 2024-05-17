@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://csmqbqsc4ay3h"]
+[gd_scene load_steps=16 format=3 uid="uid://csmqbqsc4ay3h"]
 
 [ext_resource type="Script" path="res://scripts/enemy.gd" id="1_lsml8"]
 [ext_resource type="Texture2D" uid="uid://cjaybvwbvpmcb" path="res://sprites/spellcaster.png" id="1_tjtbp"]
@@ -11,10 +11,6 @@
 [ext_resource type="Texture2D" uid="uid://c4o8nbvtu2fbx" path="res://sprites/spellcasteryellow.png" id="8_5wt5l"]
 [ext_resource type="AudioStream" uid="uid://nxbl48tab71d" path="res://soundeffects/enemydeath.wav" id="10_vd5s5"]
 [ext_resource type="AudioStream" uid="uid://cajseboxf2n8s" path="res://soundeffects/enemyhurt.wav" id="10_wa1yv"]
-
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_rn20b"]
-radius = 9.0
-height = 38.0
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_n03vs"]
 animations = [{
@@ -75,6 +71,14 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_plcna"]
+radius = 9.0
+height = 38.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_rn20b"]
+radius = 9.0
+height = 38.0
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_gdpuq"]
 radius = 63.0
 
@@ -85,19 +89,19 @@ motion_mode = 1
 wall_min_slide_angle = 0.0
 script = ExtResource("1_lsml8")
 
-[node name="enemy_hurt" type="Area2D" parent="."]
-collision_layer = 8
-collision_mask = 8
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="enemy_hurt"]
-shape = SubResource("CapsuleShape2D_rn20b")
-debug_color = Color(0, 1, 0, 0.419608)
-
 [node name="S" type="AnimatedSprite2D" parent="."]
 z_index = 10
 scale = Vector2(0.5, 0.5)
 sprite_frames = SubResource("SpriteFrames_n03vs")
 animation = &"orange"
+
+[node name="enemy_hurt" type="Area2D" parent="."]
+collision_layer = 8
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="enemy_hurt"]
+shape = SubResource("CapsuleShape2D_plcna")
+debug_color = Color(0, 1, 0, 0.419608)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_rn20b")
@@ -147,6 +151,9 @@ shape = SubResource("CircleShape2D_gdpuq")
 wait_time = 3.0
 
 [connection signal="body_entered" from="enemy_hurt" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="enemy_hurt" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_shape_entered" from="enemy_hurt" to="." method="_on_enemy_hurt_body_shape_entered"]
+[connection signal="body_shape_exited" from="enemy_hurt" to="." method="_on_enemy_hurt_body_shape_entered"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="body_shape_entered" from="seeing" to="." method="_on_seeing_body_shape_entered"]
 [connection signal="timeout" from="BulletSpawnLoop" to="." method="_on_bullet_spawn_loop_timeout"]

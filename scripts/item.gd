@@ -44,7 +44,7 @@ func _process(_delta):
 
 func _on_area_2d_body_entered(body):
 	if body == player:
-		$AudioStreamPlayer2D.play()
+		OS.delay_msec(1)
 		if value == 0:
 			player.red = player.red + 1
 			queue_free()

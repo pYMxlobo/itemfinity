@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://c1u706oy1pjmx"]
+[gd_scene load_steps=15 format=3 uid="uid://c1u706oy1pjmx"]
 
 [ext_resource type="Texture2D" uid="uid://b1npjw2o1cjcl" path="res://sprites/title.png" id="1_1fbtn"]
 [ext_resource type="Shader" path="res://other/haha.gdshader" id="1_yiy2j"]
@@ -88,6 +88,8 @@ shader_parameter/color_68 = Color(0.917, 0.979, 0.557, 1)
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_v1jpj"]
 gradient = SubResource("Gradient_jm2n8")
 
+[sub_resource type="ImageTexture" id="ImageTexture_o03mo"]
+
 [node name="Node2D" type="Node2D"]
 
 [node name="shader" type="Sprite2D" parent="."]
@@ -134,6 +136,7 @@ offset_left = 82.0
 offset_top = 48.0
 offset_right = 161.0
 offset_bottom = 68.0
+theme_override_icons/arrow = SubResource("ImageTexture_o03mo")
 shortcut_in_tooltip = false
 alignment = 1
 allow_reselect = true

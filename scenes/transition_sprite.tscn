@@ -1,3 +1,4 @@
 [gd_scene format=3 uid="uid://bhmnas2562m8j"]
 
 [node name="transition_sprite" type="Sprite2D"]
+z_index = 4094

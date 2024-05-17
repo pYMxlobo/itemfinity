@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://bmaqlensx66cm"]
+[gd_scene load_steps=29 format=3 uid="uid://bmaqlensx66cm"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_07vxm"]
 [ext_resource type="Texture2D" uid="uid://ct5vf01lh702j" path="res://sprites/orb.png" id="1_jrvm1"]
@@ -16,6 +16,9 @@
 [ext_resource type="AudioStream" uid="uid://bte0j8jkmtvc8" path="res://soundeffects/orbcrack.wav" id="13_miluo"]
 [ext_resource type="VideoStream" path="res://wizardsteal.ogv" id="14_ys5v3"]
 [ext_resource type="Texture2D" uid="uid://bc1rqtkqjtrya" path="res://sprites/black.png" id="15_jtib4"]
+[ext_resource type="AudioStream" uid="uid://coi4nwenrrvbw" path="res://soundeffects/itempickup.wav" id="17_47v5x"]
+[ext_resource type="AudioStream" uid="uid://c0kx4887ixv2o" path="res://soundeffects/portal.wav" id="18_56igq"]
+[ext_resource type="AudioStream" uid="uid://tgxf38xffg8w" path="res://soundeffects/idotnknow.wav" id="19_1sd0w"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_2fwfk"]
 radius = 6.0
@@ -207,8 +210,11 @@ title = "Stats"
 initial_position = 4
 size = Vector2i(256, 256)
 transient = true
-unresizable = true
 extend_to_title = true
+min_size = Vector2i(256, 256)
+content_scale_size = Vector2i(256, 256)
+content_scale_mode = 1
+content_scale_aspect = 1
 
 [node name="Bricktile" type="Sprite2D" parent="Window"]
 texture_filter = 1
@@ -330,7 +336,6 @@ max_polyphony = 4
 bus = &"SFX"
 
 [node name="VideoStreamPlayer" type="VideoStreamPlayer" parent="."]
-visible = false
 z_index = 1325
 anchors_preset = 8
 anchor_left = 0.5
@@ -354,6 +359,22 @@ z_index = -1190
 position = Vector2(156.25, 117.5)
 scale = Vector2(13.4068, 13.5469)
 texture = ExtResource("15_jtib4")
+
+[node name="pickup" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("17_47v5x")
+volume_db = -7.0
+pitch_scale = 0.6
+max_polyphony = 10
+bus = &"SFX"
+
+[node name="portal" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("18_56igq")
+bus = &"SFX"
+
+[node name="achievement" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("19_1sd0w")
+max_polyphony = 3
+bus = &"SFX"
 
 [connection signal="pressed" from="Camera2D/unpause" to="." method="_on_unpause_pressed"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

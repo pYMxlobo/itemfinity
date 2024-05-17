@@ -94,6 +94,7 @@ func _process(_delta):
 
 
 func _on_area_2d_body_entered(body):
+	print("attack detected :/")
 	if body == player.attacker:
 		$hurt.play()
 		health -= player.atk_damg
@@ -111,3 +112,12 @@ func _on_seeing_body_shape_entered(body_rid, body, body_shape_index, local_shape
 
 func _on_bullet_spawn_loop_timeout():
 	bullets.set_manual_start(true)
+
+
+func _on_enemy_hurt_body_shape_entered(body_rid, body, body_shape_index, local_shape_index):
+	print("attack detected :/ body shape edition")
+	if body == player.attacker:
+		$hurt.play()
+		health -= player.atk_damg
+		player.attacker.position = Vector2(0, 0)
+		print("hehe enemy got hit")

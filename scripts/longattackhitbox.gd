@@ -7,8 +7,8 @@ var default_pos_y : float
 
 
 func _ready():
-	#default_pos_x = get_parent().position.x
-	#default_pos_y = get_parent().position.y
+	default_pos_x = position.x
+	default_pos_y = position.y
 	pass
 
 
@@ -29,6 +29,7 @@ func _input(event):
 		if attack_direction == "up":
 			disabled = false
 			$anim.play("attack")
+			pos_fix()
 		else:
 			disabled = true
 			$anim.stop()
@@ -37,6 +38,7 @@ func _input(event):
 		if attack_direction == "down":
 			disabled = false
 			$anim.play("attack")
+			pos_fix()
 		else:
 			disabled = true
 			$anim.stop()
@@ -45,6 +47,7 @@ func _input(event):
 		if attack_direction == "left":
 			disabled = false
 			$anim.play("attack")
+			pos_fix()
 		else:
 			disabled = true
 			$anim.stop()
@@ -53,6 +56,7 @@ func _input(event):
 		if attack_direction == "right":
 			disabled = false
 			$anim.play("attack")
+			pos_fix()
 		else:
 			disabled = true
 			$anim.stop()
@@ -78,3 +82,9 @@ func _input(event):
 			$anim.stop()
 			$anim.play("default")
 
+
+
+
+func pos_fix():
+	position.x = default_pos_x
+	position.y = default_pos_y
