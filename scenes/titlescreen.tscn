@@ -93,8 +93,8 @@ gradient = SubResource("Gradient_jm2n8")
 [node name="shader" type="Sprite2D" parent="."]
 z_index = 4096
 material = SubResource("ShaderMaterial_wvuy0")
-position = Vector2(-14, -20)
-scale = Vector2(20, 20)
+position = Vector2(14.5, -8.00003)
+scale = Vector2(9.29688, 8.03125)
 texture = SubResource("GradientTexture2D_v1jpj")
 
 [node name="Title" type="Sprite2D" parent="."]
@@ -130,10 +130,10 @@ autoplay = true
 bus = &"Music"
 
 [node name="OptionButton" type="OptionButton" parent="."]
-offset_left = 98.0
-offset_top = 58.0
-offset_right = 177.0
-offset_bottom = 78.0
+offset_left = 82.0
+offset_top = 48.0
+offset_right = 161.0
+offset_bottom = 68.0
 shortcut_in_tooltip = false
 alignment = 1
 allow_reselect = true

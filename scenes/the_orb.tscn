@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://bmaqlensx66cm"]
+[gd_scene load_steps=24 format=3 uid="uid://bmaqlensx66cm"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_07vxm"]
 [ext_resource type="Texture2D" uid="uid://ct5vf01lh702j" path="res://sprites/orb.png" id="1_jrvm1"]
@@ -9,6 +9,7 @@
 [ext_resource type="Script" path="res://scripts/healthtext.gd" id="6_27tuu"]
 [ext_resource type="Shader" path="res://other/haha.gdshader" id="7_yfjid"]
 [ext_resource type="Texture2D" uid="uid://2whsm5f4ge8c" path="res://sprites/bricktile.png" id="9_042w4"]
+[ext_resource type="Texture2D" uid="uid://daa1xlquhmxhg" path="res://sprites/overlay.png" id="11_720nt"]
 [ext_resource type="AudioStream" uid="uid://bo78cq7nhur3c" path="res://soundeffects/orbanotherlife.wav" id="11_ejccu"]
 [ext_resource type="AudioStream" uid="uid://cdhjohxu5s4wu" path="res://soundeffects/orbshatter.wav" id="12_cbcdr"]
 [ext_resource type="PackedScene" uid="uid://ch63wtisq3qq5" path="res://scenes/attacker.tscn" id="13_30xn8"]
@@ -269,6 +270,10 @@ position = Vector2(4.76837e-07, 9.53674e-07)
 scale = Vector2(20, 20)
 texture = SubResource("GradientTexture2D_3bagq")
 
+[node name="Overlay" type="Sprite2D" parent="Camera2D"]
+show_behind_parent = true
+texture = ExtResource("11_720nt")
+
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.5
 one_shot = true
@@ -287,6 +292,7 @@ max_polyphony = 4
 bus = &"SFX"
 
 [node name="VideoStreamPlayer" type="VideoStreamPlayer" parent="."]
+visible = false
 z_index = 1325
 anchors_preset = 8
 anchor_left = 0.5

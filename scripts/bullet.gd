@@ -1,6 +1,10 @@
 extends RigidBody2D
 
-var delayed_linear_velocity : Vector2 = Vector2(10, 10)
+var alive = false
+
+var delayed_linear_velocity = Vector2.ZERO
+
+var screen_size
 
 var color : String
 # Called when the node enters the scene tree for the first time.

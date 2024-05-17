@@ -1,5 +1,8 @@
 extends CharacterBody2D
 
+
+# https://uquiz.com/1AY4aI
+
 @export var speed = 200
 @export var friction = 0.335
 @export var acceleration = 0.175
