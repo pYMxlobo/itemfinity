@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://crfm54kkrxh4r" path="res://scenes/item.tscn" id="3_owig1"]
 [ext_resource type="PackedScene" uid="uid://csmqbqsc4ay3h" path="res://scenes/enemy.tscn" id="4_jo5os"]
 
-[node name="1" type="Node2D"]
+[node name="4" type="Node2D"]
 script = ExtResource("1_gkk2w")
 
 [node name="TileMap" type="TileMap" parent="."]

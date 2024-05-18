@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://csmqbqsc4ay3h"]
+[gd_scene load_steps=16 format=3 uid="uid://csmqbqsc4ay3h"]
 
 [ext_resource type="Script" path="res://scripts/enemy.gd" id="1_lsml8"]
 [ext_resource type="Texture2D" uid="uid://dwlue5hkhqxxq" path="res://sprites/spellcasterblue.png" id="2_akxwl"]
@@ -11,12 +11,6 @@
 [ext_resource type="Texture2D" uid="uid://c4o8nbvtu2fbx" path="res://sprites/spellcasteryellow.png" id="8_5wt5l"]
 [ext_resource type="AudioStream" uid="uid://nxbl48tab71d" path="res://soundeffects/enemydeath.wav" id="10_vd5s5"]
 [ext_resource type="AudioStream" uid="uid://cajseboxf2n8s" path="res://soundeffects/enemyhurt.wav" id="10_wa1yv"]
-[ext_resource type="PackedScene" uid="uid://c7q3dxobhloll" path="res://scenes/bullets/red.tscn" id="12_ii23h"]
-[ext_resource type="PackedScene" uid="uid://ba5253om75sif" path="res://scenes/bullets/orange.tscn" id="13_p3kg1"]
-[ext_resource type="PackedScene" uid="uid://kdwu4vrfif7o" path="res://scenes/bullets/yellow.tscn" id="14_8pscr"]
-[ext_resource type="PackedScene" uid="uid://d000davn72x6k" path="res://scenes/bullets/green.tscn" id="15_e1ww0"]
-[ext_resource type="PackedScene" uid="uid://bmrb8hy5nt8on" path="res://scenes/bullets/blue.tscn" id="16_85jo5"]
-[ext_resource type="PackedScene" uid="uid://bqtm27eau8t8d" path="res://scenes/bullets/purple.tscn" id="17_502vv"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_n03vs"]
 animations = [{
@@ -158,20 +152,6 @@ shape = SubResource("CircleShape2D_gdpuq")
 
 [node name="BulletSpawnLoop" type="Timer" parent="."]
 wait_time = 3.0
-
-[node name="red" parent="." instance=ExtResource("12_ii23h")]
-
-[node name="orange" parent="." instance=ExtResource("13_p3kg1")]
-
-[node name="yellow" parent="." instance=ExtResource("14_8pscr")]
-
-[node name="green" parent="." instance=ExtResource("15_e1ww0")]
-
-[node name="blue" parent="." instance=ExtResource("16_85jo5")]
-
-[node name="purple" parent="." instance=ExtResource("17_502vv")]
-
-[node name="dud" type="CharacterBody2D" parent="."]
 
 [connection signal="area_entered" from="enemy_hurt" to="." method="_on_enemy_hurt_area_entered"]
 [connection signal="area_shape_entered" from="enemy_hurt" to="." method="_on_enemy_hurt_area_shape_entered"]

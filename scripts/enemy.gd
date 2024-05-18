@@ -77,7 +77,7 @@ func _ready():
 	else:
 		printerr("you named the type wrong moron")
 	determine_bullet()
-	bullets.trackedNode = player
+	#bullets.trackedNode = player
 	bullets.bullet_hit.connect(player_hitbox.bullet_hit)
 	$BulletSpawnLoop.wait_time = bullet_time
 	$S.play(type)
@@ -103,7 +103,7 @@ func _process(_delta):
 	
 	
 	
-	if bullets_fired > 9000:
+	if bullets_fired > (bullets.poolCount - 10):
 		health = 0
 	
 	
@@ -123,43 +123,17 @@ func _on_area_2d_body_entered(body):
 func _on_bullet_spawn_loop_timeout():
 	bullets.set_manual_start(true)
 	bullets_fired += (bullets.bulletsPerRadius * bullets.numberOfRadii)
+	makepath()
 
 
 
 func determine_bullet():
-	var ntype = StringName(type)
-	var redname = $red.name
-	var orangename = $orange.name
-	var yellowname = $yellow.name
-	var greenname = $green.name
-	var bluename = $blue.name
-	var purplename = $purple.name
-	#var rainbowname
-	if redname == ntype:
-		bullets = $red
-	else:
-		$red.queue_free()
-	if orangename == ntype:
-		bullets = $orange
-	else:
-		$orange.queue_free()
-	if yellowname == ntype:
-		bullets = $yellow
-	else:
-		$yellow.queue_free()
-	if greenname == ntype:
-		bullets = $green
-	else:
-		$green.queue_free()
-	if bluename == ntype:
-		bullets = $blue
-	else:
-		$blue.queue_free()
-	if purplename == ntype:
-		bullets = $purple
-	else:
-		$purple.queue_free()
-
+	var loaded_bullet
+	loaded_bullet = load("res://scenes/bullets/" + str(type) +  ".tscn")
+	loaded_bullet = loaded_bullet.instantiate()
+	loaded_bullet.trackedNode = player
+	add_child(loaded_bullet)
+	bullets = loaded_bullet
 
 func _on_enemy_hurt_area_entered(area):
 	if area == player.attacker:
@@ -171,6 +145,7 @@ func _on_enemy_hurt_area_entered(area):
 
 func _on_seeing_body_shape_entered(body_rid, body, body_shape_index, local_shape_index):
 	if body == player:
+		player_spotted = true
 		bullets.set_manual_start(true)
 		bullets_fired += (bullets.bulletsPerRadius * bullets.numberOfRadii)
 		$BulletSpawnLoop.start()
