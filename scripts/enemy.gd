@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-
+@export var is_chunk = true
 @export var type : String
 var speed = 50
 var health : int = 10
@@ -38,6 +38,8 @@ func _on_timer_timeout():
 	makepath()
 
 func _ready():
+	if is_chunk == true:
+		player = get_parent().get_parent().player
 	player_hitbox = player.hitbox
 	if type == "red":
 		speed = 50
@@ -104,25 +106,9 @@ func _on_area_2d_body_entered(body):
 		print("hehe enemy got hit")
 
 
-func _on_seeing_body_shape_entered(body_rid, body, body_shape_index, local_shape_index):
-	if body == player:
-		player_spotted = true
-		$BulletSpawnLoop.start()
-		bullets.set_manual_start(true)
-		$seeing.queue_free()
-
-
 func _on_bullet_spawn_loop_timeout():
 	bullets.set_manual_start(true)
 
-
-func _on_enemy_hurt_body_shape_entered(body_rid, body, body_shape_index, local_shape_index):
-	print("attack detected :/ body shape edition")
-	if body == player.attacker:
-		$hurt.play()
-		health -= player.atk_damg
-		player.attacker.position = Vector2(0, 0)
-		print("hehe enemy got hit")
 
 
 func determine_bullet():
@@ -131,43 +117,38 @@ func determine_bullet():
 	var orangename = $orange.name
 	var yellowname = $yellow.name
 	var greenname = $green.name
-	var bluename
-	var purplename
-	var rainbowname
+	var bluename = $blue.name
+	var purplename = $purple.name
+	#var rainbowname
 	if redname == ntype:
 		bullets = $red
-		
 	else:
 		$red.queue_free()
 	if orangename == ntype:
 		bullets = $orange
-		
 	else:
 		$orange.queue_free()
 	if yellowname == ntype:
 		bullets = $yellow
-		
 	else:
 		$yellow.queue_free()
 	if greenname == ntype:
 		bullets = $green
-		
 	else:
 		$green.queue_free()
+	if bluename == ntype:
+		bullets = $blue
+	else:
+		$blue.queue_free()
+	if purplename == ntype:
+		bullets = $purple
+	else:
+		$purple.queue_free()
 
 
 func _on_enemy_hurt_area_entered(area):
-	print("attack detected :/ area edition")
 	if area == player.attacker:
 		$hurt.play()
 		health -= player.atk_damg
 		player.attacker.position = Vector2(0, 0)
-		print("hehe enemy got hit")
 
-func _on_enemy_hurt_area_shape_entered(area_rid, area, area_shape_index, local_shape_index):
-	print("attack detected :/ area shape edition")
-	if area == player.attacker:
-		$hurt.play()
-		health -= player.atk_damg
-		player.attacker.position = Vector2(0, 0)
-		print("hehe enemy got hit")

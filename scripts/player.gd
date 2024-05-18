@@ -2,6 +2,7 @@ extends CharacterBody2D
 
 @export var hitbox : Area2D
 
+@export var attacker : Area2D
 #@onready var attacker = $Attacker
 # https://uquiz.com/1AY4aI
 
@@ -122,6 +123,7 @@ func _ready():
 			rainbow += 1
 		9:
 			blue += 1
+	$Window.visible = true
 	print("start bonus: " + str(Global.start_bonus))
 
 

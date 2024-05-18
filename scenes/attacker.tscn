@@ -38,8 +38,7 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="Attacker" type="AnimatableBody2D"]
-disable_mode = 1
+[node name="Attacker" type="Area2D"]
 collision_layer = 8
 collision_mask = 8
 

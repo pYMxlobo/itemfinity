@@ -1,6 +1,6 @@
 extends Node2D
 
-
+@export var is_chunk = true
 @export var player : CharacterBody2D
 @export var is_random = false
 @export var value = 0
@@ -9,6 +9,8 @@ var random : int
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	if is_chunk == true:
+		player = get_parent().get_parent().player
 	randomize()
 	if is_random == true:
 		value = randi_range(0, 9)

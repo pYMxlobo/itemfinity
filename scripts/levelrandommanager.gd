@@ -1,7 +1,7 @@
 extends Node2D
 
-@export var number : int = int(str(self.name))
-
+var number : int = int(str(self.name))
+@export var autoload_chunk = true
 
 
 
@@ -22,6 +22,7 @@ func _ready():
 	#print("number " + str(number) + " of " + str(get_parent().name) + " successful ready")
 	#please(100)
 	await get_parent().ready
-	load_chunk()
+	if autoload_chunk == true:
+		load_chunk()
 
 

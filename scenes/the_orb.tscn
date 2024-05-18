@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://bmaqlensx66cm"]
+[gd_scene load_steps=31 format=3 uid="uid://bmaqlensx66cm"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_07vxm"]
 [ext_resource type="Texture2D" uid="uid://ct5vf01lh702j" path="res://sprites/orb.png" id="1_jrvm1"]
@@ -12,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://daa1xlquhmxhg" path="res://sprites/overlay.png" id="11_720nt"]
 [ext_resource type="AudioStream" uid="uid://bo78cq7nhur3c" path="res://soundeffects/orbanotherlife.wav" id="11_ejccu"]
 [ext_resource type="AudioStream" uid="uid://cdhjohxu5s4wu" path="res://soundeffects/orbshatter.wav" id="12_cbcdr"]
+[ext_resource type="PackedScene" uid="uid://ch63wtisq3qq5" path="res://scenes/attacker.tscn" id="13_30xn8"]
 [ext_resource type="AudioStream" uid="uid://bte0j8jkmtvc8" path="res://soundeffects/orbcrack.wav" id="13_miluo"]
 [ext_resource type="VideoStream" path="res://wizardsteal.ogv" id="14_ys5v3"]
 [ext_resource type="Texture2D" uid="uid://bc1rqtkqjtrya" path="res://sprites/black.png" id="15_jtib4"]
@@ -19,6 +20,9 @@
 [ext_resource type="AudioStream" uid="uid://c0kx4887ixv2o" path="res://soundeffects/portal.wav" id="18_56igq"]
 [ext_resource type="AudioStream" uid="uid://tgxf38xffg8w" path="res://soundeffects/idotnknow.wav" id="19_1sd0w"]
 [ext_resource type="Script" path="res://scripts/ouchie.gd" id="19_k05nb"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_7rrvj"]
+radius = 2.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_2fwfk"]
 radius = 6.0
@@ -95,10 +99,10 @@ shader_parameter/color_66 = Color(0.545098, 0.188235, 0.619608, 1)
 shader_parameter/color_67 = Color(0.764706, 1, 0.219608, 1)
 shader_parameter/color_68 = Color(0.47451, 0.619608, 0.137255, 1)
 
-[sub_resource type="Gradient" id="Gradient_gj4b1"]
+[sub_resource type="Gradient" id="Gradient_gfh0l"]
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_kq677"]
-gradient = SubResource("Gradient_gj4b1")
+gradient = SubResource("Gradient_gfh0l")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_3na2p"]
 shader = ExtResource("7_yfjid")
@@ -185,17 +189,30 @@ pressed = true
 [sub_resource type="Shortcut" id="Shortcut_0kdiu"]
 events = [SubResource("InputEventJoypadButton_gdypx")]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_7rrvj"]
-radius = 2.0
-
-[node name="The Orb" type="CharacterBody2D" node_paths=PackedStringArray("hitbox", "lalala")]
+[node name="The Orb" type="CharacterBody2D" node_paths=PackedStringArray("hitbox", "attacker", "lalala")]
 collision_layer = 2
 collision_mask = 3
 motion_mode = 1
 script = ExtResource("1_07vxm")
 hitbox = NodePath("PlayerHitbox")
+attacker = NodePath("Attacker")
 max_slow = 5.0
 lalala = NodePath("Window/Label")
+
+[node name="Attacker" parent="." instance=ExtResource("13_30xn8")]
+
+[node name="PlayerHitbox" type="Area2D" parent="." node_paths=PackedStringArray("timer")]
+collision_layer = 4
+collision_mask = 65287
+script = ExtResource("19_k05nb")
+timer = NodePath("Timer")
+
+[node name="hitbox" type="CollisionShape2D" parent="PlayerHitbox"]
+shape = SubResource("CircleShape2D_7rrvj")
+debug_color = Color(0.960784, 0, 0, 0.670588)
+
+[node name="Timer" type="Timer" parent="PlayerHitbox"]
+one_shot = true
 
 [node name="orb" type="Sprite2D" parent="."]
 scale = Vector2(0.5, 0.5)
@@ -210,6 +227,7 @@ disable_3d = true
 title = "Stats"
 initial_position = 4
 size = Vector2i(256, 256)
+visible = false
 transient = true
 extend_to_title = true
 min_size = Vector2i(256, 256)
@@ -394,21 +412,8 @@ stream = ExtResource("19_1sd0w")
 max_polyphony = 3
 bus = &"SFX"
 
-[node name="PlayerHitbox" type="Area2D" parent="." node_paths=PackedStringArray("timer")]
-collision_layer = 4
-collision_mask = 65287
-script = ExtResource("19_k05nb")
-timer = NodePath("Timer")
-
-[node name="hitbox" type="CollisionShape2D" parent="PlayerHitbox"]
-shape = SubResource("CircleShape2D_7rrvj")
-debug_color = Color(0.960784, 0, 0, 0.670588)
-
-[node name="Timer" type="Timer" parent="PlayerHitbox"]
-one_shot = true
-
+[connection signal="timeout" from="PlayerHitbox/Timer" to="PlayerHitbox" method="_on_timer_timeout"]
 [connection signal="pressed" from="Camera2D/unpause" to="." method="_on_unpause_pressed"]
 [connection signal="pressed" from="Camera2D/give_up" to="." method="_on_give_up_pressed"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="finished" from="VideoStreamPlayer" to="." method="_on_video_stream_player_finished"]
-[connection signal="timeout" from="PlayerHitbox/Timer" to="PlayerHitbox" method="_on_timer_timeout"]

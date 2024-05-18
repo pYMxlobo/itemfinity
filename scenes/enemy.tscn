@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://csmqbqsc4ay3h"]
+[gd_scene load_steps=28 format=3 uid="uid://csmqbqsc4ay3h"]
 
 [ext_resource type="Script" path="res://scripts/enemy.gd" id="1_lsml8"]
 [ext_resource type="Texture2D" uid="uid://cjaybvwbvpmcb" path="res://sprites/spellcaster.png" id="1_tjtbp"]
@@ -19,6 +19,10 @@
 [ext_resource type="Texture2D" uid="uid://5asf5o7mgxif" path="res://sprites/bulletyellow.png" id="17_7655j"]
 [ext_resource type="BulletType" uid="uid://byrd4elm4dxtj" path="res://bullettypes/green.tres" id="18_y4brd"]
 [ext_resource type="Texture2D" uid="uid://bgsr4vv5gl0x0" path="res://sprites/bulletgreen.png" id="19_778tt"]
+[ext_resource type="BulletType" uid="uid://diqo6k8x1r7k2" path="res://bullettypes/blue.tres" id="20_ggb31"]
+[ext_resource type="Texture2D" uid="uid://dycpcxrq3ln8k" path="res://sprites/bulletblue.png" id="21_d31ma"]
+[ext_resource type="BulletType" uid="uid://c7wotcb00ak5p" path="res://bullettypes/purple.tres" id="21_rpp7o"]
+[ext_resource type="Texture2D" uid="uid://bjwahwnykvxpt" path="res://sprites/bulletpurple.png" id="23_bkp1y"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_n03vs"]
 animations = [{
@@ -88,7 +92,7 @@ radius = 9.0
 height = 38.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_gdpuq"]
-radius = 63.0
+radius = 119.004
 
 [node name="enemy" type="CharacterBody2D"]
 collision_layer = 2
@@ -101,7 +105,7 @@ script = ExtResource("1_lsml8")
 z_index = 10
 scale = Vector2(0.5, 0.5)
 sprite_frames = SubResource("SpriteFrames_n03vs")
-animation = &"orange"
+animation = &"rainbow"
 
 [node name="enemy_hurt" type="Area2D" parent="."]
 collision_layer = 8
@@ -161,7 +165,7 @@ wait_time = 3.0
 [node name="red" type="Spawner" parent="." node_paths=PackedStringArray("trackedNode")]
 startMode = 2
 bulletType = ExtResource("12_j35xy")
-poolCount = 9999
+poolCount = 99999
 fireRate = 3.0
 fireRadiusDegrees = 90.0
 bulletsPerRadius = 5
@@ -179,7 +183,7 @@ texture = ExtResource("13_py1br")
 [node name="orange" type="Spawner" parent="." node_paths=PackedStringArray("trackedNode")]
 startMode = 2
 bulletType = ExtResource("14_akfhh")
-poolCount = 9999
+poolCount = 99999
 fireRate = 3.0
 bulletsPerRadius = 8
 numberOfRadii = 2
@@ -196,7 +200,7 @@ texture = ExtResource("15_cw8gx")
 [node name="yellow" type="Spawner" parent="." node_paths=PackedStringArray("trackedNode")]
 startMode = 2
 bulletType = ExtResource("16_umvbd")
-poolCount = 9999
+poolCount = 99999
 fireRate = 3.0
 fireRadiusDegrees = 30.0
 bulletsPerRadius = 3
@@ -209,7 +213,7 @@ texture = ExtResource("17_7655j")
 [node name="green" type="Spawner" parent="." node_paths=PackedStringArray("trackedNode")]
 startMode = 2
 bulletType = ExtResource("18_y4brd")
-poolCount = 9999
+poolCount = 99999
 bulletsPerRadius = 4
 spinRate = 1.0
 maxSpin = 60.0
@@ -219,6 +223,34 @@ trackedNode = NodePath("../dud")
 staysTowardPlayer = true
 returnBulletsToPoolAutomatically = false
 texture = ExtResource("19_778tt")
+
+[node name="blue" type="Spawner" parent="." node_paths=PackedStringArray("trackedNode")]
+startMode = 2
+bulletType = ExtResource("20_ggb31")
+poolCount = 99999
+spinRate = 1.0
+maxSpin = 60.0
+minSpin = 40.0
+spinAcceleration = 1.0
+trackedNode = NodePath("../dud")
+startTowardPlayer = true
+returnBulletsToPoolAutomatically = false
+texture = ExtResource("21_d31ma")
+
+[node name="purple" type="Spawner" parent="." node_paths=PackedStringArray("trackedNode")]
+startMode = 2
+bulletType = ExtResource("21_rpp7o")
+poolCount = 99999
+bulletsPerRadius = 6
+numberOfRadii = 3
+degreesBetweenRadii = 60.0
+spinRate = 3.0
+maxSpin = 100.0
+minSpin = 20.0
+spinAcceleration = 2.0
+trackedNode = NodePath("../dud")
+returnBulletsToPoolAutomatically = false
+texture = ExtResource("23_bkp1y")
 
 [node name="dud" type="CharacterBody2D" parent="."]
 
