@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://c1u706oy1pjmx"]
+[gd_scene load_steps=21 format=3 uid="uid://c1u706oy1pjmx"]
 
 [ext_resource type="Texture2D" uid="uid://b1npjw2o1cjcl" path="res://sprites/title.png" id="1_1fbtn"]
 [ext_resource type="Shader" path="res://other/haha.gdshader" id="1_yiy2j"]
@@ -10,6 +10,9 @@
 [ext_resource type="Script" path="res://scripts/Start.gd" id="7_3enu0"]
 [ext_resource type="AudioStream" uid="uid://c0lw7fnlkm7ac" path="res://music/title.wav" id="8_07evi"]
 [ext_resource type="Script" path="res://scripts/bonusselect.gd" id="9_x0wop"]
+[ext_resource type="Script" path="res://scripts/audioslider.gd" id="11_xiikr"]
+[ext_resource type="Script" path="res://scripts/funnysound.gd" id="12_8ifmg"]
+[ext_resource type="AudioStream" uid="uid://4tlpxmdr8row" path="res://soundeffects/select.wav" id="13_vat07"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_wvuy0"]
 shader = ExtResource("1_yiy2j")
@@ -157,5 +160,47 @@ script = ExtResource("9_x0wop")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
+[node name="music" type="VSlider" parent="."]
+offset_left = -180.0
+offset_top = 72.0
+offset_right = -164.0
+offset_bottom = 184.0
+max_value = 1.0
+step = 0.001
+script = ExtResource("11_xiikr")
+bus_name = "Music"
+
+[node name="sfx" type="VSlider" parent="."]
+offset_left = -152.0
+offset_top = 72.0
+offset_right = -136.0
+offset_bottom = 184.0
+max_value = 1.0
+step = 0.001
+script = ExtResource("11_xiikr")
+bus_name = "SFX"
+
+[node name="master" type="VSlider" parent="."]
+offset_left = -123.0
+offset_top = 72.0
+offset_right = -107.0
+offset_bottom = 184.0
+max_value = 1.0
+step = 0.001
+script = ExtResource("11_xiikr")
+bus_name = "Master"
+
+[node name="Button" type="Button" parent="."]
+offset_left = -151.0
+offset_top = 51.0
+offset_right = -137.0
+offset_bottom = 65.0
+script = ExtResource("12_8ifmg")
+
+[node name="sound" type="AudioStreamPlayer" parent="Button"]
+stream = ExtResource("13_vat07")
+bus = &"SFX"
+
 [connection signal="pressed" from="Start" to="Start" method="_on_pressed"]
 [connection signal="item_selected" from="OptionButton" to="OptionButton" method="_on_item_selected"]
+[connection signal="pressed" from="Button" to="Button" method="_on_pressed"]

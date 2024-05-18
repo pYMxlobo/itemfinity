@@ -1,14 +1,13 @@
 extends Node2D
 
-var number : int = int(str(self.name))
-@export var autoload_chunk = true
-
-
+#var number : int = 
+#@export var autoload_chunk = true
+var player : CharacterBody2D
 
 # Called when the node enters the scene tree for the first time.
 func load_chunk():
-	
-	if get_parent().random == number:
+	var number = int(str(self.name))
+	if get_parent().random == number - 1:
 		show()
 		#print("number: " + str(number) + "parent name: "+ str(get_parent().name))
 		#pass
@@ -21,8 +20,11 @@ func load_chunk():
 func _ready():
 	#print("number " + str(number) + " of " + str(get_parent().name) + " successful ready")
 	#please(100)
-	await get_parent().ready
-	if autoload_chunk == true:
-		load_chunk()
+	#await get_parent().ready
+	#if autoload_chunk == true:
+	#show()
+	Global.loading_room = false
+	print("area loaded: " + str(name))
+	
 
 

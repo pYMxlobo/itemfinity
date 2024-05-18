@@ -2,9 +2,13 @@ extends CharacterBody2D
 
 @export var hitbox : Area2D
 
+@export var loader : Sprite2D
+
 @export var attacker : Area2D
 #@onready var attacker = $Attacker
 # https://uquiz.com/1AY4aI
+
+@onready var camera : Camera2D = $Camera2D
 
 @export var speed = 200
 @export var friction = 0.335
@@ -21,6 +25,8 @@ var slow_charge : float = 0
 var level_random : int = randi_range(0, 2)
 
 var first_life = true
+
+var pre_kill = Global.enemy_kills
 
 var def_speed : int
 var def_friction : float
@@ -102,6 +108,7 @@ func _ready():
 	#pre_portal = portal
 	Global.def_wins = Global.wins
 	slow_charge = 0.01
+	pre_kill = Global.enemy_kills
 	match  Global.start_bonus:
 		0:
 			red += 1
@@ -164,7 +171,10 @@ func _input(event):
 func _process(_delta):
 	item_change()
 	
-	
+	if Global.loading_room == true:
+		$Camera2D/loading.visible = true
+	else:
+		$Camera2D/loading.visible = false
 	
 	
 	if Global.wins >= 1:
@@ -188,6 +198,10 @@ func _process(_delta):
 		global_position = Vector2(-200, -200)
 		TransitionManager.change_scene("res://scenes/lose.tscn", TransitionManager.TransitionType.FallDown)
 	
+	
+	if pre_kill < Global.enemy_kills:
+		$enemy_die.play()
+		pre_kill = Global.enemy_kills
 	
 	
 	
@@ -221,6 +235,7 @@ func _process(_delta):
 	
 	if pre_health > Global.health:
 		goddamn_it(pre_health - Global.health, true)
+		camera.shake_active = true
 		$crack.play()
 		pre_health = Global.health
 	
@@ -451,7 +466,7 @@ func item_change():
 		slow_amt = clamp(slow_amt + (0.001 * -rainbow), 0, 1)
 		pre_rainbow = rainbow
 	if pre_blue != blue:
-		lives = clamp(def_lives + (1 * blue), 1, 999)
+		lives = clamp(def_lives + (1 * blue), 0, 999)
 		pre_blue = blue
 	if pre_portal != portal:
 		$portal.play()

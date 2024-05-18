@@ -1,6 +1,10 @@
 extends Node
 
+var bgm = 1
+
 var difficulty = 1
+
+var enemy_kills = 0
 
 var wins = 0
 var def_wins : int
@@ -35,7 +39,7 @@ var rainbow_bonus = false
 
 var blue_bonus = false
 
-
+var loading_room = false
 
 
 func save_ach():

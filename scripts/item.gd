@@ -9,10 +9,13 @@ var random : int
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	await get_parent().ready
 	if is_chunk == true:
-		player = get_parent().get_parent().player
+		player = get_parent().player
 	randomize()
 	if is_random == true:
+		value = randi_range(0, 9)
+	while value == 8:
 		value = randi_range(0, 9)
 	
 	if value == 0:

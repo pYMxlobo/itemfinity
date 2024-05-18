@@ -1,5 +1,7 @@
 extends CharacterBody2D
 
+var bullets_fired = 0
+
 @export var is_chunk = true
 @export var type : String
 var speed = 50
@@ -38,8 +40,11 @@ func _on_timer_timeout():
 	makepath()
 
 func _ready():
+	await get_parent().ready
+	$Timer.start()
+	makepath()
 	if is_chunk == true:
-		player = get_parent().get_parent().player
+		player = get_parent().player
 	player_hitbox = player.hitbox
 	if type == "red":
 		speed = 50
@@ -70,7 +75,7 @@ func _ready():
 		health = 40
 		bullet_time = 0.1
 	else:
-		print("you named the type wrong moron")
+		printerr("you named the type wrong moron")
 	determine_bullet()
 	bullets.trackedNode = player
 	bullets.bullet_hit.connect(player_hitbox.bullet_hit)
@@ -88,12 +93,21 @@ func _process(_delta):
 	if health <= 0:
 		$die.play()
 		$hurt.stop()
+		Global.enemy_kills += 1
 		queue_free()
 	$Label.text = "Health: " + str(health)
 	
 	if Global.difficulty > pre_dif:
 		health += Global.difficulty * 10
 		pre_dif = Global.difficulty
+	
+	
+	
+	if bullets_fired > 9000:
+		health = 0
+	
+	
+	
 	
 
 
@@ -108,6 +122,7 @@ func _on_area_2d_body_entered(body):
 
 func _on_bullet_spawn_loop_timeout():
 	bullets.set_manual_start(true)
+	bullets_fired += (bullets.bulletsPerRadius * bullets.numberOfRadii)
 
 
 
@@ -152,3 +167,11 @@ func _on_enemy_hurt_area_entered(area):
 		health -= player.atk_damg
 		player.attacker.position = Vector2(0, 0)
 
+
+
+func _on_seeing_body_shape_entered(body_rid, body, body_shape_index, local_shape_index):
+	if body == player:
+		bullets.set_manual_start(true)
+		bullets_fired += (bullets.bulletsPerRadius * bullets.numberOfRadii)
+		$BulletSpawnLoop.start()
+		$seeing.get_child(0).set_deferred("disabled", true) #= true

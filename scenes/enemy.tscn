@@ -1,28 +1,22 @@
-[gd_scene load_steps=28 format=3 uid="uid://csmqbqsc4ay3h"]
+[gd_scene load_steps=22 format=3 uid="uid://csmqbqsc4ay3h"]
 
 [ext_resource type="Script" path="res://scripts/enemy.gd" id="1_lsml8"]
-[ext_resource type="Texture2D" uid="uid://cjaybvwbvpmcb" path="res://sprites/spellcaster.png" id="1_tjtbp"]
 [ext_resource type="Texture2D" uid="uid://dwlue5hkhqxxq" path="res://sprites/spellcasterblue.png" id="2_akxwl"]
 [ext_resource type="AudioStream" uid="uid://doqrn0gi6rt8b" path="res://music/Purity Music Box.wav" id="2_psmo6"]
 [ext_resource type="Texture2D" uid="uid://yq2rmuxdihre" path="res://sprites/spellcasterred.png" id="3_ek7pm"]
 [ext_resource type="Texture2D" uid="uid://6ckw5jucps2i" path="res://sprites/spellcastergreen.png" id="3_octs3"]
+[ext_resource type="Texture2D" uid="uid://clcl4oh63jqrx" path="res://sprites/spellcasterorange.png" id="4_vrb3g"]
 [ext_resource type="Texture2D" uid="uid://lqjgrdlrvsrg" path="res://sprites/spellcasterpurple.png" id="5_sus2m"]
 [ext_resource type="Texture2D" uid="uid://dvmwo1f37826t" path="res://sprites/spellcasterrainbow.png" id="6_w5bjk"]
 [ext_resource type="Texture2D" uid="uid://c4o8nbvtu2fbx" path="res://sprites/spellcasteryellow.png" id="8_5wt5l"]
 [ext_resource type="AudioStream" uid="uid://nxbl48tab71d" path="res://soundeffects/enemydeath.wav" id="10_vd5s5"]
 [ext_resource type="AudioStream" uid="uid://cajseboxf2n8s" path="res://soundeffects/enemyhurt.wav" id="10_wa1yv"]
-[ext_resource type="BulletType" uid="uid://cxls5hs5j44nn" path="res://bullettypes/red.tres" id="12_j35xy"]
-[ext_resource type="Texture2D" uid="uid://bkpkg0otlx3lv" path="res://sprites/bullet.png" id="13_py1br"]
-[ext_resource type="BulletType" uid="uid://qkeabjiaktvb" path="res://bullettypes/orange.tres" id="14_akfhh"]
-[ext_resource type="Texture2D" uid="uid://c751vwtnl70kj" path="res://sprites/bulletorange.png" id="15_cw8gx"]
-[ext_resource type="BulletType" uid="uid://c4kiewyqtxsc6" path="res://bullettypes/yellow.tres" id="16_umvbd"]
-[ext_resource type="Texture2D" uid="uid://5asf5o7mgxif" path="res://sprites/bulletyellow.png" id="17_7655j"]
-[ext_resource type="BulletType" uid="uid://byrd4elm4dxtj" path="res://bullettypes/green.tres" id="18_y4brd"]
-[ext_resource type="Texture2D" uid="uid://bgsr4vv5gl0x0" path="res://sprites/bulletgreen.png" id="19_778tt"]
-[ext_resource type="BulletType" uid="uid://diqo6k8x1r7k2" path="res://bullettypes/blue.tres" id="20_ggb31"]
-[ext_resource type="Texture2D" uid="uid://dycpcxrq3ln8k" path="res://sprites/bulletblue.png" id="21_d31ma"]
-[ext_resource type="BulletType" uid="uid://c7wotcb00ak5p" path="res://bullettypes/purple.tres" id="21_rpp7o"]
-[ext_resource type="Texture2D" uid="uid://bjwahwnykvxpt" path="res://sprites/bulletpurple.png" id="23_bkp1y"]
+[ext_resource type="PackedScene" uid="uid://c7q3dxobhloll" path="res://scenes/bullets/red.tscn" id="12_ii23h"]
+[ext_resource type="PackedScene" uid="uid://ba5253om75sif" path="res://scenes/bullets/orange.tscn" id="13_p3kg1"]
+[ext_resource type="PackedScene" uid="uid://kdwu4vrfif7o" path="res://scenes/bullets/yellow.tscn" id="14_8pscr"]
+[ext_resource type="PackedScene" uid="uid://d000davn72x6k" path="res://scenes/bullets/green.tscn" id="15_e1ww0"]
+[ext_resource type="PackedScene" uid="uid://bmrb8hy5nt8on" path="res://scenes/bullets/blue.tscn" id="16_85jo5"]
+[ext_resource type="PackedScene" uid="uid://bqtm27eau8t8d" path="res://scenes/bullets/purple.tscn" id="17_502vv"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_n03vs"]
 animations = [{
@@ -44,7 +38,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("1_tjtbp")
+"texture": ExtResource("4_vrb3g")
 }],
 "loop": false,
 "name": &"orange",
@@ -102,7 +96,7 @@ wall_min_slide_angle = 0.0
 script = ExtResource("1_lsml8")
 
 [node name="S" type="AnimatedSprite2D" parent="."]
-z_index = 10
+z_index = 1
 scale = Vector2(0.5, 0.5)
 sprite_frames = SubResource("SpriteFrames_n03vs")
 animation = &"rainbow"
@@ -122,6 +116,8 @@ debug_color = Color(0, 1, 0, 0.419608)
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("2_psmo6")
 autoplay = true
+max_distance = 1000.0
+attenuation = 0.2
 bus = &"Music"
 
 [node name="Timer" type="Timer" parent="."]
@@ -132,6 +128,7 @@ autostart = true
 path_desired_distance = 40.0
 target_desired_distance = 40.0
 path_max_distance = 300.0
+debug_enabled = true
 
 [node name="Label" type="Label" parent="."]
 offset_left = -42.0
@@ -162,95 +159,17 @@ shape = SubResource("CircleShape2D_gdpuq")
 [node name="BulletSpawnLoop" type="Timer" parent="."]
 wait_time = 3.0
 
-[node name="red" type="Spawner" parent="." node_paths=PackedStringArray("trackedNode")]
-startMode = 2
-bulletType = ExtResource("12_j35xy")
-poolCount = 99999
-fireRate = 3.0
-fireRadiusDegrees = 90.0
-bulletsPerRadius = 5
-numberOfRadii = 3
-degreesBetweenRadii = 60.0
-spinRate = 1.0
-minSpin = 1.0
-spinAcceleration = 2.0
-trackedNode = NodePath("../dud")
-startTowardPlayer = true
-moveWithParent = true
-returnBulletsToPoolAutomatically = false
-texture = ExtResource("13_py1br")
+[node name="red" parent="." instance=ExtResource("12_ii23h")]
 
-[node name="orange" type="Spawner" parent="." node_paths=PackedStringArray("trackedNode")]
-startMode = 2
-bulletType = ExtResource("14_akfhh")
-poolCount = 99999
-fireRate = 3.0
-bulletsPerRadius = 8
-numberOfRadii = 2
-degreesBetweenRadii = 90.0
-spinRate = 4.0
-maxSpin = 180.0
-minSpin = 0.0
-spinAcceleration = 3.0
-trackedNode = NodePath("../dud")
-moveWithParent = true
-returnBulletsToPoolAutomatically = false
-texture = ExtResource("15_cw8gx")
+[node name="orange" parent="." instance=ExtResource("13_p3kg1")]
 
-[node name="yellow" type="Spawner" parent="." node_paths=PackedStringArray("trackedNode")]
-startMode = 2
-bulletType = ExtResource("16_umvbd")
-poolCount = 99999
-fireRate = 3.0
-fireRadiusDegrees = 30.0
-bulletsPerRadius = 3
-trackedNode = NodePath("../dud")
-startTowardPlayer = true
-staysTowardPlayer = true
-returnBulletsToPoolAutomatically = false
-texture = ExtResource("17_7655j")
+[node name="yellow" parent="." instance=ExtResource("14_8pscr")]
 
-[node name="green" type="Spawner" parent="." node_paths=PackedStringArray("trackedNode")]
-startMode = 2
-bulletType = ExtResource("18_y4brd")
-poolCount = 99999
-bulletsPerRadius = 4
-spinRate = 1.0
-maxSpin = 60.0
-minSpin = 40.0
-spinAcceleration = 1.0
-trackedNode = NodePath("../dud")
-staysTowardPlayer = true
-returnBulletsToPoolAutomatically = false
-texture = ExtResource("19_778tt")
+[node name="green" parent="." instance=ExtResource("15_e1ww0")]
 
-[node name="blue" type="Spawner" parent="." node_paths=PackedStringArray("trackedNode")]
-startMode = 2
-bulletType = ExtResource("20_ggb31")
-poolCount = 99999
-spinRate = 1.0
-maxSpin = 60.0
-minSpin = 40.0
-spinAcceleration = 1.0
-trackedNode = NodePath("../dud")
-startTowardPlayer = true
-returnBulletsToPoolAutomatically = false
-texture = ExtResource("21_d31ma")
+[node name="blue" parent="." instance=ExtResource("16_85jo5")]
 
-[node name="purple" type="Spawner" parent="." node_paths=PackedStringArray("trackedNode")]
-startMode = 2
-bulletType = ExtResource("21_rpp7o")
-poolCount = 99999
-bulletsPerRadius = 6
-numberOfRadii = 3
-degreesBetweenRadii = 60.0
-spinRate = 3.0
-maxSpin = 100.0
-minSpin = 20.0
-spinAcceleration = 2.0
-trackedNode = NodePath("../dud")
-returnBulletsToPoolAutomatically = false
-texture = ExtResource("23_bkp1y")
+[node name="purple" parent="." instance=ExtResource("17_502vv")]
 
 [node name="dud" type="CharacterBody2D" parent="."]
 
