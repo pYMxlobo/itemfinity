@@ -7,6 +7,7 @@ unicode = 32
 
 [sub_resource type="InputEventJoypadButton" id="InputEventJoypadButton_1vac6"]
 device = -1
+button_index = 6
 pressed = true
 
 [resource]

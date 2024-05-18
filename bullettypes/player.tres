@@ -1,0 +1,14 @@
+[gd_resource type="BulletType" load_steps=2 format=3 uid="uid://dwnrc3skqtice"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_pse56"]
+radius = 11.0
+
+[resource]
+initialSpeed = 10.0
+_shape = SubResource("CircleShape2D_pse56")
+scale = 0.99
+acceleration = 1.0
+maxLifetime = 30.0
+mask = 2
+numberOfQueries = 99
+collideWithBodies = true

@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://bmaqlensx66cm"]
+[gd_scene load_steps=30 format=3 uid="uid://bmaqlensx66cm"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_07vxm"]
 [ext_resource type="Texture2D" uid="uid://ct5vf01lh702j" path="res://sprites/orb.png" id="1_jrvm1"]
@@ -12,13 +12,13 @@
 [ext_resource type="Texture2D" uid="uid://daa1xlquhmxhg" path="res://sprites/overlay.png" id="11_720nt"]
 [ext_resource type="AudioStream" uid="uid://bo78cq7nhur3c" path="res://soundeffects/orbanotherlife.wav" id="11_ejccu"]
 [ext_resource type="AudioStream" uid="uid://cdhjohxu5s4wu" path="res://soundeffects/orbshatter.wav" id="12_cbcdr"]
-[ext_resource type="PackedScene" uid="uid://ch63wtisq3qq5" path="res://scenes/attacker.tscn" id="13_30xn8"]
 [ext_resource type="AudioStream" uid="uid://bte0j8jkmtvc8" path="res://soundeffects/orbcrack.wav" id="13_miluo"]
 [ext_resource type="VideoStream" path="res://wizardsteal.ogv" id="14_ys5v3"]
 [ext_resource type="Texture2D" uid="uid://bc1rqtkqjtrya" path="res://sprites/black.png" id="15_jtib4"]
 [ext_resource type="AudioStream" uid="uid://coi4nwenrrvbw" path="res://soundeffects/itempickup.wav" id="17_47v5x"]
 [ext_resource type="AudioStream" uid="uid://c0kx4887ixv2o" path="res://soundeffects/portal.wav" id="18_56igq"]
 [ext_resource type="AudioStream" uid="uid://tgxf38xffg8w" path="res://soundeffects/idotnknow.wav" id="19_1sd0w"]
+[ext_resource type="Script" path="res://scripts/ouchie.gd" id="19_k05nb"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_2fwfk"]
 radius = 6.0
@@ -179,22 +179,23 @@ gradient = SubResource("Gradient_20hsf")
 
 [sub_resource type="InputEventJoypadButton" id="InputEventJoypadButton_gdypx"]
 device = -1
-button_index = 4
+button_index = 3
 pressed = true
 
 [sub_resource type="Shortcut" id="Shortcut_0kdiu"]
 events = [SubResource("InputEventJoypadButton_gdypx")]
 
-[node name="The Orb" type="CharacterBody2D" node_paths=PackedStringArray("lalala")]
+[sub_resource type="CircleShape2D" id="CircleShape2D_7rrvj"]
+radius = 2.0
+
+[node name="The Orb" type="CharacterBody2D" node_paths=PackedStringArray("hitbox", "lalala")]
 collision_layer = 2
 collision_mask = 3
 motion_mode = 1
 script = ExtResource("1_07vxm")
+hitbox = NodePath("PlayerHitbox")
 max_slow = 5.0
-lives = 4
 lalala = NodePath("Window/Label")
-
-[node name="Attacker" parent="." instance=ExtResource("13_30xn8")]
 
 [node name="orb" type="Sprite2D" parent="."]
 scale = Vector2(0.5, 0.5)
@@ -280,8 +281,7 @@ metadata/_edit_use_anchors_ = true
 [node name="shader" type="Sprite2D" parent="Camera2D"]
 z_index = 4096
 material = SubResource("ShaderMaterial_3na2p")
-position = Vector2(4.76837e-07, 9.53674e-07)
-scale = Vector2(20, 20)
+scale = Vector2(10, 10)
 texture = SubResource("GradientTexture2D_3bagq")
 
 [node name="Overlay" type="Sprite2D" parent="Camera2D"]
@@ -304,6 +304,23 @@ offset_bottom = -137.0
 shortcut = SubResource("Shortcut_0kdiu")
 shortcut_in_tooltip = false
 text = "unpause"
+
+[node name="give_up" type="Button" parent="Camera2D"]
+process_mode = 2
+process_priority = 3
+visible = false
+anchors_preset = -1
+anchor_left = -1.004
+anchor_top = -0.084
+anchor_right = 1.094
+anchor_bottom = 3.114
+offset_left = 118.0
+offset_top = -130.0
+offset_right = 193.0
+offset_bottom = -99.0
+shortcut = SubResource("Shortcut_0kdiu")
+shortcut_in_tooltip = false
+text = "give up?"
 
 [node name="paused" type="Label" parent="Camera2D"]
 visible = false
@@ -377,6 +394,21 @@ stream = ExtResource("19_1sd0w")
 max_polyphony = 3
 bus = &"SFX"
 
+[node name="PlayerHitbox" type="Area2D" parent="." node_paths=PackedStringArray("timer")]
+collision_layer = 4
+collision_mask = 65287
+script = ExtResource("19_k05nb")
+timer = NodePath("Timer")
+
+[node name="hitbox" type="CollisionShape2D" parent="PlayerHitbox"]
+shape = SubResource("CircleShape2D_7rrvj")
+debug_color = Color(0.960784, 0, 0, 0.670588)
+
+[node name="Timer" type="Timer" parent="PlayerHitbox"]
+one_shot = true
+
 [connection signal="pressed" from="Camera2D/unpause" to="." method="_on_unpause_pressed"]
+[connection signal="pressed" from="Camera2D/give_up" to="." method="_on_give_up_pressed"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="finished" from="VideoStreamPlayer" to="." method="_on_video_stream_player_finished"]
+[connection signal="timeout" from="PlayerHitbox/Timer" to="PlayerHitbox" method="_on_timer_timeout"]

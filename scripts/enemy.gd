@@ -1,21 +1,20 @@
 extends CharacterBody2D
 
 
-@export var type : StringName
+@export var type : String
 var speed = 50
 var health : int = 10
 @export var bob = true
 @export var player : Node2D
-@export var player_hitbox : Node2D
+var player_hitbox : Node2D
 #@export var damager : Node2D
 @onready var nav_agent = $NavigationAgent2D as NavigationAgent2D
 
-@export var bullets : Spawner
+var bullets : Spawner
 
 var bullet_time : float
 
 var player_spotted = false
-var screen_size = get_viewport_rect().size
 
 
 var pre_dif = Global.difficulty
@@ -39,32 +38,32 @@ func _on_timer_timeout():
 	makepath()
 
 func _ready():
-	var stype = str(type)
-	if stype == "red":
+	player_hitbox = player.hitbox
+	if type == "red":
 		speed = 50
 		health = 10
 		bullet_time = 0.5
-	elif stype == "orange":
+	elif type == "orange":
 		speed = 30
 		health = 20
 		bullet_time = 0.35
-	elif stype == "yellow":
+	elif type == "yellow":
 		speed = 55
 		health = 8
 		bullet_time = 0.7
-	elif stype == "green":
+	elif type == "green":
 		speed = 80
 		health = 5
 		bullet_time = 2
-	elif stype == "blue":
+	elif type == "blue":
 		speed = 40
 		health = 10
 		bullet_time = 0.05
-	elif stype == "purple":
+	elif type == "purple":
 		speed = 20
 		health = 15
 		bullet_time = 0.05
-	elif stype == "rainbow":
+	elif type == "rainbow":
 		speed = 100
 		health = 40
 		bullet_time = 0.1
@@ -84,7 +83,6 @@ func _ready():
 
 
 func _process(_delta):
-	screen_size = get_viewport_rect().size
 	if health <= 0:
 		$die.play()
 		$hurt.stop()
@@ -98,7 +96,7 @@ func _process(_delta):
 
 
 func _on_area_2d_body_entered(body):
-	print("attack detected :/")
+	print("attack detected :/ body edition")
 	if body == player.attacker:
 		$hurt.play()
 		health -= player.atk_damg
@@ -128,6 +126,7 @@ func _on_enemy_hurt_body_shape_entered(body_rid, body, body_shape_index, local_s
 
 
 func determine_bullet():
+	var ntype = StringName(type)
 	var redname = $red.name
 	var orangename = $orange.name
 	var yellowname = $yellow.name
@@ -135,19 +134,40 @@ func determine_bullet():
 	var bluename
 	var purplename
 	var rainbowname
-	if redname != type:
-		$red.queue_free()
-	elif redname == type:
+	if redname == ntype:
 		bullets = $red
-	if orangename != type:
-		$orange.queue_free()
-	elif orangename == type:
+		
+	else:
+		$red.queue_free()
+	if orangename == ntype:
 		bullets = $orange
-	if yellowname != type:
-		$yellow.queue_free()
-	elif yellowname == type:
+		
+	else:
+		$orange.queue_free()
+	if yellowname == ntype:
 		bullets = $yellow
-	if greenname != type:
-		$green.queue_free()
-	elif greenname == type:
+		
+	else:
+		$yellow.queue_free()
+	if greenname == ntype:
 		bullets = $green
+		
+	else:
+		$green.queue_free()
+
+
+func _on_enemy_hurt_area_entered(area):
+	print("attack detected :/ area edition")
+	if area == player.attacker:
+		$hurt.play()
+		health -= player.atk_damg
+		player.attacker.position = Vector2(0, 0)
+		print("hehe enemy got hit")
+
+func _on_enemy_hurt_area_shape_entered(area_rid, area, area_shape_index, local_shape_index):
+	print("attack detected :/ area shape edition")
+	if area == player.attacker:
+		$hurt.play()
+		health -= player.atk_damg
+		player.attacker.position = Vector2(0, 0)
+		print("hehe enemy got hit")

@@ -90,13 +90,12 @@ height = 38.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_gdpuq"]
 radius = 63.0
 
-[node name="enemy" type="CharacterBody2D" node_paths=PackedStringArray("bullets")]
+[node name="enemy" type="CharacterBody2D"]
 collision_layer = 2
 collision_mask = 3
 motion_mode = 1
 wall_min_slide_angle = 0.0
 script = ExtResource("1_lsml8")
-bullets = NodePath("red")
 
 [node name="S" type="AnimatedSprite2D" parent="."]
 z_index = 10
@@ -202,7 +201,6 @@ bulletsPerRadius = 3
 startTowardPlayer = true
 staysTowardPlayer = true
 returnBulletsToPoolAutomatically = false
-position = Vector2(502, 2)
 texture = ExtResource("17_7655j")
 
 [node name="green" type="Spawner" parent="."]
@@ -216,9 +214,10 @@ minSpin = 40.0
 spinAcceleration = 1.0
 staysTowardPlayer = true
 returnBulletsToPoolAutomatically = false
-position = Vector2(502, 2)
 texture = ExtResource("19_778tt")
 
+[connection signal="area_entered" from="enemy_hurt" to="." method="_on_enemy_hurt_area_entered"]
+[connection signal="area_shape_entered" from="enemy_hurt" to="." method="_on_enemy_hurt_area_shape_entered"]
 [connection signal="body_entered" from="enemy_hurt" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="enemy_hurt" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_shape_entered" from="enemy_hurt" to="." method="_on_enemy_hurt_body_shape_entered"]

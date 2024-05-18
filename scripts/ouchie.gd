@@ -6,6 +6,7 @@ var damage_allow = true
 
 @export var timer : Timer
 
+
 #func _on_area_shape_entered(area_rid, area, area_shape_index, local_shape_index):
 #	if damage_allow == true:
 #		Global.health -= 1

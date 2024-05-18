@@ -1,6 +1,8 @@
 extends CharacterBody2D
 
-@onready var attacker = $Attacker
+@export var hitbox : Area2D
+
+#@onready var attacker = $Attacker
 # https://uquiz.com/1AY4aI
 
 @export var speed = 200
@@ -11,7 +13,7 @@ extends CharacterBody2D
 @export var atk_range : int = 1
 @export var max_slow : float = 10
 @export var slow_amt = 0.5
-@export var lives : int = 3
+@export var lives : int = 4
 
 var slow_charge : float = 0
 
@@ -150,14 +152,22 @@ func _input(event):
 		slow_switch = true
 	elif event.is_action_released("slow"):
 		slow_switch = false
+		
 	if event.is_action_pressed("pause"):
 		get_tree().paused = not get_tree().paused
 		$Camera2D/paused.visible = not $Camera2D/paused.visible
 		$Camera2D/unpause.visible = not $Camera2D/unpause.visible
+		$Camera2D/give_up.visible = not $Camera2D/give_up.visible
 
 func _process(_delta):
+	item_change()
+	
+	
+	
+	
 	if Global.wins >= 1:
 		global_position = Vector2(-200, -200)
+		Global.save_ach()
 		TransitionManager.change_scene("res://scenes/win.tscn", TransitionManager.TransitionType.FallDown)
 	#var random_item : int
 	#item_list = red, blue, green
@@ -181,8 +191,8 @@ func _process(_delta):
 	
 	if Global.health == 0:
 		if can_lose_lives == true:
-			$Timer.start()
 			can_lose_lives = false
+			$Timer.start()
 			goddamn_it(-1, false)
 			OS.delay_msec(50)
 			$crack.stop()
@@ -217,37 +227,46 @@ func _process(_delta):
 		pre_health = Global.health
 	
 	
-	
-	if red >= 15:
-		Global.red_bonus = true
-		$achievement.play()
-	if green >= 15:
-		Global.green_bonus = true
-		$achievement.play()
-	if yellow >= 15:
-		Global.yellow_bonus = true
-		$achievement.play()
-	if purple >= 15:
-		Global.purple_bonus = true
-		$achievement.play()
-	if orange >= 15:
-		Global.orange_bonus = true
-		$achievement.play()
-	if cyan >= 15:
-		Global.cyan_bonus = true
-		$achievement.play()
-	if white >= 15:
-		Global.white_bonus = true
-		$achievement.play()
-	if black >= 15:
-		Global.black_bonus = true
-		$achievement.play()
-	if rainbow >= 15:
-		Global.rainbow_bonus = true
-		$achievement.play()
-	if blue >= 15:
-		Global.blue_bonus = true
-		$achievement.play()
+	if Global.red_bonus == false:
+		if red >= 15:
+			Global.red_bonus = true
+			$achievement.play()
+	if Global.green_bonus == false:
+		if green >= 15:
+			Global.green_bonus = true
+			$achievement.play()
+	if Global.yellow_bonus == false:
+		if yellow >= 15:
+			Global.yellow_bonus = true
+			$achievement.play()
+	if Global.purple_bonus == false:
+		if purple >= 15:
+			Global.purple_bonus = true
+			$achievement.play()
+	if Global.orange_bonus == false:
+		if orange >= 15:
+			Global.orange_bonus = true
+			$achievement.play()
+	if Global.cyan_bonus == false:
+		if cyan >= 15:
+			Global.cyan_bonus = true
+			$achievement.play()
+	if Global.white_bonus == false:
+		if white >= 15:
+			Global.white_bonus = true
+			$achievement.play()
+	if Global.black_bonus == false:
+		if black >= 15:
+			Global.black_bonus = true
+			$achievement.play()
+	if Global.rainbow_bonus == false:
+		if rainbow >= 15:
+			Global.rainbow_bonus = true
+			$achievement.play()
+	if Global.blue_bonus == false:
+		if blue >= 15:
+			Global.blue_bonus = true
+			$achievement.play()
 	
 	if red < 0:
 		if Global.health > 1:
@@ -320,47 +339,7 @@ func _process(_delta):
 	if blue > pre_blue:
 		$pickup.play()
 	
-	if pre_red != red:
-		speed = def_speed + (10 * red)
-		pre_red = red
-	if pre_green != green:
-		friction = def_friction + (0.01 * green)
-		pre_green = green
-	if pre_yellow != yellow:
-		acceleration = def_accel + (0.005 * yellow)
-		pre_yellow= yellow
-	if pre_purple != purple:
-		atk_speed = def_atk_sp + (0.5 * purple)
-		pre_purple = purple
-	if pre_orange != orange:
-		atk_damg = def_atk_dam + (1 * orange)
-		pre_orange = orange
-	if pre_cyan != cyan:
-		atk_range = def_atk_ran + (1 * cyan)
-		pre_cyan = cyan
-	if pre_white != white:
-		max_slow = def_max_slow + (1 * white)
-		pre_white = white
-	if pre_black != black:
-		slow_amt = clamp(def_slow_amount + (0.01 * -black), 0.01, 1)
-		pre_black = black
-	if pre_rainbow != rainbow:
-		speed = def_speed + (1 * rainbow)
-		friction = def_friction + (0.002 * rainbow)
-		acceleration = def_accel + (0.001 * rainbow)
-		atk_speed = def_atk_sp + (0.1 * rainbow)
-		atk_damg = def_atk_dam + (0.2 * rainbow)
-		max_slow = def_max_slow + (0.1 * rainbow)
-		slow_amt = clamp(def_slow_amount + (0.001 * -rainbow), 0, 1)
-		pre_rainbow = rainbow
-	if pre_blue != blue:
-		lives = clamp(def_lives + (1 * blue), 1, 999)
-		pre_blue = blue
-	if pre_portal != portal:
-		$portal.play()
-		Global.wins = Global.def_wins + (1 * portal)
-		pre_portal = portal
-		print(Global.wins)
+	
 
 
 
@@ -424,6 +403,57 @@ func _on_unpause_pressed():
 	get_tree().paused = not get_tree().paused
 	$Camera2D/paused.visible = not $Camera2D/paused.visible
 	$Camera2D/unpause.visible = not $Camera2D/unpause.visible
+	$Camera2D/give_up.visible = not $Camera2D/give_up.visible
 
 
+func _on_give_up_pressed():
+	get_tree().paused = not get_tree().paused
+	Global.health = 0
+	lives = 0
+
+
+
+
+func item_change():
+	if pre_red != red:
+		speed = def_speed + (10 * red)
+		pre_red = red
+	if pre_green != green:
+		friction = def_friction + (0.01 * green)
+		pre_green = green
+	if pre_yellow != yellow:
+		acceleration = def_accel + (0.005 * yellow)
+		pre_yellow= yellow
+	if pre_purple != purple:
+		atk_speed = def_atk_sp + (0.5 * purple)
+		pre_purple = purple
+	if pre_orange != orange:
+		atk_damg = def_atk_dam + (1 * orange)
+		pre_orange = orange
+	if pre_cyan != cyan:
+		atk_range = def_atk_ran + (1 * cyan)
+		pre_cyan = cyan
+	if pre_white != white:
+		max_slow = def_max_slow + (1 * white)
+		pre_white = white
+	if pre_black != black:
+		slow_amt = clamp(def_slow_amount + (0.01 * -black), 0.01, 1)
+		pre_black = black
+	if pre_rainbow != rainbow:
+		speed = speed + (1 * rainbow)
+		friction = friction + (0.002 * rainbow)
+		acceleration = acceleration + (0.001 * rainbow)
+		atk_speed = atk_speed + (0.1 * rainbow)
+		atk_damg = atk_damg + (0.2 * rainbow)
+		max_slow = max_slow + (0.1 * rainbow)
+		slow_amt = clamp(slow_amt + (0.001 * -rainbow), 0, 1)
+		pre_rainbow = rainbow
+	if pre_blue != blue:
+		lives = clamp(def_lives + (1 * blue), 1, 999)
+		pre_blue = blue
+	if pre_portal != portal:
+		$portal.play()
+		Global.wins = Global.def_wins + (1 * portal)
+		pre_portal = portal
+		print(Global.wins)
 

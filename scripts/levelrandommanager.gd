@@ -1,7 +1,7 @@
 extends Node2D
 
 @export var number : int = int(str(self.name))
-@onready var timer : Timer = get_parent().get_parent().delay_load
+
 
 
 

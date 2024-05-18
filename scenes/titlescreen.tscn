@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://c1u706oy1pjmx"]
+[gd_scene load_steps=18 format=3 uid="uid://c1u706oy1pjmx"]
 
 [ext_resource type="Texture2D" uid="uid://b1npjw2o1cjcl" path="res://sprites/title.png" id="1_1fbtn"]
 [ext_resource type="Shader" path="res://other/haha.gdshader" id="1_yiy2j"]
@@ -90,6 +90,18 @@ gradient = SubResource("Gradient_jm2n8")
 
 [sub_resource type="ImageTexture" id="ImageTexture_o03mo"]
 
+[sub_resource type="InputEventJoypadButton" id="InputEventJoypadButton_vlp2m"]
+device = -1
+button_index = 2
+pressed = true
+
+[sub_resource type="InputEventJoypadButton" id="InputEventJoypadButton_ljg4g"]
+device = -1
+pressed = true
+
+[sub_resource type="Shortcut" id="Shortcut_65tks"]
+events = [SubResource("InputEventJoypadButton_vlp2m"), SubResource("InputEventJoypadButton_ljg4g")]
+
 [node name="Node2D" type="Node2D"]
 
 [node name="shader" type="Sprite2D" parent="."]
@@ -137,6 +149,7 @@ offset_top = 48.0
 offset_right = 161.0
 offset_bottom = 68.0
 theme_override_icons/arrow = SubResource("ImageTexture_o03mo")
+shortcut = SubResource("Shortcut_65tks")
 shortcut_in_tooltip = false
 alignment = 1
 allow_reselect = true

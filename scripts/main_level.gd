@@ -1,7 +1,7 @@
 extends Node2D
 
 #var first_random = randi_range(0, 2)
-@export var delay_load : Timer
+
 #var second_random = randi_range(0, 3)
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -12,3 +12,5 @@ func _ready():
 func _process(delta):
 	if Global.dead == true:
 		set_process_input(false)
+	else:
+		set_process_input(true)
