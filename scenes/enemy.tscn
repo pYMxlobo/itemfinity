@@ -158,7 +158,7 @@ shape = SubResource("CircleShape2D_gdpuq")
 [node name="BulletSpawnLoop" type="Timer" parent="."]
 wait_time = 3.0
 
-[node name="red" type="Spawner" parent="."]
+[node name="red" type="Spawner" parent="." node_paths=PackedStringArray("trackedNode")]
 startMode = 2
 bulletType = ExtResource("12_j35xy")
 poolCount = 9999
@@ -170,12 +170,13 @@ degreesBetweenRadii = 60.0
 spinRate = 1.0
 minSpin = 1.0
 spinAcceleration = 2.0
+trackedNode = NodePath("../dud")
 startTowardPlayer = true
 moveWithParent = true
 returnBulletsToPoolAutomatically = false
 texture = ExtResource("13_py1br")
 
-[node name="orange" type="Spawner" parent="."]
+[node name="orange" type="Spawner" parent="." node_paths=PackedStringArray("trackedNode")]
 startMode = 2
 bulletType = ExtResource("14_akfhh")
 poolCount = 9999
@@ -187,23 +188,25 @@ spinRate = 4.0
 maxSpin = 180.0
 minSpin = 0.0
 spinAcceleration = 3.0
+trackedNode = NodePath("../dud")
 moveWithParent = true
 returnBulletsToPoolAutomatically = false
 texture = ExtResource("15_cw8gx")
 
-[node name="yellow" type="Spawner" parent="."]
+[node name="yellow" type="Spawner" parent="." node_paths=PackedStringArray("trackedNode")]
 startMode = 2
 bulletType = ExtResource("16_umvbd")
 poolCount = 9999
 fireRate = 3.0
 fireRadiusDegrees = 30.0
 bulletsPerRadius = 3
+trackedNode = NodePath("../dud")
 startTowardPlayer = true
 staysTowardPlayer = true
 returnBulletsToPoolAutomatically = false
 texture = ExtResource("17_7655j")
 
-[node name="green" type="Spawner" parent="."]
+[node name="green" type="Spawner" parent="." node_paths=PackedStringArray("trackedNode")]
 startMode = 2
 bulletType = ExtResource("18_y4brd")
 poolCount = 9999
@@ -212,9 +215,12 @@ spinRate = 1.0
 maxSpin = 60.0
 minSpin = 40.0
 spinAcceleration = 1.0
+trackedNode = NodePath("../dud")
 staysTowardPlayer = true
 returnBulletsToPoolAutomatically = false
 texture = ExtResource("19_778tt")
+
+[node name="dud" type="CharacterBody2D" parent="."]
 
 [connection signal="area_entered" from="enemy_hurt" to="." method="_on_enemy_hurt_area_entered"]
 [connection signal="area_shape_entered" from="enemy_hurt" to="." method="_on_enemy_hurt_area_shape_entered"]

@@ -5,7 +5,7 @@ extends CharacterBody2D
 var speed = 50
 var health : int = 10
 @export var bob = true
-@export var player : Node2D
+@export var player : CharacterBody2D
 var player_hitbox : Node2D
 #@export var damager : Node2D
 @onready var nav_agent = $NavigationAgent2D as NavigationAgent2D
