@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://c1u706oy1pjmx"]
+[gd_scene load_steps=22 format=3 uid="uid://c1u706oy1pjmx"]
 
 [ext_resource type="Texture2D" uid="uid://b1npjw2o1cjcl" path="res://sprites/title.png" id="1_1fbtn"]
 [ext_resource type="Shader" path="res://other/haha.gdshader" id="1_yiy2j"]
@@ -13,6 +13,7 @@
 [ext_resource type="Script" path="res://scripts/audioslider.gd" id="11_xiikr"]
 [ext_resource type="Script" path="res://scripts/funnysound.gd" id="12_8ifmg"]
 [ext_resource type="AudioStream" uid="uid://4tlpxmdr8row" path="res://soundeffects/select.wav" id="13_vat07"]
+[ext_resource type="Script" path="res://scripts/speedrun_button.gd" id="14_edoic"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_wvuy0"]
 shader = ExtResource("1_yiy2j")
@@ -207,6 +208,17 @@ script = ExtResource("12_8ifmg")
 stream = ExtResource("13_vat07")
 bus = &"SFX"
 
+[node name="speedrun_button" type="CheckButton" parent="."]
+z_index = -2
+offset_left = 66.0
+offset_top = 166.0
+offset_right = 188.0
+offset_bottom = 197.0
+text = "speedrun"
+alignment = 1
+script = ExtResource("14_edoic")
+
 [connection signal="pressed" from="Start" to="Start" method="_on_pressed"]
 [connection signal="item_selected" from="OptionButton" to="OptionButton" method="_on_item_selected"]
 [connection signal="pressed" from="Button" to="Button" method="_on_pressed"]
+[connection signal="toggled" from="speedrun_button" to="speedrun_button" method="_on_toggled"]

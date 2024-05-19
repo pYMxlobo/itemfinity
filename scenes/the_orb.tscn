@@ -375,9 +375,17 @@ visible = false
 z_index = 3795
 texture = SubResource("NoiseTexture2D_x251p")
 
+[node name="speedrun" type="Label" parent="Camera2D"]
+visible = false
+offset_left = 99.0
+offset_top = -192.0
+offset_right = 176.0
+offset_bottom = -152.0
+text = "Time:"
+vertical_alignment = 1
+
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.5
-one_shot = true
 
 [node name="life_left" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("11_ejccu")
@@ -437,8 +445,11 @@ bus = &"SFX"
 stream = ExtResource("21_jskco")
 bus = &"SFX"
 
+[node name="speedruntimer" type="Timer" parent="."]
+
 [connection signal="timeout" from="PlayerHitbox/Timer" to="PlayerHitbox" method="_on_timer_timeout"]
 [connection signal="pressed" from="Camera2D/unpause" to="." method="_on_unpause_pressed"]
 [connection signal="pressed" from="Camera2D/give_up" to="." method="_on_give_up_pressed"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="finished" from="VideoStreamPlayer" to="." method="_on_video_stream_player_finished"]
+[connection signal="timeout" from="speedruntimer" to="." method="_on_speedruntimer_timeout"]

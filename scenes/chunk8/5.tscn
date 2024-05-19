@@ -9,6 +9,7 @@
 script = ExtResource("1_lcei2")
 
 [node name="TileMap" type="TileMap" parent="."]
+modulate = Color(0.999999, 0.882224, 0.862357, 1)
 z_index = -130
 position = Vector2(-200, -200)
 scale = Vector2(0.5, 0.5)

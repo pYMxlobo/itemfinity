@@ -14,6 +14,7 @@ minSpin = 40.0
 spinAcceleration = 1.0
 trackedNode = NodePath("dud")
 staysTowardPlayer = true
+moveWithParent = true
 returnBulletsToPoolAutomatically = false
 texture = ExtResource("2_b4sbu")
 

@@ -4,6 +4,10 @@ var bgm = 1
 
 var difficulty = 1
 
+var speedrun = false
+
+var time : int = 0
+
 var enemy_kills = 0
 
 var wins = 0

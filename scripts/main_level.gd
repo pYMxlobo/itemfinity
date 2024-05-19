@@ -5,7 +5,7 @@ extends Node2D
 
 @export var boss_door : TileMap
 
-@export var refs : TileMap
+@export var refs : Node2D
 #var second_random = randi_range(0, 3)
 # Called when the node enters the scene tree for the first time.
 func _ready():

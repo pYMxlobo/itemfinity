@@ -90,6 +90,7 @@ position = Vector2(9908, -6608)
 type = "yellow"
 
 [node name="item" parent="." instance=ExtResource("4_edhu8")]
+modulate = Color(1, 0.882353, 0.862745, 1)
 position = Vector2(10922, -6009)
 is_random = true
 

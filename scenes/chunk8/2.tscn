@@ -9,6 +9,7 @@
 script = ExtResource("1_0rm3p")
 
 [node name="TileMap" type="TileMap" parent="."]
+modulate = Color(1, 0.882353, 0.862745, 1)
 z_index = -130
 position = Vector2(-200, -200)
 scale = Vector2(0.5, 0.5)

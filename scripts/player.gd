@@ -79,6 +79,9 @@ var item_total : int
 
 
 func _ready():
+	if Global.speedrun == true:
+		$speedruntimer.start()
+		$Camera2D/speedrun.show()
 	Global.dead = true
 	Global.wins = 0
 	#pre_health = Global.health
@@ -170,6 +173,13 @@ func _input(event):
 
 func _process(_delta):
 	item_change()
+	
+	if Global.speedrun == true:
+		$Camera2D/speedrun.text = "Time: " + str(Global.time)
+	
+	
+	
+	
 	
 	if Global.loading_room == true:
 		$Camera2D/loading.visible = true
@@ -457,16 +467,16 @@ func item_change():
 		slow_amt = clamp(def_slow_amount + (0.01 * -black), 0.01, 1)
 		pre_black = black
 	if pre_rainbow != rainbow:
-		speed = speed + (1 * rainbow)
-		friction = friction + (0.002 * rainbow)
-		acceleration = acceleration + (0.001 * rainbow)
-		atk_speed = atk_speed + (0.1 * rainbow)
-		atk_damg = atk_damg + (0.2 * rainbow)
-		max_slow = max_slow + (0.1 * rainbow)
-		slow_amt = clamp(slow_amt + (0.001 * -rainbow), 0, 1)
+		speed = clamp(speed + (1 * rainbow), def_speed, def_speed * 100)
+		friction = clamp(friction + (0.002 * rainbow), def_friction, def_friction * 100)
+		acceleration = clamp(acceleration + (0.001 * rainbow), def_accel, def_accel * 100)
+		atk_speed = clamp(atk_speed + (0.1 * rainbow), def_atk_sp, def_atk_sp * 100)
+		atk_damg = clamp(atk_damg + (0.2 * rainbow), def_atk_dam, def_atk_dam * 100)
+		max_slow = clamp(max_slow + (0.1 * rainbow), def_max_slow, def_max_slow * 100)
+		slow_amt = clamp(slow_amt + (0.001 * -rainbow), 0.01, def_slow_amount)
 		pre_rainbow = rainbow
 	if pre_blue != blue:
-		lives = clamp(lives + (1 * blue), 0, 999)
+		lives += clamp((blue - pre_blue), 0, 99999)
 		pre_blue = blue
 	if pre_portal != portal:
 		$portal.play()
@@ -474,3 +484,7 @@ func item_change():
 		pre_portal = portal
 		print(Global.wins)
 
+
+
+func _on_speedruntimer_timeout():
+	Global.time += 1
