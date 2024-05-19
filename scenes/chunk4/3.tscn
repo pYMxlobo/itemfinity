@@ -72,3 +72,15 @@ type = "red"
 [node name="enemy7" parent="." instance=ExtResource("3_3dbo0")]
 position = Vector2(4454, 3678)
 type = "yellow"
+
+[node name="enemy8" parent="." instance=ExtResource("3_3dbo0")]
+position = Vector2(3118, 4273)
+type = "orange"
+
+[node name="enemy9" parent="." instance=ExtResource("3_3dbo0")]
+position = Vector2(3924, 3320)
+type = "blue"
+
+[node name="enemy10" parent="." instance=ExtResource("3_3dbo0")]
+position = Vector2(4174, 3953)
+type = "green"

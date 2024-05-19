@@ -3,7 +3,7 @@ extends CharacterBody2D
 var bullets_fired = 0
 
 @export var is_chunk = true
-@export var type : String
+@export_enum("red", "orange", "yellow", "green", "blue", "purple", "boss") var type : String
 var speed = 50
 var health : int = 10
 @export var bob = true
@@ -48,35 +48,35 @@ func _ready():
 	player_hitbox = player.hitbox
 	if type == "red":
 		speed = 50
-		health = 10
+		health = 10 * Global.difficulty
 		bullet_time = 0.5
 	elif type == "orange":
 		speed = 30
-		health = 20
+		health = 20 * Global.difficulty
 		bullet_time = 0.35
 	elif type == "yellow":
 		speed = 55
-		health = 8
+		health = 8 * Global.difficulty
 		bullet_time = 0.7
 	elif type == "green":
 		speed = 80
-		health = 5
+		health = 5 * Global.difficulty
 		bullet_time = 2
 	elif type == "blue":
 		speed = 40
-		health = 10
+		health = 10 * Global.difficulty
 		bullet_time = 0.05
 	elif type == "purple":
 		speed = 20
-		health = 15
+		health = 15 * Global.difficulty
 		bullet_time = 0.05
 	elif type == "rainbow":
 		speed = 100
-		health = 40
+		health = 40 * Global.difficulty
 		bullet_time = 0.1
 	elif type == "boss":
 		speed = 10
-		health = 300
+		health = clamp(300 * Global.difficulty, 300, 999999)
 		bullet_time = 0.08
 	else:
 		printerr("you named the type wrong moron")

@@ -60,3 +60,7 @@ type = "yellow"
 [node name="enemy6" parent="." instance=ExtResource("4_ytmu2")]
 position = Vector2(1710, 5779)
 type = "orange"
+
+[node name="enemy7" parent="." instance=ExtResource("4_ytmu2")]
+position = Vector2(1767, 5727)
+type = "yellow"

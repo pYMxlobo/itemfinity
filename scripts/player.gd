@@ -466,7 +466,7 @@ func item_change():
 		slow_amt = clamp(slow_amt + (0.001 * -rainbow), 0, 1)
 		pre_rainbow = rainbow
 	if pre_blue != blue:
-		lives = clamp(def_lives + (1 * blue), 0, 999)
+		lives = clamp(lives + (1 * blue), 0, 999)
 		pre_blue = blue
 	if pre_portal != portal:
 		$portal.play()

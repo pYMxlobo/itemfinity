@@ -3,7 +3,7 @@ extends Area2D
 @export var randomized = true
 @export var chosen : String
 @export var auto_load = false
-
+@export var dif_increase : int
 @export var player : CharacterBody2D
 @export var rooms : Array[String]
 @export var timer : Timer
@@ -32,6 +32,7 @@ func _on_body_entered(body):
 	if body == player:
 		player.loader.show()
 		Global.loading_room = true
+		Global.difficulty += dif_increase
 		#player.loader.show()
 		OS.delay_msec(5)
 		birthed_chunk = load(random)
@@ -45,4 +46,8 @@ func _on_body_entered(body):
 
 
 func _on_timer_timeout():
-	get_child(0).disabled = true
+	var child_additive : int
+	for child in get_children():
+		if child is CollisionShape2D:
+			get_child(child_additive).disabled = true
+			child_additive += 1

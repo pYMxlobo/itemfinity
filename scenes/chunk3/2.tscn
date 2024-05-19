@@ -89,3 +89,18 @@ type = "orange"
 position = Vector2(1288, 5465)
 scale = Vector2(0.5, 0.5)
 type = "blue"
+
+[node name="enemy10" parent="." instance=ExtResource("4_knkak")]
+position = Vector2(-1133, 5391)
+scale = Vector2(0.5, 0.5)
+type = "yellow"
+
+[node name="enemy11" parent="." instance=ExtResource("4_knkak")]
+position = Vector2(301, 5239)
+scale = Vector2(0.5, 0.5)
+type = "blue"
+
+[node name="enemy12" parent="." instance=ExtResource("4_knkak")]
+position = Vector2(1458, 6345)
+scale = Vector2(0.5, 0.5)
+type = "red"

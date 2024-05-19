@@ -165,8 +165,10 @@ offset_left = -180.0
 offset_top = 72.0
 offset_right = -164.0
 offset_bottom = 184.0
+min_value = 0.005
 max_value = 1.0
 step = 0.001
+value = 0.005
 script = ExtResource("11_xiikr")
 bus_name = "Music"
 
@@ -175,8 +177,10 @@ offset_left = -152.0
 offset_top = 72.0
 offset_right = -136.0
 offset_bottom = 184.0
+min_value = 0.005
 max_value = 1.0
 step = 0.001
+value = 0.005
 script = ExtResource("11_xiikr")
 bus_name = "SFX"
 
@@ -185,8 +189,10 @@ offset_left = -123.0
 offset_top = 72.0
 offset_right = -107.0
 offset_bottom = 184.0
+min_value = 0.005
 max_value = 1.0
 step = 0.001
+value = 0.005
 script = ExtResource("11_xiikr")
 bus_name = "Master"
 
