@@ -61,16 +61,16 @@ func load_ach():
 	if FileAccess.file_exists("user://achievements.save"):
 		var file = FileAccess.open("user://achievements.save", FileAccess.READ)
 		if file.get_length() > 0:
-			red_bonus = file.get_var(red_bonus)
-			green_bonus = file.get_var(green_bonus)
-			yellow_bonus = file.get_var(yellow_bonus)
-			purple_bonus = file.get_var(purple_bonus)
-			orange_bonus = file.get_var(orange_bonus)
-			cyan_bonus = file.get_var(cyan_bonus)
-			white_bonus = file.get_var(white_bonus)
-			black_bonus = file.get_var(black_bonus)
-			rainbow_bonus = file.get_var(rainbow_bonus)
-			blue_bonus = file.get_var(blue_bonus)
+			red_bonus = file.get_var(false)
+			green_bonus = file.get_var(false)
+			yellow_bonus = file.get_var(false)
+			purple_bonus = file.get_var(false)
+			orange_bonus = file.get_var(false)
+			cyan_bonus = file.get_var(false)
+			white_bonus = file.get_var(false)
+			black_bonus = file.get_var(false)
+			rainbow_bonus = file.get_var(false)
+			blue_bonus = file.get_var(false)
 		else:
 			print("oopsie! no data D:")
 			red_bonus = true

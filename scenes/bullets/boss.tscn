@@ -6,17 +6,16 @@
 [node name="boss" type="Spawner" node_paths=PackedStringArray("trackedNode")]
 startMode = 2
 bulletType = ExtResource("1_ev7vh")
-poolCount = 1215752191
+poolCount = 99999
 bulletsPerRadius = 9
-numberOfRadii = 6
-degreesBetweenRadii = 30.0
+numberOfRadii = 4
+degreesBetweenRadii = 45.0
 spinRate = 5.0
 maxSpin = 70.0
 minSpin = 30.0
 spinAcceleration = 2.0
 trackedNode = NodePath("dud")
 moveWithParent = true
-returnBulletsToPoolAutomatically = false
 texture = ExtResource("2_3nc5m")
 
 [node name="dud" type="CharacterBody2D" parent="."]

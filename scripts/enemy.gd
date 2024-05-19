@@ -40,9 +40,8 @@ func _on_timer_timeout():
 	makepath()
 
 func _ready():
-	await get_parent().ready
-	$Timer.start()
-	makepath()
+	if is_chunk == true:
+		await get_parent().ready
 	if is_chunk == true:
 		player = get_parent().player
 	player_hitbox = player.hitbox
@@ -50,34 +49,69 @@ func _ready():
 		speed = 50
 		health = 10 * Global.difficulty
 		bullet_time = 0.5
+		$enemy_hurt/CollisionShape2D.shape.radius = 9
+		$enemy_hurt/CollisionShape2D.shape.height = 38
+		$CollisionShape2D.shape.radius = 9
+		$CollisionShape2D.shape.height = 38
+		$seeing/CollisionShape2D.shape.radius = 119
 	elif type == "orange":
 		speed = 30
 		health = 20 * Global.difficulty
 		bullet_time = 0.35
+		$enemy_hurt/CollisionShape2D.shape.radius = 9
+		$enemy_hurt/CollisionShape2D.shape.height = 38
+		$CollisionShape2D.shape.radius = 9
+		$CollisionShape2D.shape.height = 38
+		$seeing/CollisionShape2D.shape.radius = 119
 	elif type == "yellow":
 		speed = 55
 		health = 8 * Global.difficulty
 		bullet_time = 0.7
+		$enemy_hurt/CollisionShape2D.shape.radius = 9
+		$enemy_hurt/CollisionShape2D.shape.height = 38
+		$CollisionShape2D.shape.radius = 9
+		$CollisionShape2D.shape.height = 38
+		$seeing/CollisionShape2D.shape.radius = 119
 	elif type == "green":
 		speed = 80
 		health = 5 * Global.difficulty
 		bullet_time = 2
+		$enemy_hurt/CollisionShape2D.shape.radius = 9
+		$enemy_hurt/CollisionShape2D.shape.height = 38
+		$CollisionShape2D.shape.radius = 9
+		$CollisionShape2D.shape.height = 38
+		$seeing/CollisionShape2D.shape.radius = 119
 	elif type == "blue":
 		speed = 40
 		health = 10 * Global.difficulty
 		bullet_time = 0.05
+		$enemy_hurt/CollisionShape2D.shape.radius = 9
+		$enemy_hurt/CollisionShape2D.shape.height = 38
+		$CollisionShape2D.shape.radius = 9
+		$CollisionShape2D.shape.height = 38
+		$seeing/CollisionShape2D.shape.radius = 119
 	elif type == "purple":
 		speed = 20
 		health = 15 * Global.difficulty
 		bullet_time = 0.05
+		$enemy_hurt/CollisionShape2D.shape.radius = 9
+		$enemy_hurt/CollisionShape2D.shape.height = 38
+		$CollisionShape2D.shape.radius = 9
+		$CollisionShape2D.shape.height = 38
+		$seeing/CollisionShape2D.shape.radius = 119
 	elif type == "rainbow":
 		speed = 100
 		health = 40 * Global.difficulty
 		bullet_time = 0.1
 	elif type == "boss":
 		speed = 10
-		health = clamp(300 * Global.difficulty, 300, 999999)
-		bullet_time = 0.08
+		health = 300 * Global.difficulty
+		bullet_time = 0.2
+		$enemy_hurt/CollisionShape2D.shape.radius = 20
+		$enemy_hurt/CollisionShape2D.shape.height = 125
+		$CollisionShape2D.shape.radius = 20
+		$CollisionShape2D.shape.height = 125
+		$seeing/CollisionShape2D.shape.radius = 300
 	else:
 		printerr("you named the type wrong moron")
 	determine_bullet()
@@ -95,10 +129,17 @@ func _ready():
 
 func _process(_delta):
 	if health <= 0:
-		$die.play()
+		#$die.play()
 		$hurt.stop()
 		Global.enemy_kills += 1
-		queue_free()
+		$Timer.stop()
+		$BulletSpawnLoop.stop()
+		$CollisionShape2D.disabled = true
+		if type == "boss":
+			$D.play("boss")
+			$laugh.play()
+		else:
+			$D.play("default")
 	$Label.text = "Health: " + str(health)
 	
 	if Global.difficulty > pre_dif:
@@ -116,12 +157,10 @@ func _process(_delta):
 
 
 func _on_area_2d_body_entered(body):
-	print("attack detected :/ body edition")
 	if body == player.attacker:
 		$hurt.play()
 		health -= player.atk_damg
 		player.attacker.position = Vector2(0, 0)
-		print("hehe enemy got hit")
 
 
 func _on_bullet_spawn_loop_timeout():
@@ -154,3 +193,11 @@ func _on_seeing_body_shape_entered(body_rid, body, body_shape_index, local_shape
 		bullets_fired += (bullets.bulletsPerRadius * bullets.numberOfRadii)
 		$BulletSpawnLoop.start()
 		$seeing.get_child(0).set_deferred("disabled", true) #= true
+
+
+func _on_d_animation_finished():
+	queue_free()
+
+
+func _on_laugh_finished():
+	$bossdie.play()
