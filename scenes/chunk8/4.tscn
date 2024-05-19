@@ -91,45 +91,60 @@ type = "yellow"
 
 [node name="item" parent="." instance=ExtResource("4_edhu8")]
 position = Vector2(10922, -6009)
+is_random = true
 
 [node name="item2" parent="." instance=ExtResource("4_edhu8")]
 position = Vector2(10361, -5854)
+is_random = true
 
 [node name="item3" parent="." instance=ExtResource("4_edhu8")]
 position = Vector2(10236, -6017)
+is_random = true
 
 [node name="item4" parent="." instance=ExtResource("4_edhu8")]
 position = Vector2(10153, -6749)
+is_random = true
 
 [node name="item5" parent="." instance=ExtResource("4_edhu8")]
 position = Vector2(10244, -6842)
+is_random = true
 
 [node name="item6" parent="." instance=ExtResource("4_edhu8")]
 position = Vector2(10628, -6935)
+is_random = true
 
 [node name="item7" parent="." instance=ExtResource("4_edhu8")]
 position = Vector2(10404, -6495)
+is_random = true
 
 [node name="item8" parent="." instance=ExtResource("4_edhu8")]
 position = Vector2(10578, -6367)
+is_random = true
 
 [node name="item9" parent="." instance=ExtResource("4_edhu8")]
 position = Vector2(11189, -6511)
+is_random = true
 
 [node name="item10" parent="." instance=ExtResource("4_edhu8")]
 position = Vector2(11483, -6759)
+is_random = true
 
 [node name="item11" parent="." instance=ExtResource("4_edhu8")]
 position = Vector2(11771, -6556)
+is_random = true
 
 [node name="item12" parent="." instance=ExtResource("4_edhu8")]
 position = Vector2(11941, -6626)
+is_random = true
 
 [node name="item13" parent="." instance=ExtResource("4_edhu8")]
 position = Vector2(11827, -5888)
+is_random = true
 
 [node name="item14" parent="." instance=ExtResource("4_edhu8")]
 position = Vector2(11326, -6125)
+is_random = true
 
 [node name="item15" parent="." instance=ExtResource("4_edhu8")]
 position = Vector2(11369, -5999)
+is_random = true

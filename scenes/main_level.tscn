@@ -270,6 +270,7 @@ shape = SubResource("RectangleShape2D_p24df")
 
 [node name="load_chunk_side_1" type="Area2D" parent="side1" node_paths=PackedStringArray("player", "timer")]
 script = ExtResource("11_1i0wy")
+dif_increase = 1
 player = NodePath("../../The Orb")
 rooms = Array[String](["res://scenes/sidechunk1/1.tscn", "res://scenes/sidechunk1/2.tscn", "res://scenes/sidechunk1/3.tscn"])
 timer = NodePath("Timer")
@@ -319,6 +320,7 @@ shape = SubResource("RectangleShape2D_pvsnm")
 script = ExtResource("11_1i0wy")
 dif_increase = 1
 player = NodePath("../../The Orb")
+rooms = Array[String](["res://scenes/chunk8/1.tscn", "res://scenes/chunk8/2.tscn", "res://scenes/chunk8/3.tscn", "res://scenes/chunk8/4.tscn", "res://scenes/chunk8/5.tscn"])
 timer = NodePath("Timer")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Eighth/Area2D"]
