@@ -74,6 +74,10 @@ func _ready():
 		speed = 100
 		health = 40
 		bullet_time = 0.1
+	elif type == "boss":
+		speed = 10
+		health = 300
+		bullet_time = 0.08
 	else:
 		printerr("you named the type wrong moron")
 	determine_bullet()
@@ -129,7 +133,7 @@ func _on_bullet_spawn_loop_timeout():
 
 func determine_bullet():
 	var loaded_bullet
-	loaded_bullet = load("res://scenes/bullets/" + str(type) +  ".tscn")
+	loaded_bullet = load("res://scenes/bullets/" + type +  ".tscn")
 	loaded_bullet = loaded_bullet.instantiate()
 	loaded_bullet.trackedNode = player
 	add_child(loaded_bullet)

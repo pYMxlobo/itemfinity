@@ -60,7 +60,7 @@ type = "red"
 
 [node name="enemy6" parent="." instance=ExtResource("4_tfl58")]
 position = Vector2(-652, 1286)
-type = "green"
+type = "blue"
 
 [node name="enemy7" parent="." instance=ExtResource("4_tfl58")]
 position = Vector2(-453, 1624)
@@ -91,3 +91,23 @@ position = Vector2(-550, -71)
 type = "red"
 
 [node name="music handler" parent="." instance=ExtResource("5_1kfvu")]
+
+[node name="enemy10" parent="." instance=ExtResource("4_tfl58")]
+position = Vector2(-1466, 56)
+type = "yellow"
+
+[node name="enemy15" parent="." instance=ExtResource("4_tfl58")]
+position = Vector2(1025, -808)
+type = "yellow"
+
+[node name="enemy16" parent="." instance=ExtResource("4_tfl58")]
+position = Vector2(-1322, 721)
+type = "orange"
+
+[node name="enemy17" parent="." instance=ExtResource("4_tfl58")]
+position = Vector2(1687, -1548)
+type = "green"
+
+[node name="enemy18" parent="." instance=ExtResource("4_tfl58")]
+position = Vector2(629, -377)
+type = "green"

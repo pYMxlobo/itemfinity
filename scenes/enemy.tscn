@@ -1,9 +1,10 @@
-[gd_scene load_steps=16 format=3 uid="uid://csmqbqsc4ay3h"]
+[gd_scene load_steps=17 format=3 uid="uid://csmqbqsc4ay3h"]
 
 [ext_resource type="Script" path="res://scripts/enemy.gd" id="1_lsml8"]
 [ext_resource type="Texture2D" uid="uid://dwlue5hkhqxxq" path="res://sprites/spellcasterblue.png" id="2_akxwl"]
 [ext_resource type="AudioStream" uid="uid://doqrn0gi6rt8b" path="res://music/Purity Music Box.wav" id="2_psmo6"]
 [ext_resource type="Texture2D" uid="uid://yq2rmuxdihre" path="res://sprites/spellcasterred.png" id="3_ek7pm"]
+[ext_resource type="Texture2D" uid="uid://vy5ec5olig68" path="res://sprites/bosspost.png" id="3_el75d"]
 [ext_resource type="Texture2D" uid="uid://6ckw5jucps2i" path="res://sprites/spellcastergreen.png" id="3_octs3"]
 [ext_resource type="Texture2D" uid="uid://clcl4oh63jqrx" path="res://sprites/spellcasterorange.png" id="4_vrb3g"]
 [ext_resource type="Texture2D" uid="uid://lqjgrdlrvsrg" path="res://sprites/spellcasterpurple.png" id="5_sus2m"]
@@ -20,6 +21,14 @@ animations = [{
 }],
 "loop": true,
 "name": &"blue",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_el75d")
+}],
+"loop": true,
+"name": &"boss",
 "speed": 5.0
 }, {
 "frames": [{

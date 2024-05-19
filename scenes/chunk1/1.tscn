@@ -78,4 +78,20 @@ type = "orange"
 position = Vector2(-810, 487)
 type = "red"
 
+[node name="enemy10" parent="." instance=ExtResource("4_wbvr5")]
+position = Vector2(787, 1068)
+type = "yellow"
+
 [node name="music handler" parent="." instance=ExtResource("5_wo73d")]
+
+[node name="enemy11" parent="." instance=ExtResource("4_wbvr5")]
+position = Vector2(-372, 829)
+type = "orange"
+
+[node name="enemy12" parent="." instance=ExtResource("4_wbvr5")]
+position = Vector2(493, 64)
+type = "green"
+
+[node name="enemy13" parent="." instance=ExtResource("4_wbvr5")]
+position = Vector2(1173, -471)
+type = "purple"

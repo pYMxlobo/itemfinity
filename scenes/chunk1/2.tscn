@@ -9,6 +9,8 @@
 [node name="2" type="Node2D"]
 script = ExtResource("1_6gk2b")
 
+[node name="music handler" parent="." instance=ExtResource("5_4nigl")]
+
 [node name="TileMap" type="TileMap" parent="."]
 z_index = -130
 position = Vector2(-200, -200)
@@ -78,4 +80,46 @@ type = "purple"
 position = Vector2(1767, 691)
 type = "red"
 
-[node name="music handler" parent="." instance=ExtResource("5_4nigl")]
+[node name="enemy10" parent="." instance=ExtResource("4_1cse5")]
+position = Vector2(1842, -785)
+type = "orange"
+
+[node name="enemy11" parent="." instance=ExtResource("4_1cse5")]
+position = Vector2(-988, 1100)
+type = "blue"
+
+[node name="enemy12" parent="." instance=ExtResource("4_1cse5")]
+position = Vector2(-899, -275)
+type = "red"
+
+[node name="enemy13" parent="." instance=ExtResource("4_1cse5")]
+position = Vector2(1703, 1357)
+type = "yellow"
+
+[node name="enemy14" parent="." instance=ExtResource("4_1cse5")]
+position = Vector2(-505, -378)
+type = "green"
+
+[node name="enemy15" parent="." instance=ExtResource("4_1cse5")]
+position = Vector2(547, 87)
+type = "purple"
+
+[node name="enemy16" parent="." instance=ExtResource("4_1cse5")]
+position = Vector2(-1019, -509)
+type = "green"
+
+[node name="enemy17" parent="." instance=ExtResource("4_1cse5")]
+position = Vector2(841, -454)
+type = "blue"
+
+[node name="enemy18" parent="." instance=ExtResource("4_1cse5")]
+position = Vector2(1793, 200)
+type = "green"
+
+[node name="enemy19" parent="." instance=ExtResource("4_1cse5")]
+position = Vector2(-706, 1125)
+type = "yellow"
+
+[node name="enemy20" parent="." instance=ExtResource("4_1cse5")]
+position = Vector2(-344, 874)
+type = "green"

@@ -108,3 +108,31 @@ type = "red"
 [node name="enemy17" parent="." instance=ExtResource("4_lffwo")]
 position = Vector2(699, 2565)
 type = "orange"
+
+[node name="enemy6" parent="." instance=ExtResource("4_lffwo")]
+position = Vector2(-1013, 2355)
+type = "green"
+
+[node name="enemy11" parent="." instance=ExtResource("4_lffwo")]
+position = Vector2(120, 1968)
+type = "red"
+
+[node name="enemy12" parent="." instance=ExtResource("4_lffwo")]
+position = Vector2(2235, 3213)
+type = "yellow"
+
+[node name="enemy14" parent="." instance=ExtResource("4_lffwo")]
+position = Vector2(2796, 3733)
+type = "blue"
+
+[node name="enemy15" parent="." instance=ExtResource("4_lffwo")]
+position = Vector2(2536, 2501)
+type = "purple"
+
+[node name="enemy18" parent="." instance=ExtResource("4_lffwo")]
+position = Vector2(1638, 3397)
+type = "yellow"
+
+[node name="enemy19" parent="." instance=ExtResource("4_lffwo")]
+position = Vector2(-617, 2545)
+type = "green"
