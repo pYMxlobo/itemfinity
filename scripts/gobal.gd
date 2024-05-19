@@ -41,6 +41,8 @@ var blue_bonus = false
 
 var loading_room = false
 
+var boss_active = false
+
 
 func save_ach():
 	var file = FileAccess.open("user://achievements.save", FileAccess.WRITE)

@@ -57,7 +57,7 @@ func _ready():
 	elif type == "orange":
 		speed = 30
 		health = 20 * Global.difficulty
-		bullet_time = 0.35
+		bullet_time = 0.45
 		$enemy_hurt/CollisionShape2D.shape.radius = 9
 		$enemy_hurt/CollisionShape2D.shape.height = 38
 		$CollisionShape2D.shape.radius = 9
@@ -193,6 +193,8 @@ func _on_seeing_body_shape_entered(body_rid, body, body_shape_index, local_shape
 		bullets_fired += (bullets.bulletsPerRadius * bullets.numberOfRadii)
 		$BulletSpawnLoop.start()
 		$seeing.get_child(0).set_deferred("disabled", true) #= true
+		if type == "boss":
+			Global.boss_active = true
 
 
 func _on_d_animation_finished():
