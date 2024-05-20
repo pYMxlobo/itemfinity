@@ -13,7 +13,7 @@ size = Vector2(16, 10)
 [sub_resource type="SpriteFrames" id="SpriteFrames_h2y6d"]
 animations = [{
 "frames": [{
-"duration": 1.0,
+"duration": 0.1,
 "texture": ExtResource("2_iswp5")
 }, {
 "duration": 1.0,

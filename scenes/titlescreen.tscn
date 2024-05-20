@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://c1u706oy1pjmx"]
+[gd_scene load_steps=23 format=3 uid="uid://c1u706oy1pjmx"]
 
 [ext_resource type="Texture2D" uid="uid://b1npjw2o1cjcl" path="res://sprites/title.png" id="1_1fbtn"]
 [ext_resource type="Shader" path="res://other/haha.gdshader" id="1_yiy2j"]
@@ -14,6 +14,7 @@
 [ext_resource type="Script" path="res://scripts/funnysound.gd" id="12_8ifmg"]
 [ext_resource type="AudioStream" uid="uid://4tlpxmdr8row" path="res://soundeffects/select.wav" id="13_vat07"]
 [ext_resource type="Script" path="res://scripts/speedrun_button.gd" id="14_edoic"]
+[ext_resource type="Script" path="res://scripts/difficulty_setter.gd" id="15_oyuxf"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_wvuy0"]
 shader = ExtResource("1_yiy2j")
@@ -218,7 +219,20 @@ text = "speedrun"
 alignment = 1
 script = ExtResource("14_edoic")
 
+[node name="SpinBox" type="SpinBox" parent="."]
+offset_left = 80.0
+offset_top = 139.0
+offset_right = 200.0
+offset_bottom = 170.0
+min_value = 1.0
+max_value = 99.0
+value = 1.0
+alignment = 2
+prefix = "Difficulty:"
+script = ExtResource("15_oyuxf")
+
 [connection signal="pressed" from="Start" to="Start" method="_on_pressed"]
 [connection signal="item_selected" from="OptionButton" to="OptionButton" method="_on_item_selected"]
 [connection signal="pressed" from="Button" to="Button" method="_on_pressed"]
 [connection signal="toggled" from="speedrun_button" to="speedrun_button" method="_on_toggled"]
+[connection signal="value_changed" from="SpinBox" to="SpinBox" method="_on_value_changed"]
