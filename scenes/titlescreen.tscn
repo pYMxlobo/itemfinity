@@ -253,9 +253,9 @@ script = ExtResource("14_edoic")
 
 [node name="SpinBox" type="SpinBox" parent="."]
 offset_left = 80.0
-offset_top = 139.0
+offset_top = 130.0
 offset_right = 200.0
-offset_bottom = 170.0
+offset_bottom = 161.0
 min_value = 1.0
 max_value = 99.0
 value = 1.0

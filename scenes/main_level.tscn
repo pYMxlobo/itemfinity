@@ -271,7 +271,7 @@ rooms = Array[String](["res://scenes/chunk3/1.tscn", "res://scenes/chunk3/2.tscn
 timer = NodePath("Timer")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="third/load_chunk_3"]
-polygon = PackedVector2Array(-2088, 3960, -2088, 4344, -2056, 4344, -2056, 5784, -840, 5784, -840, 6744, 2232, 6744, 2232, 3960)
+polygon = PackedVector2Array(-2088, 3961, -2088, 4344, -2056, 4344, -2056, 5784, -840, 5784, -840, 6744, 2231, 6744, 2231, 3961)
 
 [node name="Timer" type="Timer" parent="third/load_chunk_3"]
 
