@@ -8,7 +8,10 @@ startMode = 2
 bulletType = ExtResource("1_ngy67")
 poolCount = 99999
 trackedNode = NodePath("dud")
+homing = true
+homingWeight = 2.0
 startTowardPlayer = true
+staysTowardPlayer = true
 returnBulletsToPoolAutomatically = false
 texture = ExtResource("2_i5bja")
 

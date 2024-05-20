@@ -28,3 +28,5 @@ func _process(delta):
 	
 	if Global.boss_active == true:
 		boss_door.position = Vector2(-200, -200)
+	else:
+		boss_door.position = Vector2(-10000, -10000)

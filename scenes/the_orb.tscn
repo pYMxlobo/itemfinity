@@ -207,6 +207,7 @@ noise = SubResource("FastNoiseLite_uo121")
 collision_layer = 2
 collision_mask = 3
 motion_mode = 1
+wall_min_slide_angle = 3.14159
 script = ExtResource("1_07vxm")
 hitbox = NodePath("PlayerHitbox")
 loader = NodePath("Camera2D/loading")
@@ -242,7 +243,6 @@ disable_3d = true
 title = "Stats"
 initial_position = 4
 size = Vector2i(256, 256)
-visible = false
 transient = true
 extend_to_title = true
 min_size = Vector2i(256, 256)
@@ -401,6 +401,7 @@ max_polyphony = 4
 bus = &"SFX"
 
 [node name="VideoStreamPlayer" type="VideoStreamPlayer" parent="."]
+visible = false
 z_index = 1325
 anchors_preset = 8
 anchor_left = 0.5

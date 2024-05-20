@@ -10,7 +10,7 @@ extends CharacterBody2D
 
 @onready var camera : Camera2D = $Camera2D
 
-@export var speed = 200
+@export var speed = 150
 @export var friction = 0.335
 @export var acceleration = 0.175
 @export var atk_speed : float = 1
@@ -140,20 +140,51 @@ func _ready():
 func get_input():
 	var input = Vector2()
 	if Input.is_action_pressed('right'):
-		input.x += 1
+		input.x += Input.get_action_strength("right", false)
 	if Input.is_action_pressed('left'):
-		input.x -= 1
+		input.x -= Input.get_action_strength("left", false)
 	if Input.is_action_pressed('down'):
-		input.y += 1
+		input.y += Input.get_action_strength("down", false)
 	if Input.is_action_pressed('up'):
+		input.y -= Input.get_action_strength("up", false)
+	if Input.is_action_pressed('c_right'):
+		input.x += 1
+	if Input.is_action_pressed('c_left'):
+		input.x -= 1
+	if Input.is_action_pressed('c_down'):
+		input.y += 1
+	if Input.is_action_pressed('c_up'):
 		input.y -= 1
 	return input
 
-
+#maxf(direction.x, direction.y)
 func _physics_process(_delta):
 	var direction = get_input()
+	var max_diagonal = Vector2(maxf(direction.x, direction.y), maxf(direction.x, direction.y))
+	var min_diagonal = Vector2(minf(direction.x, direction.y), minf(direction.x, direction.y))
+	var min_max_diagonal = Vector2(minf(direction.x, direction.y), maxf(direction.x, direction.y))
+	var max_min_diagonal = Vector2(maxf(direction.x, direction.y), minf(direction.x, direction.y))
 	if direction.length() > 0:
-		velocity = velocity.lerp(direction.normalized() * speed, acceleration)
+		max_diagonal.limit_length(0.5)
+		min_diagonal.limit_length(0.5)
+		min_max_diagonal.limit_length(0.5)
+		max_min_diagonal.limit_length(0.5)
+		if direction.x > 0 and direction.y > 0:
+			velocity = velocity.lerp(max_diagonal * speed, acceleration)
+			velocity.limit_length(0.5)
+		elif direction.x < 0 and direction.y < 0:
+			velocity = velocity.lerp(min_diagonal * speed, acceleration)
+			velocity.limit_length(0.5)
+		elif direction.x > 0 and direction.y < 0:
+			velocity = velocity.lerp(max_min_diagonal * speed, acceleration)
+			velocity.limit_length(0.5)
+		elif direction.x < 0 and direction.y > 0:
+			velocity = velocity.lerp(min_max_diagonal * speed, acceleration)
+			velocity.limit_length(0.5)
+		#elif direction.x > 0 and direction.y > 0:
+		#	velocity = velocity.lerp((direction.normalized() * speed) * minf(direction.x, direction.y), acceleration)
+		else:
+			velocity = velocity.lerp((direction * speed) * 1.41, acceleration)
 	else:
 		velocity = velocity.lerp(Vector2.ZERO, friction)
 	move_and_slide()
@@ -176,6 +207,7 @@ func _process(_delta):
 	
 	if Global.speedrun == true:
 		$Camera2D/speedrun.text = "Time: " + str(Global.time)
+		#lives = 10 #this was used for testing since im bad
 	
 	
 	
@@ -228,7 +260,7 @@ func _process(_delta):
 				$life_left.play()
 			lives -= 1
 			first_life = false
-			print(lives)
+			#print(lives)
 	
 	stat_window_update()
 	
@@ -458,7 +490,7 @@ func item_change():
 		atk_damg = def_atk_dam + (1 * orange)
 		pre_orange = orange
 	if pre_cyan != cyan:
-		atk_range = def_atk_ran + (1 * cyan)
+		atk_range = clamp(def_atk_ran + (1 * cyan), 1, 500)
 		pre_cyan = cyan
 	if pre_white != white:
 		max_slow = def_max_slow + (1 * white)
@@ -482,7 +514,7 @@ func item_change():
 		$portal.play()
 		Global.wins = Global.def_wins + (1 * portal)
 		pre_portal = portal
-		print(Global.wins)
+		#print(Global.wins)
 
 
 

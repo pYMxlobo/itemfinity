@@ -99,7 +99,7 @@
 [ext_resource type="Texture2D" uid="uid://c2lyyj0oden5d" path="res://sprites/bossdeath/bossdeath79.png" id="88_o030u"]
 [ext_resource type="Texture2D" uid="uid://c3kfmrl4em566" path="res://sprites/bossdeath/bossdeath80.png" id="89_y413j"]
 [ext_resource type="AudioStream" uid="uid://b8pc3aksjxys5" path="res://soundeffects/bossdeath.wav" id="99_2h5tw"]
-[ext_resource type="AudioStream" uid="uid://ru1t1aie1f0g" path="res://soundeffects/laughinghigh.wav" id="99_xuo6o"]
+[ext_resource type="AudioStream" uid="uid://b4gg5vnb1vngt" path="res://soundeffects/laughinghighgood.wav" id="99_vcrln"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_n03vs"]
 animations = [{
@@ -516,7 +516,7 @@ stream = ExtResource("10_vd5s5")
 bus = &"SFX"
 
 [node name="laugh" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("99_xuo6o")
+stream = ExtResource("99_vcrln")
 bus = &"SFX"
 
 [node name="bossdie" type="AudioStreamPlayer2D" parent="."]

@@ -3,9 +3,8 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_n5sw5"]
 
 [resource]
-initialSpeed = 150.0
 _shape = SubResource("CircleShape2D_n5sw5")
-acceleration = 6.0
+acceleration = 3.0
 mask = 4
 numberOfQueries = 2
 collideWithBodies = true

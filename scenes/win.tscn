@@ -3,8 +3,8 @@
 [ext_resource type="Shader" path="res://other/haha.gdshader" id="1_ctd3f"]
 [ext_resource type="AudioStream" uid="uid://ce0hiu86khgoa" path="res://music/win.wav" id="2_60x6r"]
 [ext_resource type="Texture2D" uid="uid://b3y7gugrao4mp" path="res://sprites/retry.png" id="2_sootx"]
+[ext_resource type="Texture2D" uid="uid://cgjco7oafxdwh" path="res://sprites/win2.png" id="3_2qniu"]
 [ext_resource type="Texture2D" uid="uid://kdgxsgtppw1w" path="res://sprites/retryhover.png" id="3_5oily"]
-[ext_resource type="Texture2D" uid="uid://bbr41yut7nr24" path="res://sprites/win.png" id="3_vmm87"]
 [ext_resource type="Shortcut" uid="uid://6k1ox5idd2pt" path="res://other/buttonshortcut.tres" id="4_avw6e"]
 [ext_resource type="BitMap" uid="uid://baythmkjulfte" path="res://sprites/retrybitmap.png" id="6_lo7ff"]
 [ext_resource type="Script" path="res://scripts/newrun.gd" id="7_t8ed1"]
@@ -101,15 +101,15 @@ autoplay = true
 bus = &"Music"
 
 [node name="Win" type="Sprite2D" parent="."]
-texture = ExtResource("3_vmm87")
+texture = ExtResource("3_2qniu")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
 [node name="retry" type="TextureButton" parent="."]
-offset_left = -3.0
-offset_top = 106.0
-offset_right = 61.0
-offset_bottom = 170.0
+offset_left = -44.0
+offset_top = -180.0
+offset_right = 20.0
+offset_bottom = -116.0
 shortcut = ExtResource("4_avw6e")
 texture_normal = ExtResource("2_sootx")
 texture_pressed = ExtResource("3_5oily")

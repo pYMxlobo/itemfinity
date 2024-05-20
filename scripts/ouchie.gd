@@ -40,6 +40,6 @@ func bullet_hit(result, bulletIndex, spawner):
 	if Global.dead == false:
 		if damage_allow == true:
 			Global.health -= 1
-			print(Global.health)
+			#print(Global.health)
 			damage_allow = false
 			timer.start()

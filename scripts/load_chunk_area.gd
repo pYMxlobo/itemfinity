@@ -30,6 +30,7 @@ func _on_body_entered(body):
 	var new_chunk
 	var birthed_chunk
 	if body == player:
+		print("load attempt for " + str(name))
 		player.loader.show()
 		Global.loading_room = true
 		Global.difficulty += dif_increase
@@ -39,7 +40,7 @@ func _on_body_entered(body):
 		new_chunk = birthed_chunk.instantiate
 		new_chunk = birthed_chunk.instantiate()
 		new_chunk.player = player
-		add_sibling(new_chunk)
+		call_deferred("add_child", new_chunk)
 		timer.start()
 	#	get_child(0).disabled = true
 		#self.queue_free()
@@ -48,6 +49,6 @@ func _on_body_entered(body):
 func _on_timer_timeout():
 	var child_additive : int
 	for child in get_children():
-		if child is CollisionShape2D:
-			get_child(child_additive).disabled = true
+		if child is CollisionPolygon2D:
+			get_child(child_additive).set_deferred("disabled", true)
 			child_additive += 1

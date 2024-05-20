@@ -54,6 +54,7 @@ func _ready():
 		$CollisionShape2D.shape.radius = 9
 		$CollisionShape2D.shape.height = 38
 		$seeing/CollisionShape2D.shape.radius = 119
+		$Label.position.y = -30
 	elif type == "orange":
 		speed = 30
 		health = 20 * Global.difficulty
@@ -63,6 +64,7 @@ func _ready():
 		$CollisionShape2D.shape.radius = 9
 		$CollisionShape2D.shape.height = 38
 		$seeing/CollisionShape2D.shape.radius = 119
+		$Label.position.y = -30
 	elif type == "yellow":
 		speed = 55
 		health = 8 * Global.difficulty
@@ -72,6 +74,7 @@ func _ready():
 		$CollisionShape2D.shape.radius = 9
 		$CollisionShape2D.shape.height = 38
 		$seeing/CollisionShape2D.shape.radius = 119
+		$Label.position.y = -30
 	elif type == "green":
 		speed = 80
 		health = 5 * Global.difficulty
@@ -81,6 +84,7 @@ func _ready():
 		$CollisionShape2D.shape.radius = 9
 		$CollisionShape2D.shape.height = 38
 		$seeing/CollisionShape2D.shape.radius = 119
+		$Label.position.y = -30
 	elif type == "blue":
 		speed = 40
 		health = 10 * Global.difficulty
@@ -90,6 +94,7 @@ func _ready():
 		$CollisionShape2D.shape.radius = 9
 		$CollisionShape2D.shape.height = 38
 		$seeing/CollisionShape2D.shape.radius = 119
+		$Label.position.y = -30
 	elif type == "purple":
 		speed = 20
 		health = 15 * Global.difficulty
@@ -99,6 +104,7 @@ func _ready():
 		$CollisionShape2D.shape.radius = 9
 		$CollisionShape2D.shape.height = 38
 		$seeing/CollisionShape2D.shape.radius = 119
+		$Label.position.y = -30
 	elif type == "rainbow":
 		speed = 100
 		health = 40 * Global.difficulty
@@ -111,7 +117,8 @@ func _ready():
 		$enemy_hurt/CollisionShape2D.shape.height = 125
 		$CollisionShape2D.shape.radius = 20
 		$CollisionShape2D.shape.height = 125
-		$seeing/CollisionShape2D.shape.radius = 300
+		$seeing/CollisionShape2D.shape.radius = 600
+		$Label.position.y = -75
 	else:
 		printerr("you named the type wrong moron")
 	determine_bullet()
@@ -131,15 +138,16 @@ func _process(_delta):
 	if health <= 0:
 		#$die.play()
 		$hurt.stop()
-		Global.enemy_kills += 1
 		$Timer.stop()
 		$BulletSpawnLoop.stop()
 		$CollisionShape2D.disabled = true
 		if type == "boss":
 			$D.play("boss")
-			$laugh.play()
+			if $laugh.playing == false:
+				$laugh.play()
 		else:
 			$D.play("default")
+			Global.enemy_kills += 1
 	$Label.text = "Health: " + str(health)
 	
 	if Global.difficulty > pre_dif:
@@ -148,7 +156,7 @@ func _process(_delta):
 	
 	
 	
-	if bullets_fired > (bullets.poolCount - 10):
+	if bullets_fired > 99990:
 		health = 0
 	
 	
@@ -195,11 +203,16 @@ func _on_seeing_body_shape_entered(body_rid, body, body_shape_index, local_shape
 		$seeing.get_child(0).set_deferred("disabled", true) #= true
 		if type == "boss":
 			Global.boss_active = true
+			Global.bgm = 2
+			$AudioStreamPlayer2D.stop()
 
 
 func _on_d_animation_finished():
+	if type == "boss":
+		Global.boss_active = false
 	queue_free()
 
 
 func _on_laugh_finished():
 	$bossdie.play()
+	Global.boss_active = false

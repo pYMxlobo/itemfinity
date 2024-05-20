@@ -6,18 +6,19 @@ var pre_bgm = Global.bgm
 @export var bgm_3 : AudioStreamPlayer
 
 func music_change():
-	if Global.bgm == 1:
-		bgm_1.play()
-		bgm_2.stop()
-		bgm_3.stop()
-	if Global.bgm == 2:
-		bgm_1.stop()
-		bgm_2.play()
-		bgm_3.stop()
-	if Global.bgm == 3:
-		bgm_1.stop()
-		bgm_2.stop()
-		bgm_3.play()
+	if bgm_1 != null:
+		if Global.bgm == 1:
+			bgm_1.play()
+			bgm_2.stop()
+			bgm_3.stop()
+		if Global.bgm == 2:
+			bgm_1.stop()
+			bgm_2.play()
+			bgm_3.stop()
+		if Global.bgm == 3:
+			bgm_1.stop()
+			bgm_2.stop()
+			bgm_3.play()
 
 func _ready():
 	Global.loading_room = false
@@ -26,3 +27,4 @@ func _ready():
 func _process(delta):
 	if Global.bgm != pre_bgm:
 		music_change()
+		pre_bgm = Global.bgm

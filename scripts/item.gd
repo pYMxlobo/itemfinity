@@ -12,7 +12,7 @@ func _ready():
 	await get_parent().ready
 	if is_chunk == true:
 		player = get_parent().player
-	randomize()
+	
 	if is_random == true:
 		value = randi_range(0, 9)
 	while value == 8:
