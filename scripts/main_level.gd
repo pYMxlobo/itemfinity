@@ -13,7 +13,7 @@ func _ready():
 	refs.position = Vector2(-100000, -100000)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	if Global.dead == true:
 		set_process_input(false)
 	else:

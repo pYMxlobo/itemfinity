@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://bmaqlensx66cm"]
+[gd_scene load_steps=38 format=3 uid="uid://bmaqlensx66cm"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_07vxm"]
 [ext_resource type="Texture2D" uid="uid://ct5vf01lh702j" path="res://sprites/orb.png" id="1_jrvm1"]
@@ -13,6 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://daa1xlquhmxhg" path="res://sprites/overlay.png" id="11_720nt"]
 [ext_resource type="AudioStream" uid="uid://bo78cq7nhur3c" path="res://soundeffects/orbanotherlife.wav" id="11_ejccu"]
 [ext_resource type="AudioStream" uid="uid://cdhjohxu5s4wu" path="res://soundeffects/orbshatter.wav" id="12_cbcdr"]
+[ext_resource type="Shader" path="res://other/pause.gdshader" id="13_6rd7i"]
 [ext_resource type="PackedScene" uid="uid://ch63wtisq3qq5" path="res://scenes/attacker.tscn" id="13_30xn8"]
 [ext_resource type="AudioStream" uid="uid://bte0j8jkmtvc8" path="res://soundeffects/orbcrack.wav" id="13_miluo"]
 [ext_resource type="VideoStream" path="res://wizardsteal.ogv" id="14_ys5v3"]
@@ -106,7 +107,7 @@ shader_parameter/color_68 = Color(0.47451, 0.619608, 0.137255, 1)
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_kq677"]
 gradient = SubResource("Gradient_gfh0l")
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_3na2p"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1p5t5"]
 shader = ExtResource("7_yfjid")
 shader_parameter/color_0 = Color(1, 1, 1, 1)
 shader_parameter/color_1 = Color(0.580392, 0.529412, 0.529412, 1)
@@ -183,6 +184,17 @@ shader_parameter/color_68 = Color(0.917, 0.979, 0.557, 1)
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_3bagq"]
 gradient = SubResource("Gradient_5vpfb")
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_3na2p"]
+shader = ExtResource("13_6rd7i")
+shader_parameter/color_0 = Color(1, 1, 1, 1)
+shader_parameter/color_1 = Color(0, 0, 0, 1)
+shader_parameter/color_2 = Color(0.501961, 0.501961, 0.501961, 1)
+shader_parameter/color_3 = Color(1, 0, 0, 1)
+shader_parameter/color_4 = Color(0.501961, 0, 0, 1)
+shader_parameter/color_5 = Color(0, 0.501961, 1, 1)
+shader_parameter/color_6 = Color(0, 0.74902, 1, 1)
+shader_parameter/color_7 = Color(0.25098, 0.25098, 0.25098, 1)
+
 [sub_resource type="InputEventJoypadButton" id="InputEventJoypadButton_gdypx"]
 device = -1
 button_index = 3
@@ -218,6 +230,7 @@ lalala = NodePath("Window/Label")
 [node name="Attacker" parent="." instance=ExtResource("13_30xn8")]
 
 [node name="PlayerHitbox" type="Area2D" parent="." node_paths=PackedStringArray("timer")]
+z_index = 1
 collision_layer = 4
 collision_mask = 65287
 script = ExtResource("19_k05nb")
@@ -313,6 +326,13 @@ script = ExtResource("6_27tuu")
 metadata/_edit_use_anchors_ = true
 
 [node name="shader" type="Sprite2D" parent="Camera2D"]
+z_index = 4095
+material = SubResource("ShaderMaterial_1p5t5")
+scale = Vector2(10, 10)
+texture = SubResource("GradientTexture2D_3bagq")
+
+[node name="pauseshader" type="Sprite2D" parent="Camera2D"]
+visible = false
 z_index = 4096
 material = SubResource("ShaderMaterial_3na2p")
 scale = Vector2(10, 10)

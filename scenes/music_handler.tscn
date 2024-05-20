@@ -5,11 +5,8 @@
 [ext_resource type="AudioStream" uid="uid://b2e2x40bhinxh" path="res://music/final boss.wav" id="3_37n7w"]
 [ext_resource type="AudioStream" uid="uid://d3mkslte4k4kb" path="res://music/wrath.wav" id="4_pyaad"]
 
-[node name="music handler" type="Node2D" node_paths=PackedStringArray("bgm_1", "bgm_2", "bgm_3")]
+[node name="music handler" type="Node2D"]
 script = ExtResource("1_81bj6")
-bgm_1 = NodePath("purity")
-bgm_2 = NodePath("finalboss")
-bgm_3 = NodePath("wrath")
 
 [node name="purity" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_oyd4h")

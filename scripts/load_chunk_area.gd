@@ -47,8 +47,8 @@ func _on_body_entered(body):
 
 
 func _on_timer_timeout():
-	var child_additive : int
-	for child in get_children():
-		if child is CollisionPolygon2D:
-			get_child(child_additive).set_deferred("disabled", true)
-			child_additive += 1
+	var child_additive : int = 0
+	if get_child(child_additive) is CollisionPolygon2D:
+		get_child(child_additive).set_deferred("disabled", true)
+	else:
+		child_additive += 1

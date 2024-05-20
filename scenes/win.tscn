@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://coocxqfnkslxt"]
+[gd_scene load_steps=13 format=3 uid="uid://coocxqfnkslxt"]
 
 [ext_resource type="Shader" path="res://other/haha.gdshader" id="1_ctd3f"]
 [ext_resource type="AudioStream" uid="uid://ce0hiu86khgoa" path="res://music/win.wav" id="2_60x6r"]
@@ -8,6 +8,7 @@
 [ext_resource type="Shortcut" uid="uid://6k1ox5idd2pt" path="res://other/buttonshortcut.tres" id="4_avw6e"]
 [ext_resource type="BitMap" uid="uid://baythmkjulfte" path="res://sprites/retrybitmap.png" id="6_lo7ff"]
 [ext_resource type="Script" path="res://scripts/newrun.gd" id="7_t8ed1"]
+[ext_resource type="Script" path="res://scripts/winscreentime.gd" id="9_essoj"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_7pqpj"]
 shader = ExtResource("1_ctd3f")
@@ -116,5 +117,14 @@ texture_pressed = ExtResource("3_5oily")
 texture_hover = ExtResource("3_5oily")
 texture_click_mask = ExtResource("6_lo7ff")
 script = ExtResource("7_t8ed1")
+
+[node name="Label" type="Label" parent="."]
+offset_left = -196.0
+offset_top = 147.0
+offset_right = -55.0
+offset_bottom = 195.0
+text = "Time:"
+vertical_alignment = 2
+script = ExtResource("9_essoj")
 
 [connection signal="pressed" from="retry" to="retry" method="_on_pressed"]

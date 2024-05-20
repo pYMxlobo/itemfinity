@@ -154,6 +154,7 @@ autoplay = true
 bus = &"Music"
 
 [node name="The Orb" parent="." instance=ExtResource("2_47epn")]
+position = Vector2(10667, -9195)
 
 [node name="BossRoom" type="Node2D" parent="."]
 position = Vector2(10360, -13864)
@@ -195,7 +196,7 @@ rooms = Array[String](["res://scenes/chunk1/1.tscn", "res://scenes/chunk1/2.tscn
 timer = NodePath("Timer")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="first/load_chunk_1"]
-polygon = PackedVector2Array(-72, 1944, -72, 1080, 632, 1080, 632, 1944, 1400, 1944, 1400, 1848, 2072, 1848, 2072, 1496, 2136, 1496, 2136, -552, 2360, -552, 2360, -840, 2584, -840, 2584, -2024, 760, -2024, 760, -1032, -744, -1032, -744, -1064, -1960, -1064, -1960, 1304, -1800, 1304, -1800, 1944)
+polygon = PackedVector2Array(-73, 1943, -73, 1079, 633, 1079, 633, 1943, 1399, 1943, 1399, 1847, 2072, 1847, 2072, 1496, 2136, 1496, 2136, -552, 2360, -552, 2360, -840, 2584, -840, 2584, -2024, 760, -2024, 760, -1032, -744, -1032, -744, -1064, -1960, -1064, -1960, 1304, -1800, 1304, -1800, 1943)
 
 [node name="Timer" type="Timer" parent="first/load_chunk_1"]
 
@@ -226,7 +227,7 @@ rooms = Array[String](["res://scenes/sidechunk1/1.tscn", "res://scenes/sidechunk
 timer = NodePath("Timer")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="side1/load_chunk_side_1"]
-polygon = PackedVector2Array(3384, 2840, 3512, 2840, 3512, 2264, 4856, 2264, 4856, -2184, 4728, -2184, 4728, -3976, 3992, -3976, 3992, -4040, 1944, -4040, 1944, -2440, 2968, -2440, 2968, 120, 3032, 120, 3032, 1848, 3384, 1848, 3385, 2104, 2808, 2104, 2808, 2744, 3384, 2744)
+polygon = PackedVector2Array(3385, 2839, 3511, 2839, 3511, 2263, 4856, 2263, 4856, -2184, 4728, -2184, 4728, -3976, 3992, -3976, 3992, -4039, 1945, -4039, 1944, -2440, 2968, -2440, 2968, 120, 3032, 120, 3032, 1847, 3449, 1847, 3449, 2105, 2809, 2105, 2809, 2743, 3385, 2743)
 
 [node name="Timer" type="Timer" parent="side1/load_chunk_side_1"]
 
@@ -256,7 +257,7 @@ rooms = Array[String](["res://scenes/sidechunk3/1.tscn", "res://scenes/sidechunk
 timer = NodePath("Timer")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="side3/load_chunk_side_3"]
-polygon = PackedVector2Array(2968, -7496, 9656, -7496, 9656, -5544, 2968, -5544)
+polygon = PackedVector2Array(2969, -7496, 9655, -7496, 9655, -5544, 2969, -5545)
 
 [node name="Timer" type="Timer" parent="side3/load_chunk_side_3"]
 
@@ -284,7 +285,7 @@ rooms = Array[String](["res://scenes/chunk4/1.tscn", "res://scenes/chunk4/2.tscn
 timer = NodePath("Timer")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="fourth/load_chunk_4"]
-polygon = PackedVector2Array(2232, 5432, 2232, 3960, 3384, 3960, 3384, 2840, 3512, 2840, 3512, 2264, 4856, 2264, 4856, 4696, 4408, 4696, 4408, 5240, 3928, 5240, 3928, 5432)
+polygon = PackedVector2Array(2233, 5432, 2232, 3961, 3385, 3961, 3385, 2840, 3512, 2840, 3512, 2264, 4856, 2264, 4856, 4696, 4408, 4696, 4408, 5240, 3928, 5240, 3928, 5432)
 
 [node name="Timer" type="Timer" parent="fourth/load_chunk_4"]
 
@@ -299,7 +300,7 @@ rooms = Array[String](["res://scenes/chunk5/1.tscn", "res://scenes/chunk5/2.tscn
 timer = NodePath("Timer")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="fifth/load_chunk_5"]
-polygon = PackedVector2Array(4856, 4344, 7224, 4344, 7224, -232, 8024, -232, 8024, -1224, 7224, -1224, 7224, -2824, 4856, -2824)
+polygon = PackedVector2Array(4857, 4344, 7224, 4344, 7224, -232, 8024, -232, 8024, -1224, 7223, -1224, 7223, -2823, 4857, -2823)
 
 [node name="Timer" type="Timer" parent="fifth/load_chunk_5"]
 
@@ -329,7 +330,7 @@ rooms = Array[String](["res://scenes/chunk7/1.tscn", "res://scenes/chunk7/2.tscn
 timer = NodePath("Timer")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="seventh/load_chunk_7"]
-polygon = PackedVector2Array(9240, -3336, 12504, -3336, 12504, -5544, 9240, -5544)
+polygon = PackedVector2Array(9241, -3336, 12503, -3336, 12504, -5543, 9240, -5543)
 
 [node name="Timer" type="Timer" parent="seventh/load_chunk_7"]
 

@@ -201,6 +201,7 @@ func _input(event):
 		$Camera2D/paused.visible = not $Camera2D/paused.visible
 		$Camera2D/unpause.visible = not $Camera2D/unpause.visible
 		$Camera2D/give_up.visible = not $Camera2D/give_up.visible
+		$Camera2D/pauseshader.visible = not $Camera2D/pauseshader.visible
 
 func _process(_delta):
 	item_change()
@@ -463,6 +464,7 @@ func _on_unpause_pressed():
 	$Camera2D/paused.visible = not $Camera2D/paused.visible
 	$Camera2D/unpause.visible = not $Camera2D/unpause.visible
 	$Camera2D/give_up.visible = not $Camera2D/give_up.visible
+	$Camera2D/pauseshader.visible = not $Camera2D/pauseshader.visible
 
 
 func _on_give_up_pressed():

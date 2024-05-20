@@ -194,7 +194,7 @@ func _on_enemy_hurt_area_entered(area):
 
 
 
-func _on_seeing_body_shape_entered(body_rid, body, body_shape_index, local_shape_index):
+func _on_seeing_body_shape_entered(_body_rid, body, _body_shape_index, _local_shape_index):
 	if body == player:
 		player_spotted = true
 		bullets.set_manual_start(true)

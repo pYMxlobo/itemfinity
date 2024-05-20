@@ -47,6 +47,7 @@ var loading_room = false
 
 var boss_active = false
 
+var lowest_time : int
 
 func save_ach():
 	var file = FileAccess.open("user://achievements.save", FileAccess.WRITE)
@@ -60,6 +61,7 @@ func save_ach():
 	file.store_var(black_bonus)
 	file.store_var(rainbow_bonus)
 	file.store_var(blue_bonus)
+	file.store_var(lowest_time)
 	print("saved :D")
 
 
@@ -77,6 +79,7 @@ func load_ach():
 			black_bonus = file.get_var(false)
 			rainbow_bonus = file.get_var(false)
 			blue_bonus = file.get_var(false)
+			lowest_time = file.get_var(false)
 		else:
 			print("oopsie! no data D:")
 			red_bonus = true

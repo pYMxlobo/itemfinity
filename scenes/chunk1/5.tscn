@@ -86,7 +86,4 @@ type = "orange"
 position = Vector2(788, -265)
 type = "green"
 
-[node name="music handler" parent="." node_paths=PackedStringArray("bgm_1", "bgm_2", "bgm_3") instance=ExtResource("5_elr7m")]
-bgm_1 = NodePath("")
-bgm_2 = NodePath("")
-bgm_3 = NodePath("")
+[node name="music handler" parent="." instance=ExtResource("5_elr7m")]

@@ -36,7 +36,7 @@ func _process(_delta):
 #				timer.start()
 
 
-func bullet_hit(result, bulletIndex, spawner):
+func bullet_hit(_result, _bulletIndex, _spawner):
 	if Global.dead == false:
 		if damage_allow == true:
 			Global.health -= 1
